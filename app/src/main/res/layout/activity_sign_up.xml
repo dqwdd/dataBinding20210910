@@ -32,7 +32,7 @@
                 android:id="@+id/emailCheckBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
+                android:layout_marginLeft="10dp"
                 android:text="중복검사"/>
 
         </LinearLayout>
@@ -40,7 +40,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="25dp"
             android:text="사용하실 비밀번호를 입력해 주세요"/>
 
         <EditText
@@ -54,7 +54,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="25dp"
             android:text="다시 한 번 입력해 주세요"/>
 
         <EditText
@@ -69,7 +69,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="25dp"
             android:text="사용하실 닉네임을 입력해 주세요"/>
 
         <EditText
@@ -84,7 +84,7 @@
             android:id="@+id/sighUpBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:text="회원가입"/>
     </LinearLayout>
 

@@ -29,7 +29,7 @@ class LoginActivity : BaseActivity() {
 
     lateinit var callbackManager: CallbackManager
 
-    var keyHash = Utility.getKeyHash(this)
+//    var keyHash = Utility.getKeyHash(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,6 +43,7 @@ class LoginActivity : BaseActivity() {
     override fun setupEvent() {
 
         binding.kakaoLoginBtn.setOnClickListener {
+            // 카카오계정으로 로그인
             UserApiClient.instance.loginWithKakaoAccount(mContext) { token, error ->
                 if (error != null) {
                     Log.e("카카오로그인", "로그인 실패", error)
@@ -78,7 +79,7 @@ class LoginActivity : BaseActivity() {
                             Log.d("내 정보 내용", jsonObj.toString())
 
                             val name = jsonObj!!.getString("name")
-                            val id = jsonObj!!.getString("id")
+                            val id = jsonObj.getString("id")
 
 //                            가입한 회원 이름 => 우리 서버에 사용자 이름으로 (닉네임으로) 저장
                             Log.d("이름", name)

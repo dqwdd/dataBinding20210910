@@ -65,7 +65,7 @@ class LoginActivity : BaseActivity() {
                     }
 
                 }
-            }
+            }//이제부턴
         }
 
         callbackManager = CallbackManager.Factory.create();

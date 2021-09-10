@@ -85,6 +85,7 @@
                 android:layout_height="50dp"/>
 
             <ImageView
+                android:id="@+id/kakaoLoginBtn"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:src="@drawable/kakaotalk_image"/>

@@ -19,6 +19,9 @@ import com.facebook.login.widget.LoginButton
 import org.json.JSONObject
 import java.util.*
 
+import com.kakao.sdk.common.util.Utility
+
+
 
 class LoginActivity : BaseActivity() {
 
@@ -26,12 +29,15 @@ class LoginActivity : BaseActivity() {
 
     lateinit var callbackManager: CallbackManager
 
+    var keyHash = Utility.getKeyHash(this)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
 
         setupEvent()
         setValues()
+
     }
 
     override fun setupEvent() {

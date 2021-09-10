@@ -36,17 +36,13 @@ class SignUpActivity : BaseActivity() {
                     call: Call<BasicResponse>,
                     response: Response<BasicResponse>
                 ) {
-
 //                    response.body => 응답 코드가 200번이어야 들어있다
 //                    가입 실패 / 로그인 실패 => 응답 코드 400-> errorBody에서 따로 찾아야 함(실패)
 //                    경우마다 해서 해야 함(if문)
-
                     if( response.isSuccessful ) {
-
                         val basicResponse = response.body()!!
                         Log.d("서버 메시지", basicResponse.message)
                         Toast.makeText(mContext, basicResponse.message, Toast.LENGTH_SHORT).show()
-
                     }
                     else {
 //                        어떤 이유건 성공이 아닌 상황
@@ -59,20 +55,13 @@ class SignUpActivity : BaseActivity() {
 
 //                        runOnUiThread를 해주지 않아도 UI 접근 가능
                         Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show()
-
                     }
-
-
-
                 }
-
                 override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
                 }
             })
             //여기까지가 요청하는 기능은 끝, 사잏업 해주세요~
-
         }
-
     }
 
     override fun setValues() {

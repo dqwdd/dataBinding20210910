@@ -7,19 +7,16 @@ import android.util.Base64
 import android.util.Log
 import androidx.databinding.DataBindingUtil
 import com.example.databinding20210910.databinding.ActivityLoginBinding
-import com.facebook.CallbackManager
 import java.security.MessageDigest
-import com.facebook.FacebookException
 
 import com.facebook.login.LoginResult
 
-import com.facebook.FacebookCallback
-
 import android.view.View
-import com.facebook.AccessToken
+import com.facebook.*
 import com.facebook.login.LoginManager
 
 import com.facebook.login.widget.LoginButton
+import org.json.JSONObject
 import java.util.*
 
 
@@ -53,6 +50,22 @@ class LoginActivity : BaseActivity() {
                 override fun onSuccess(result: LoginResult?) {
 
                     Log.d("로그인 성공", "우리가 만든 버튼으로 성공")
+
+//                    페이스북에 접근할 수 있는 토큰이 생겨있다 -> 활용
+//                    나의 (로그인한 사람의) 정보(GraphRequest)를 받아오는데 활용
+
+                    //object == 갔다 와서 뭐 할건지 적는거
+                    val graphRequest = GraphRequest.newMeRequest(result?.accessToken, object : GraphRequest.GraphJSONObjectCallback {
+                        override fun onCompleted(jsonObj: JSONObject?, response: GraphResponse?) {
+
+                            Log.d("내 정보 내용", jsonObj.toString())
+
+                        }
+                    })
+
+//                    위에서 정리한 내용을 들고, 내 정보를 요청
+                    graphRequest.executeAsync()
+
                 }
 
                 override fun onCancel() {

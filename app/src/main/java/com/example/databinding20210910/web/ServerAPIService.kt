@@ -26,4 +26,12 @@ interface ServerAPIService {
         @Field("email") email: String,
         @Field("password") pw: String) : Call<BasicResponse>
 
+
+    @FormUrlEncoded
+    @POST("/user/social")//어느 주소로 갈거냐
+    fun postRequestSocialLogin(
+        @Field("provider") provider: String,
+        @Field("uid") id: String,
+        @Field("nick_name") name: String) : Call<BasicResponse>
+
 }

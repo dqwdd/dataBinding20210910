@@ -153,6 +153,21 @@ class LoginActivity : BaseActivity() {
 
 //                            TODO() - 페북이 알려준 이름/id값을 API서버에 전달해서 소셜로그인 처리 요청
 
+                            apiService.postRequestSocialLogin("facebook", id, name).enqueue(object : Callback<BasicResponse> {
+                                override fun onResponse(
+                                    call: Call<BasicResponse>,
+                                    response: Response<BasicResponse>
+                                ) {
+
+                                    val basicResponse = response.body()!!
+                                    Toast.makeText(mContext, basicResponse.message, Toast.LENGTH_SHORT).show()
+
+                                }
+
+                                override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
+                                }
+                            })
+
                         }
                     })
 

@@ -20,7 +20,7 @@ import org.json.JSONObject
 import java.util.*
 
 import com.kakao.sdk.common.util.Utility
-
+import com.kakao.sdk.user.UserApiClient
 
 
 class LoginActivity : BaseActivity() {
@@ -41,6 +41,17 @@ class LoginActivity : BaseActivity() {
     }
 
     override fun setupEvent() {
+
+        binding.kakaoLoginBtn.setOnClickListener {
+            UserApiClient.instance.loginWithKakaoAccount(mContext) { token, error ->
+                if (error != null) {
+                    Log.e("카카오로그인", "로그인 실패", error)
+                }
+                else if (token != null) {
+                    Log.i("카카오로그인", "로그인 성공 ${token.accessToken}")
+                }
+            }
+        }
 
         callbackManager = CallbackManager.Factory.create();
 

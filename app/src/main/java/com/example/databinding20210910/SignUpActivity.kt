@@ -17,6 +17,13 @@ class SignUpActivity : BaseActivity() {
     }
 
     override fun setupEvent() {
+
+        binding.sighUpBtn.setOnClickListener {
+
+            apiService.putRequestSignUp()
+
+        }
+
     }
 
     override fun setValues() {

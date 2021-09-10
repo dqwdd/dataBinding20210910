@@ -9,9 +9,9 @@ interface ServerAPIService {
 
     @FormUrlEncoded
     @PUT("/user")//어느 주소로 갈거냐
-    fun putRequestSignUp(@Field("email") email: String,
-                         @Field("password") pw: String,
-                         @Field("nick_name") nickname: String)//폼데이터의 email에 뒤에 데이터들 담아주세요
-
+    fun putRequestSignUp(
+        @Field("email") email: String,
+        @Field("password") pw: String,
+        @Field("nick_name") nickname: String)//폼데이터의 email에 뒤에 데이터들 담아주세요
 
 }

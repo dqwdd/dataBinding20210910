@@ -20,7 +20,12 @@ class SignUpActivity : BaseActivity() {
 
         binding.sighUpBtn.setOnClickListener {
 
-            apiService.putRequestSignUp()
+            val inputEmail = binding.emailEdt.text.toString()
+            val inputPw = binding.pwEdt.text.toString()
+            val inputNick = binding.nicknameEdt.text.toString()
+
+            apiService.putRequestSignUp(inputEmail, inputPw, inputNick)
+            //여기까지가 요청하는 기능은 끝
 
         }
 

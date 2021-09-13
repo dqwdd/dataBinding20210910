@@ -24,7 +24,7 @@ class ContextUtil {
         fun getToken(context: Context) : String {//메모장을 열어줘야하나context, token을 string으로 set
             val pref = context.getSharedPreferences(prefName, Context.MODE_PRIVATE)
             return pref.getString(TOKEN, "")!!//스트링으로 내놔, TOKEN항목에 저장된걸, : String해놔서 널은 안되니 ""로 하자
-        }
+        }//
 
     }
 

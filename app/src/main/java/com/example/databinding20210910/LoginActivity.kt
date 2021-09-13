@@ -136,9 +136,9 @@ class LoginActivity : BaseActivity() {
                                     val basicResponse = response.body()!!
 //                                    Toast.makeText(mContext, basicResponse.message, Toast.LENGTH_SHORT).show()
                                     Toast.makeText(mContext, "${name}님 환영합니다", Toast.LENGTH_SHORT).show()
-                                    Log.d("API서버가 준 토큰값 : ", basicResponse.data.token)
 
 //                                    ContextUtil 등으로 SharedPreferences로 토큰값 저장
+                                    Log.d("API서버가 준 토큰값 : ", basicResponse.data.token)
                                     ContextUtil.setToken(mContext,basicResponse.data.token)
 
                                 }

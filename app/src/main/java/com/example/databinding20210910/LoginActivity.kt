@@ -16,6 +16,7 @@ import android.widget.Toast
 import com.example.databinding20210910.datas.BasicResponse
 import com.example.databinding20210910.datas.UserData
 import com.example.databinding20210910.utils.ContextUtil
+import com.example.databinding20210910.utils.GlobalData
 import com.facebook.*
 import com.facebook.login.LoginManager
 
@@ -75,6 +76,10 @@ class LoginActivity : BaseActivity() {
                         ContextUtil.setToken(mContext,basicResponse.data.token)
 
 //                        Toast.makeText(mContext, basicResponse.data.user.email, Toast.LENGTH_SHORT).show()
+
+//                        로그인 한 사람이 누구인지 GlobalData에 저장하고 싶다->
+                        GlobalData.loginUser = basicResponse.data.user
+
                     }
                     else {
 //                        어떤 이유건 성공이 아닌 상황
@@ -143,6 +148,8 @@ class LoginActivity : BaseActivity() {
                                     Log.d("API서버가 준 토큰값 : ", basicResponse.data.token)
                                     ContextUtil.setToken(mContext,basicResponse.data.token)
 
+                                    GlobalData.loginUser = basicResponse.data.user
+
                                 }
 
                                 override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
@@ -206,6 +213,8 @@ class LoginActivity : BaseActivity() {
 
 //                                    ContextUtil 등으로 SharedPreferences로 토큰값 저장
                                     ContextUtil.setToken(mContext,basicResponse.data.token)
+
+                                    GlobalData.loginUser = basicResponse.data.user
 
                                 }
 

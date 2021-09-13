@@ -1,5 +1,9 @@
 package com.example.databinding20210910.web
 
+import android.content.Context
+import com.example.databinding20210910.utils.ContextUtil
+import okhttp3.Interceptor
+import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -16,11 +20,34 @@ class ServerAPI {
 
         private var retrofit : Retrofit? = null
 
-        fun getRetrofit() : Retrofit {
+        fun getRetrofit(context: Context) : Retrofit {
 
             if (retrofit == null) {
+
+//                API요청이 발생하면 => 가로채서 => 헤더를 추가하자 => API요청을 이어가게
+//                자동으로 Header를 달아주는 효과
+                val interceptor = Interceptor {
+                    with(it) {
+
+                        val newRequest = request().newBuilder()
+                            .addHeader("X-Http-Token", ContextUtil.getToken(context))
+                            .build()
+
+                        proceed(newRequest)
+
+                    }
+                }
+
+//                Retrofit == OkHttp의 확장판임 => Retrofit도 OkHttpClient 형태의 클라이언트 활용함
+//                이 클라이언트에게 interceptor를 달아주자 -> 달려면 가공해야함
+//                클라이언트를 가공해주자~
+                val myClient = OkHttpClient.Builder().addInterceptor(interceptor).build()
+
+
+//                기본 클라이언트였는데 직접 만든 클라이언트 변수를 이용해서 통신하게 하자
                 retrofit = Retrofit.Builder()
                     .baseUrl(hostURL)
+                    .client(myClient)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build()
             }
@@ -31,5 +58,7 @@ class ServerAPI {
         }
 
     }
+
+
 
 }

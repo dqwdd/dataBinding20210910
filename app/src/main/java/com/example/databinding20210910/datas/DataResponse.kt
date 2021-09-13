@@ -5,3 +5,5 @@ class DataResponse(
     var user: UserData
 ) {
 }
+
+//http://3.36.146.152/api/docs/

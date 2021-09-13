@@ -73,6 +73,8 @@ class LoginActivity : BaseActivity() {
 //                        로그인 성공 =? "data" jsonObject -> DataResponse -> token변수.
                         Log.d("토큰", basicResponse.data.token)
                         ContextUtil.setToken(mContext,basicResponse.data.token)
+
+//                        Toast.makeText(mContext, basicResponse.data.user.email, Toast.LENGTH_SHORT).show()
                     }
                     else {
 //                        어떤 이유건 성공이 아닌 상황

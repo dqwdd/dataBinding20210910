@@ -36,7 +36,7 @@ class AppointmentAdapter(
 
 
         titleTxt.text = data.title
-        dateTimeTxt.text = data.createdAt
+        dateTimeTxt.text = data.datetime
         placeNameTxt.text = data.placeName
 
         return row

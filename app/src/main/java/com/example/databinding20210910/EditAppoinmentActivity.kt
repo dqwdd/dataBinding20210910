@@ -133,7 +133,7 @@ class EditAppoinmentActivity : BaseActivity() {
 
 //            서버에 API 호출
             apiService.postRequestAppointment(
-                ContextUtil.getToken(mContext),
+//                ContextUtil.getToken(mContext),
                 inputTitle,
                 finalDatetime,
                 inputPlaceName, lat, lng).enqueue(object : Callback<BasicResponse> {

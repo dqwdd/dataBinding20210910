@@ -5,7 +5,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import com.example.databinding20210910.datas.BasicResponse
 import com.example.databinding20210910.utils.ContextUtil
+import com.example.databinding20210910.utils.GlobalData
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class SplashActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,7 +31,26 @@ class SplashActivity : BaseActivity() {
 
             val myIntent: Intent
 
-            if (ContextUtil.getToken(mContext) != "") {
+            //
+
+            if (ContextUtil.getToken(mContext) != "") {f
+
+                apiService.getRequestMyInfo().enqueue(object : Callback<BasicResponse> {
+                    override fun onResponse(
+                        call: Call<BasicResponse>,
+                        response: Response<BasicResponse>
+                    ) {
+
+                        if ( response.isSuccessful ) {
+                            val basicResponse = response.body()!!
+                            GlobalData.loginUser = basicResponse.data.user
+                        }
+
+                    }
+
+                    override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
+                    }
+                })
 
 //                GlobalData.loginUser = ?
 

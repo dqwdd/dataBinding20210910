@@ -142,7 +142,14 @@ class EditAppoinmentActivity : BaseActivity() {
                     call: Call<BasicResponse>,
                     response: Response<BasicResponse>
                 ) {
-                    //
+
+                    if ( response.isSuccessful ) {
+                        Toast.makeText(mContext, "약속이 등록되었습니다", Toast.LENGTH_SHORT).show()
+                        finish()
+                    }
+                    else {
+                        Toast.makeText(mContext, "뭔가 오류남", Toast.LENGTH_SHORT).show()
+                    }
                 }
 
                 override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
@@ -158,10 +165,10 @@ class EditAppoinmentActivity : BaseActivity() {
     override fun setValues() {
 
 //        카카오지도 띄워보기
-        val mapView = MapView(mContext)
-
-
-        binding.mapView.addView(mapView)
+//        val mapView = MapView(mContext)
+//
+//
+//        binding.mapView.addView(mapView)
 
 
     }

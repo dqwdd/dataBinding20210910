@@ -218,6 +218,12 @@ class LoginActivity : BaseActivity() {
 //                        로그인 한 사람이 누구인지 GlobalData에 저장하고 싶다->
                                     GlobalData.loginUser = basicResponse.data.user
 
+
+//                                    메인화면으로 이동
+                                    val myIntent = Intent(mContext, MainActivity::class.java)
+                                    startActivity(myIntent)
+                                    finish()
+
                                 }
 
                                 override fun onFailure(call: Call<BasicResponse>, t: Throwable) {

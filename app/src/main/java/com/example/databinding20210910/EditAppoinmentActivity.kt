@@ -10,6 +10,11 @@ import android.widget.TimePicker
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.example.databinding20210910.databinding.ActivityEditAppoinmentBinding
+import com.example.databinding20210910.datas.BasicResponse
+import com.example.databinding20210910.utils.ContextUtil
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.sql.Time
 import java.text.SimpleDateFormat
 import java.util.*
@@ -24,6 +29,8 @@ class EditAppoinmentActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_edit_appoinment)
+        setupEvent()
+        setValues()
     }
 
     override fun setupEvent() {
@@ -118,7 +125,30 @@ class EditAppoinmentActivity : BaseActivity() {
 //            - 장소 이름
             val inputPlaceName = binding.paceSearchEdt.text.toString()
 
-//            장소/위도 ?
+//            장소 위도/경도 ?
+            val lat = 37.57795738970527
+            val lng = 127.03360068706621
+
+
+
+//            서버에 API 호출
+            apiService.postRequestAppointment(
+                ContextUtil.getToken(mContext),
+                inputTitle,
+                finalDatetime,
+                inputPlaceName, lat, lng).enqueue(object : Callback<BasicResponse> {
+                override fun onResponse(
+                    call: Call<BasicResponse>,
+                    response: Response<BasicResponse>
+                ) {
+                    //
+                }
+
+                override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
+                    //
+                }
+            })
+
 
         }
 

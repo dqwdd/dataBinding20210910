@@ -148,6 +148,7 @@ class LoginActivity : BaseActivity() {
                                     Log.d("API서버가 준 토큰값 : ", basicResponse.data.token)
                                     ContextUtil.setToken(mContext,basicResponse.data.token)
 
+//                        로그인 한 사람이 누구인지 GlobalData에 저장하고 싶다->
                                     GlobalData.loginUser = basicResponse.data.user
 
                                 }
@@ -214,6 +215,7 @@ class LoginActivity : BaseActivity() {
 //                                    ContextUtil 등으로 SharedPreferences로 토큰값 저장
                                     ContextUtil.setToken(mContext,basicResponse.data.token)
 
+//                        로그인 한 사람이 누구인지 GlobalData에 저장하고 싶다->
                                     GlobalData.loginUser = basicResponse.data.user
 
                                 }

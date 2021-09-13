@@ -15,6 +15,17 @@
         android:theme="@style/Theme.DataBinding20210910"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".SplashActivity"
+            android:exported="true" >
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+        <activity
             android:name=".EditAppoinmentActivity"
             android:exported="true" />
         <activity
@@ -25,22 +36,14 @@
             android:exported="true" />
         <activity
             android:name=".LoginActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="true"/>
 
         <meta-data
             android:name="com.kakao.sdk.AppKey"
-            android:value="13f6ae1232b5e4892d442bad3ebbd8ec"/>
-
+            android:value="13f6ae1232b5e4892d442bad3ebbd8ec" />
         <meta-data
             android:name="com.naver.maps.map.CLIENT_ID"
             android:value="vw124jgfss" />
-
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />

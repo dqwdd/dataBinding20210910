@@ -80,6 +80,8 @@ class LoginActivity : BaseActivity() {
 //                        로그인 한 사람이 누구인지 GlobalData에 저장하고 싶다->
                         GlobalData.loginUser = basicResponse.data.user
 
+                        moveToMain()
+
                     }
                     else {
 //                        어떤 이유건 성공이 아닌 상황
@@ -150,6 +152,7 @@ class LoginActivity : BaseActivity() {
 
 //                        로그인 한 사람이 누구인지 GlobalData에 저장하고 싶다->
                                     GlobalData.loginUser = basicResponse.data.user
+                                    moveToMain()
 
                                 }
 
@@ -217,12 +220,13 @@ class LoginActivity : BaseActivity() {
 
 //                        로그인 한 사람이 누구인지 GlobalData에 저장하고 싶다->
                                     GlobalData.loginUser = basicResponse.data.user
+                                    moveToMain()
 
 
 //                                    메인화면으로 이동
-                                    val myIntent = Intent(mContext, MainActivity::class.java)
-                                    startActivity(myIntent)
-                                    finish()
+//                                    val myIntent = Intent(mContext, MainActivity::class.java)
+//                                    startActivity(myIntent)
+//                                    finish()
 
                                 }
 
@@ -289,9 +293,17 @@ class LoginActivity : BaseActivity() {
 
 
     }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         callbackManager.onActivityResult(requestCode, resultCode, data)
         Log.d("확인용", "확인")
         super.onActivityResult(requestCode, resultCode, data)
     }
+
+    fun moveToMain() {
+        val myIntent = Intent(mContext, MainActivity::class.java)
+        startActivity(myIntent)
+        finish()
+    }
+
 }

@@ -68,7 +68,7 @@ class LoginActivity : BaseActivity() {
                         val basicResponse = response.body()!!
                         Log.d("서버 메시지", basicResponse.message)
 //                        Toast.makeText(mContext, basicResponse.message, Toast.LENGTH_SHORT).show()
-                        Toast.makeText(mContext, "${basicResponse.data.user.nick_name}님 환영합니다", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(mContext, "${basicResponse.data.user.nickName}님 환영합니다", Toast.LENGTH_SHORT).show()
 
 
 //                        로그인 성공 =? "data" jsonObject -> DataResponse -> token변수.

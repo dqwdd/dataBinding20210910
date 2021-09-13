@@ -14,6 +14,8 @@ import com.facebook.login.LoginResult
 import android.view.View
 import android.widget.Toast
 import com.example.databinding20210910.datas.BasicResponse
+import com.example.databinding20210910.datas.UserData
+import com.example.databinding20210910.utils.ContextUtil
 import com.facebook.*
 import com.facebook.login.LoginManager
 
@@ -64,7 +66,10 @@ class LoginActivity : BaseActivity() {
                     if( response.isSuccessful ) {
                         val basicResponse = response.body()!!
                         Log.d("서버 메시지", basicResponse.message)
-                        Toast.makeText(mContext, basicResponse.message, Toast.LENGTH_SHORT).show()
+//                        Toast.makeText(mContext, basicResponse.message, Toast.LENGTH_SHORT).show()
+                        Toast.makeText(mContext, "${basicResponse.data.user.nick_name}님 환영합니다", Toast.LENGTH_SHORT).show()
+                        
+                        ContextUtil.setToken(mContext,basicResponse.data.token)
                     }
                     else {
 //                        어떤 이유건 성공이 아닌 상황
@@ -111,7 +116,36 @@ class LoginActivity : BaseActivity() {
                                     "\n이메일: ${user.kakaoAccount?.email}" +
                                     "\n닉네임: ${user.kakaoAccount?.profile?.nickname}" +
                                     "\n프로필사진: ${user.kakaoAccount?.profile?.thumbnailImageUrl}")
-//                            소셜 로그인 API에 "kakao"
+
+
+
+
+
+//                            소셜로그인 API에 "kakao" 로 id / 닉네임 전송. (도전과제)
+
+                            val id = user.id.toString()
+                            val name = user.kakaoAccount?.profile?.nickname.toString()
+
+                            apiService.postRequestSocialLogin("kakao", id, name).enqueue(object : Callback<BasicResponse> {
+                                override fun onResponse(
+                                    call: Call<BasicResponse>,
+                                    response: Response<BasicResponse>
+                                ) {
+
+                                    val basicResponse = response.body()!!
+//                                    Toast.makeText(mContext, basicResponse.message, Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(mContext, "${name}님 환영합니다", Toast.LENGTH_SHORT).show()
+                                    Log.d("API서버가 준 토큰값 : ", basicResponse.data.token)
+
+//                                    ContextUtil 등으로 SharedPreferences로 토큰값 저장
+
+                                }
+
+                                override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
+                                }
+                            })
+
+
 
                         }
                     }
@@ -162,7 +196,8 @@ class LoginActivity : BaseActivity() {
                                 ) {
 
                                     val basicResponse = response.body()!!
-                                    Toast.makeText(mContext, basicResponse.message, Toast.LENGTH_SHORT).show()
+//                                    Toast.makeText(mContext, basicResponse.message, Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(mContext, "${name}님 환영합니다", Toast.LENGTH_SHORT).show()
                                     Log.d("API서버가 준 토큰값 : ", basicResponse.data.token)
 
 //                                    ContextUtil 등으로 SharedPreferences로 토큰값 저장

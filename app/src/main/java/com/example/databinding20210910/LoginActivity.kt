@@ -68,7 +68,10 @@ class LoginActivity : BaseActivity() {
                         Log.d("서버 메시지", basicResponse.message)
 //                        Toast.makeText(mContext, basicResponse.message, Toast.LENGTH_SHORT).show()
                         Toast.makeText(mContext, "${basicResponse.data.user.nick_name}님 환영합니다", Toast.LENGTH_SHORT).show()
-                        
+
+
+//                        로그인 성공 =? "data" jsonObject -> DataResponse -> token변수.
+                        Log.d("토큰", basicResponse.data.token)
                         ContextUtil.setToken(mContext,basicResponse.data.token)
                     }
                     else {
@@ -115,9 +118,8 @@ class LoginActivity : BaseActivity() {
                                     "\n회원번호: ${user.id}" +
                                     "\n이메일: ${user.kakaoAccount?.email}" +
                                     "\n닉네임: ${user.kakaoAccount?.profile?.nickname}" +
-                                    "\n프로필사진: ${user.kakaoAccount?.profile?.thumbnailImageUrl}")
-
-
+                                    "\n프로필사진: ${user.kakaoAccount?.profile?.thumbnailImageUrl}"
+                            )
 
 
 
@@ -131,13 +133,13 @@ class LoginActivity : BaseActivity() {
                                     call: Call<BasicResponse>,
                                     response: Response<BasicResponse>
                                 ) {
-
                                     val basicResponse = response.body()!!
 //                                    Toast.makeText(mContext, basicResponse.message, Toast.LENGTH_SHORT).show()
                                     Toast.makeText(mContext, "${name}님 환영합니다", Toast.LENGTH_SHORT).show()
                                     Log.d("API서버가 준 토큰값 : ", basicResponse.data.token)
 
 //                                    ContextUtil 등으로 SharedPreferences로 토큰값 저장
+                                    ContextUtil.setToken(mContext,basicResponse.data.token)
 
                                 }
 
@@ -201,6 +203,7 @@ class LoginActivity : BaseActivity() {
                                     Log.d("API서버가 준 토큰값 : ", basicResponse.data.token)
 
 //                                    ContextUtil 등으로 SharedPreferences로 토큰값 저장
+                                    ContextUtil.setToken(mContext,basicResponse.data.token)
 
                                 }
 

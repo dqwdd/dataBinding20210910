@@ -114,17 +114,19 @@
 
     </LinearLayout>
 
-    <TextView
+    <LinearLayout
+        android:id="@+id/mapView"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:gravity="center"
-        android:text="여기에지도 배치, 검색 결과를 지도로 표현"/>
+        android:gravity="center">
 
-    <Button
-        android:id="@+id/okBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="약속 등록하기"/>
+        <Button
+            android:id="@+id/okBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="약속 등록하기"/>
+
+    </LinearLayout>
 
 </LinearLayout>
 

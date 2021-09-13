@@ -20,6 +20,7 @@ class MainActivity : BaseActivity() {
     lateinit var binding: ActivityMainBinding
 
     val mAppointmentList = ArrayList<AppointmentData>()
+    lateinit var mAdapter : AppointmentAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,6 +43,10 @@ class MainActivity : BaseActivity() {
         Toast.makeText(mContext, "${GlobalData.loginUser!!.nickName}님 환영합니다!", Toast.LENGTH_SHORT).show()
 
         getAppointmentListFromServer()
+
+        mAdapter = AppointmentAdapter(mContext, R.layout.appointment_list_item, mAppointmentList)
+        binding.appointmentListView.adapter = mAdapter
+
     }
 
     fun getAppointmentListFromServer() {
@@ -51,13 +56,20 @@ class MainActivity : BaseActivity() {
 
                 val basicResponse = response.body()!!
 
-                Log.d("약속 목록", basicResponse.message)
-            }
+//                약속 목록 변수에 서버가 알려준 약속 목록을 전부 추가
+                mAppointmentList.addAll( basicResponse.data.appointments )
+
+//                어댑터 새로고침
+                mAdapter.notifyDataSetChanged()
+                }
 
             override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
             }
+
         })
+
 
     }
 
 }
+//http://3.36.146.152/api/docs/

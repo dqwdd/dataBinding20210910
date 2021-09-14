@@ -12,6 +12,11 @@ import androidx.databinding.DataBindingUtil
 import com.example.databinding20210910.databinding.ActivityEditAppoinmentBinding
 import com.example.databinding20210910.datas.BasicResponse
 import com.example.databinding20210910.utils.ContextUtil
+import com.naver.maps.geometry.LatLng
+import com.naver.maps.map.CameraUpdate
+import com.naver.maps.map.MapFragment
+import com.naver.maps.map.NaverMap
+import com.naver.maps.map.OnMapReadyCallback
 import net.daum.mf.map.api.MapView
 import retrofit2.Call
 import retrofit2.Callback
@@ -170,6 +175,28 @@ class EditAppoinmentActivity : BaseActivity() {
 //
 //        binding.mapView.addView(mapView)
 
+
+//        네이버 지도 띄워보기(네이버지도 프래그먼트 다루기)
+        val fm = supportFragmentManager
+        val mapFragment = fm.findFragmentById(R.id.naverMapView) as MapFragment?
+            ?: MapFragment.newInstance().also {
+                fm.beginTransaction().add(R.id.naverMapView, it).commit()
+            }
+
+        mapFragment.getMapAsync {
+            Log.d("지도 객체-바로 할 일", it.toString())
+
+//            학원 좌표를 지도 시작점으로(예제)
+//            it.mapType = NaverMap.MapType.Hybrid//그냥 해본거(다른 형태의 지도로 보기)
+
+
+//            좌표를 다루는 변수 - LatLng클래스 활용
+            val napplusCoord = LatLng(37.50586305676978, 126.75316685445878)
+
+            val cameraUpdate = CameraUpdate.scrollTo(napplusCoord)
+            it.moveCamera(cameraUpdate)
+
+        }
 
     }
 

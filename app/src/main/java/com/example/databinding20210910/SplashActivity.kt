@@ -26,39 +26,39 @@ class SplashActivity : BaseActivity() {
 
     override fun setValues() {
 
+        apiService.getRequestMyInfo().enqueue(object : Callback<BasicResponse> {
+            override fun onResponse(
+                call: Call<BasicResponse>,
+                response: Response<BasicResponse>
+            ) {
+
+                if ( response.isSuccessful ) {
+                    val basicResponse = response.body()!!
+                    GlobalData.loginUser = basicResponse.data.user
+                }
+
+            }
+
+            override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
+            }
+        })
+
+
+
         val myHandler = Handler(Looper.getMainLooper())
         myHandler.postDelayed({
 
             val myIntent: Intent
 
-            //
+//            2.5초를 기다린 후에, 내 정보를 받아온 결과를 확인해보자.
+//            성공적이었을때만 사용자 정보가 대입됨.
 
-            if (ContextUtil.getToken(mContext) != "") {f
-
-                apiService.getRequestMyInfo().enqueue(object : Callback<BasicResponse> {
-                    override fun onResponse(
-                        call: Call<BasicResponse>,
-                        response: Response<BasicResponse>
-                    ) {
-
-                        if ( response.isSuccessful ) {
-                            val basicResponse = response.body()!!
-                            GlobalData.loginUser = basicResponse.data.user
-                        }
-
-                    }
-
-                    override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
-                    }
-                })
-
-//                GlobalData.loginUser = ?
-
+            if (GlobalData.loginUser != null) {
                 myIntent = Intent(mContext, MainActivity::class.java)
-            } else {
+            }
+            else {
                 myIntent = Intent(mContext, LoginActivity::class.java)
             }
-
             startActivity(myIntent)
 
 

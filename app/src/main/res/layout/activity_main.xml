@@ -25,7 +25,7 @@
                 android:layout_gravity="right|bottom"
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="10dp"
-                android:text="의견 등록하기"/>
+                android:text="약속 등록하기"/>
 
         </FrameLayout>
 

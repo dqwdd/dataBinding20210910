@@ -10,7 +10,9 @@ class UserData (
     var uid: String,
     var email: String,
     @SerializedName("nick_name")
-    var nickName: String) : Serializable {
+    var nickName: String,
+    @SerializedName("readyMinute")
+    var readyMinute: Int) : Serializable {
 
 //    constructor() : this(0, "", "", "", "", "", "")
 

@@ -4,6 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.example.databinding20210910.adapters.AppointmentAdapter
@@ -43,6 +45,8 @@ class MainActivity : BaseActivity() {
             val myIntent = Intent(mContext, EditAppoinmentActivity::class.java)
             startActivity(myIntent)
         }
+
+
 
     }
 

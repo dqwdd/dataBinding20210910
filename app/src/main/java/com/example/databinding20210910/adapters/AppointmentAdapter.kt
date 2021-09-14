@@ -1,13 +1,16 @@
 package com.example.databinding20210910.adapters
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat.startActivity
 import com.example.databinding20210910.R
+import com.example.databinding20210910.ViewMapActivity
 import com.example.databinding20210910.datas.AppointmentData
 import org.json.JSONObject
 import java.text.SimpleDateFormat
@@ -33,11 +36,17 @@ class AppointmentAdapter(
         val titleTxt = row.findViewById<TextView>(R.id.titleTxt)
         val dateTimeTxt = row.findViewById<TextView>(R.id.dateTimeTxt)
         val placeNameTxt = row.findViewById<TextView>(R.id.placeNameTxt)
-
+        val viewPlaceMapBtn = row.findViewById<ImageView>(R.id.viewPlaceMapBtn)
 
         titleTxt.text = data.title
         dateTimeTxt.text = data.datetime
         placeNameTxt.text = data.placeName
+
+        viewPlaceMapBtn.setOnClickListener {
+            val myIntent = Intent(mContext, ViewMapActivity::class.java)
+            myIntent.putExtra("appointment", data)
+            mContext.startActivity(myIntent)
+        }
 
         return row
     }

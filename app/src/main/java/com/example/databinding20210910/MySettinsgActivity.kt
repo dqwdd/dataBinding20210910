@@ -4,6 +4,7 @@ import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -27,6 +28,7 @@ class MySettinsgActivity : BaseActivity() {
     }
 
     override fun setupEvent() {
+
 
         binding.editNicknameLayout.setOnClickListener {
 
@@ -132,6 +134,21 @@ class MySettinsgActivity : BaseActivity() {
         else {
             binding.readyTimeTxt.text = "${GlobalData.loginUser!!.readyMinute}분"
         }
+
+        when(GlobalData.loginUser!!.provider) {
+            "facebook" -> binding.socialLoginImg.setImageResource(R.drawable.facebook_logo_icon)
+            "kakao" -> binding.socialLoginImg.setImageResource(R.drawable.kakaotalk_logo_icon)
+            else -> binding.socialLoginImg.visibility = View.VISIBLE
+        }
+
+        /*if (GlobalData.loginUser!!.provider == "facebook") {
+            binding.socialLoginImg.setImageResource(R.drawable.facebook_logo_icon)
+        }
+        else if (GlobalData.loginUser!!.provider == "kakao") {
+            binding.socialLoginImg.setImageResource(R.drawable.kakaotalk_logo_icon)
+        }*/
+        //코틀린스럽지 않아서 위처럼 바꾸심
+
 
     }
 

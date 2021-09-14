@@ -196,6 +196,10 @@ class EditAppoinmentActivity : BaseActivity() {
             val cameraUpdate = CameraUpdate.scrollTo(napplusCoord)
             it.moveCamera(cameraUpdate)
 
+            val uiSettings = it.uiSettings
+            uiSettings.isCompassEnabled = true
+            uiSettings.isScaleBarEnabled = false
+
         }
 
     }

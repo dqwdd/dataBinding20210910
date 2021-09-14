@@ -9,7 +9,11 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import com.example.databinding20210910.databinding.ActivityMySettinsgBinding
+import com.example.databinding20210910.datas.BasicResponse
 import com.example.databinding20210910.utils.GlobalData
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class MySettinsgActivity : BaseActivity() {
 
@@ -40,7 +44,24 @@ class MySettinsgActivity : BaseActivity() {
 
                 val minuteEdt = customView.findViewById<EditText>(R.id.minuteEdt)
 
-                Toast.makeText(mContext, "${minuteEdt.text.toString()}", Toast.LENGTH_SHORT).show()
+                //Toast.makeText(mContext, "${minuteEdt.text.toString()}", Toast.LENGTH_SHORT).show()
+
+                //enqueue==갔다와서 뭐할건지
+                apiService.patchRequestMyInfo("ready_minute", minuteEdt.text.toString()).
+                enqueue(object : Callback<BasicResponse> {
+                    override fun onResponse(
+                        call: Call<BasicResponse>,
+                        response: Response<BasicResponse>
+                    ) {
+                        if (response.isSuccessful) {
+
+                        }
+                    }
+
+                    override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
+                        TODO("Not yet implemented")
+                    }
+                })
 
             })
 

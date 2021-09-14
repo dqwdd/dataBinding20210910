@@ -2,6 +2,7 @@ package com.example.databinding20210910.web
 
 import com.example.databinding20210910.datas.BasicResponse
 import retrofit2.Call
+import retrofit2.Callback
 import retrofit2.http.*
 
 interface ServerAPIService {
@@ -50,6 +51,15 @@ interface ServerAPIService {
 
     @GET("/user")
     fun getRequestMyInfo() : Call<BasicResponse>
+
+
+//    POST - PUT - PATCH : FormData 활용
+      // 회원 정보 수정 API
+    @FormUrlEncoded
+    @PATCH("/user")
+    fun patchRequestMyInfo(
+        @Field("field") field:String,
+        @Field("value") value:String ) : Call<BasicResponse>
 
 
 }

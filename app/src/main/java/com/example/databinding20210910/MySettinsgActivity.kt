@@ -1,7 +1,12 @@
 package com.example.databinding20210910
 
+import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.widget.EditText
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import com.example.databinding20210910.databinding.ActivityMySettinsgBinding
 import com.example.databinding20210910.utils.GlobalData
@@ -23,6 +28,24 @@ class MySettinsgActivity : BaseActivity() {
 
             //응용문제 => AlertDialog로 준비시간을 입력받자
             //EditText를 사용할 수 있는 방법?
+
+            val customView = LayoutInflater.from(mContext).inflate(R.layout.my_custom_alert_edt, null)
+
+            val alert = AlertDialog.Builder(mContext)
+
+            alert.setTitle("준비시간결정")
+            //커스텀뷰를 가져와서 alert의 view로 설정
+            alert.setView(customView)
+            alert.setPositiveButton("확인", DialogInterface.OnClickListener { dialogInterface, i ->
+
+                val minuteEdt = customView.findViewById<EditText>(R.id.minuteEdt)
+
+                Toast.makeText(mContext, "${minuteEdt.text.toString()}", Toast.LENGTH_SHORT).show()
+
+            })
+
+            alert.setNegativeButton("취소", null)
+            alert.show()
 
         }
 

@@ -64,7 +64,7 @@ class ViewMapActivity : BaseActivity() {
                     val arrivalTimeTxt = myView.findViewById<TextView>(R.id.arrivalTimeTxt)
 
                     placeNameTxt.text = mAppointmentData.placeName
-                    arrivalTimeTxt.text = "??시간 ??분 소요 예정"
+                    arrivalTimeTxt.text = "??시간 ??분 소요 예정"//
 
                     return myView
 

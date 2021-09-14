@@ -11,7 +11,7 @@ class UserData (
     var email: String,
     @SerializedName("nick_name")
     var nickName: String,
-    @SerializedName("readyMinute")
+    @SerializedName("ready_minute")
     var readyMinute: Int) : Serializable {
 
 //    constructor() : this(0, "", "", "", "", "", "")

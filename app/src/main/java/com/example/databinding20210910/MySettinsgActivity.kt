@@ -55,11 +55,14 @@ class MySettinsgActivity : BaseActivity() {
                     ) {
                         if (response.isSuccessful) {
 
+                            val basicResponse = response.body()!!
+                            GlobalData.loginUser = basicResponse.data.user
+                            setUserInfo()
+
                         }
                     }
 
                     override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
-                        TODO("Not yet implemented")
                     }
                 })
 
@@ -74,6 +77,7 @@ class MySettinsgActivity : BaseActivity() {
 
     override fun setValues() {
         titleTxt.text = "프로필설정"
+        setUserInfo()
 
         binding.nicknameTxt.text = GlobalData.loginUser!!.nickName
 
@@ -85,8 +89,14 @@ class MySettinsgActivity : BaseActivity() {
             binding.readyTimeTxt.text = "${hour}시간 ${minute}분"
         }
         else {
-            binding.readyTimeTxt.text = "${GlobalData.loginUser!!}시간 ${minute}분"
+            binding.readyTimeTxt.text = "${GlobalData.loginUser!!.readyMinute}분"
         }
 
     }
+
+
+    fun setUserInfo() {
+
+    }
+
 }

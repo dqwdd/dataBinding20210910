@@ -18,6 +18,7 @@ import com.naver.maps.map.MapFragment
 import com.naver.maps.map.NaverMap
 import com.naver.maps.map.OnMapReadyCallback
 import com.naver.maps.map.overlay.Marker
+import com.naver.maps.map.overlay.OverlayImage
 import net.daum.mf.map.api.MapView
 import retrofit2.Call
 import retrofit2.Callback
@@ -217,6 +218,7 @@ class EditAppoinmentActivity : BaseActivity() {
             //선택된 위치를 보여줄 마커를 하나만 생성(지금은 클릭시 계속 생김(초기화 안됨))
             //22->
             val selectedPointMarker = Marker()
+            selectedPointMarker.icon = OverlayImage.fromResource(R.drawable.marker_pin_icon)
 
 
             it.setOnMapClickListener { pointF, latLng ->
@@ -229,6 +231,7 @@ class EditAppoinmentActivity : BaseActivity() {
 
                 //좌표를 받아서 => 마커를 생성해서 => 맵에 띄우자
                 //22--> 미리 연결해둔 마커의 좌표로 연결하자(마커 지금 클릭 되는 대로 눌러지는데 1개만 되게)
+                //즉 마커를 미리 만들어서 누를 떄 그 위치에 마커를 갖다 놓는거임
 //                val marker = Marker(LatLng(mSelectedLat, mSelectedLng))
 //                marker.map = it
 

@@ -47,7 +47,10 @@ class MainActivity : BaseActivity() {
             startActivity(myIntent)
         }
 
-
+        profileImg.setOnClickListener {
+            val myIntent = Intent(mContext, MySettinsgActivity::class.java)
+            startActivity(myIntent)
+        }
 
     }
 

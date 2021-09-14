@@ -17,6 +17,7 @@ import com.naver.maps.map.CameraUpdate
 import com.naver.maps.map.MapFragment
 import com.naver.maps.map.NaverMap
 import com.naver.maps.map.OnMapReadyCallback
+import com.naver.maps.map.overlay.Marker
 import net.daum.mf.map.api.MapView
 import retrofit2.Call
 import retrofit2.Callback
@@ -212,12 +213,28 @@ class EditAppoinmentActivity : BaseActivity() {
             uiSettings.isCompassEnabled = true
             uiSettings.isScaleBarEnabled = false
 
+
+            //선택된 위치를 보여줄 마커를 하나만 생성(지금은 클릭시 계속 생김(초기화 안됨))
+            //22->
+            val selectedPointMarker = Marker()
+
+
             it.setOnMapClickListener { pointF, latLng ->
                 Toast.makeText(mContext, "위도 : ${latLng.latitude}, 경도 : ${latLng.longitude}"
                     , Toast.LENGTH_SHORT).show()
 
                 mSelectedLat = latLng.latitude
                 mSelectedLng = latLng.longitude
+
+
+                //좌표를 받아서 => 마커를 생성해서 => 맵에 띄우자
+                //22--> 미리 연결해둔 마커의 좌표로 연결하자(마커 지금 클릭 되는 대로 눌러지는데 1개만 되게)
+//                val marker = Marker(LatLng(mSelectedLat, mSelectedLng))
+//                marker.map = it
+
+//                22의 코드
+                selectedPointMarker.position = LatLng(mSelectedLat,mSelectedLng)
+                selectedPointMarker.map = it
 
             }
             

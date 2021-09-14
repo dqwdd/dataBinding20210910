@@ -1,6 +1,7 @@
 package com.example.databinding20210910
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
@@ -23,6 +24,7 @@ abstract class BaseActivity : AppCompatActivity() {
     //액션바에 있는 UI요소들을 상속시켜주자
     lateinit var profileImg : ImageView
     lateinit var titleTxt : TextView
+    lateinit var editPlaceImg : ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,7 +52,10 @@ abstract class BaseActivity : AppCompatActivity() {
 
         profileImg = defActionBar.customView.findViewById<ImageView>(R.id.profileImg)
         titleTxt = defActionBar.customView.findViewById<TextView>(R.id.titleTxt)
+        editPlaceImg = defActionBar.customView.findViewById<ImageView>(R.id.editPlaceImg)
 
     }
+
+
 
 }

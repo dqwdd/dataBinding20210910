@@ -149,6 +149,11 @@ class MySettinsgActivity : BaseActivity() {
         }*/
         //코틀린스럽지 않아서 위처럼 바꾸심
 
+        //일반로그인일때는 비번 변경 UI 표시
+        when (GlobalData.loginUser!!.provider) {
+            "default" -> binding.passwordLayout.visibility = View.VISIBLE
+            else -> binding.passwordLayout.visibility = View.GONE
+        }
 
     }
 

@@ -24,12 +24,12 @@ class AppointmentAdapter(
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
 
-        var tempRow = convertView
-        if (tempRow == null) {
-            tempRow = mInflater.inflate(R.layout.appointment_list_item, null)
+        var row = convertView
+        if (row == null) {
+            row = mInflater.inflate(R.layout.appointment_list_item, null)
         }
 
-        val row = tempRow!!
+        row!!
 
         val data = mList[position]
 
@@ -37,6 +37,7 @@ class AppointmentAdapter(
         val dateTimeTxt = row.findViewById<TextView>(R.id.dateTimeTxt)
         val placeNameTxt = row.findViewById<TextView>(R.id.placeNameTxt)
         val viewPlaceMapBtn = row.findViewById<ImageView>(R.id.viewPlaceMapBtn)
+
 
         titleTxt.text = data.title
         dateTimeTxt.text = data.datetime

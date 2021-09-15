@@ -31,7 +31,7 @@ class AppointmentRecyclerAdapter(
             titleTxt.text = data.title
 
 //            약속 일시를 : Date형태로 파싱됨 -> String으로 가공해야 함 -> SimpleDateFormat을 사용해야 함
-            dateTimeTxt.text = dateTimeSDF.format( data.datetime)
+            dateTimeTxt.text = data.getFormattedDateTime()
             placeNameTxt.text = data.placeName
         }
 

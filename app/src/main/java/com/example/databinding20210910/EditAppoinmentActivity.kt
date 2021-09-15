@@ -49,6 +49,11 @@ class EditAppoinmentActivity : BaseActivity() {
 
     lateinit var mSpinnerAdapter : StartPlaceSpinnerAdapter
 
+
+    //선택된 출발지를 보여줄 마커
+    val mStartPlaceMarker = Marker()
+
+
     //화면에 그려질 출발~도착지 연결 선
     val mPath = PathOverlay()
 
@@ -315,6 +320,12 @@ class EditAppoinmentActivity : BaseActivity() {
 //        시작 지점의 위경도.
         //mSelectedStartPlace.latitude등 활용
 
+        //시작 지점의 좌표(마커) 찍어주기
+        mStartPlaceMarker.position = LatLng(mSelectedStartPlace.latitude, mSelectedStartPlace.longitude)
+        mStartPlaceMarker.map = naverMap
+        //위에서 마커 선언하고 이거만 씀
+
+
 //        도착 지점의 위경도
         //mSelectedLnt 등 활용
 
@@ -336,6 +347,5 @@ class EditAppoinmentActivity : BaseActivity() {
 
 
     }
-
 
 }

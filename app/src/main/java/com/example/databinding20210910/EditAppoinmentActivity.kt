@@ -9,8 +9,10 @@ import android.widget.DatePicker
 import android.widget.TimePicker
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import com.example.databinding20210910.adapters.StartPlaceSpinnerAdapter
 import com.example.databinding20210910.databinding.ActivityEditAppoinmentBinding
 import com.example.databinding20210910.datas.BasicResponse
+import com.example.databinding20210910.datas.PlaceData
 import com.example.databinding20210910.utils.ContextUtil
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.CameraUpdate
@@ -26,6 +28,7 @@ import retrofit2.Response
 import java.sql.Time
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 class EditAppoinmentActivity : BaseActivity() {
 
@@ -37,6 +40,12 @@ class EditAppoinmentActivity : BaseActivity() {
 //    선택한 약속 장소를 저장할 변수
     var mSelectedLat = 0.0 // Double을 넣을 예정
     var mSelectedLng = 0.0 // Double을 넣을 예정
+
+
+//    출발지 목록을 담아줄 리스트
+    val mStartPlaceList = ArrayList<PlaceData>()
+
+    lateinit var mSpinnerAdapter : StartPlaceSpinnerAdapter
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -183,6 +192,29 @@ class EditAppoinmentActivity : BaseActivity() {
 
     override fun setValues() {
         titleTxt.text = "약속설정"
+
+        mSpinnerAdapter = StartPlaceSpinnerAdapter(mContext, R.layout.my_place_list_item, mStartPlaceList)
+        binding.startPlaceSpinner.adapter = mSpinnerAdapter
+
+//        내 출발 장소 목록 담아주기
+
+        apiService.getRequestMyPlaceList().enqueue(object : Callback<BasicResponse>{
+            override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
+                if (response.isSuccessful) {
+                    val basicResponse = response.body()!!
+
+                    mStartPlaceList.clear()
+                    mStartPlaceList.addAll(basicResponse.data.places)
+
+                    mSpinnerAdapter.notifyDataSetChanged()
+                }
+            }
+
+            override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
+            }
+        })
+
+
 
 //        카카오지도 띄워보기
 //        val mapView = MapView(mContext)

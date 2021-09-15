@@ -81,6 +81,18 @@ class EditAppoinmentActivity : BaseActivity() {
     }
 
     override fun setupEvent() {
+        //지도 영역에 손을 대면 => 스크롤뷰 정지하게하자
+//        대안 = > 지도 위에 겹쳐둔 텍스트뷰에 손을 대면 => 스크롤뷰 정지
+
+        binding.scrollHelpTxt.setOnTouchListener { view, motionEvent ->
+
+            binding.scrollView.requestDisallowInterceptTouchEvent(true)
+
+            //터치 이벤트만 먹히게? x => 뒤에 가려진 지도 동작도 같이 실행되게
+            return@setOnTouchListener false
+        }
+
+
 
         //스피너의 선택 이벤트
         binding.startPlaceSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {

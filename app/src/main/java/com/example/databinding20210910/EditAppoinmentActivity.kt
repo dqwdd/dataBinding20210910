@@ -54,8 +54,11 @@ class EditAppoinmentActivity : BaseActivity() {
 
     lateinit var mSpinnerAdapter : StartPlaceSpinnerAdapter
 
+    //화면에 그려질 출발~도착지 연결 선
     val mPolyLine = PolylineOverlay()
 
+    //네이버 지도를 멤버변수로 담자
+    var mNaverMap : NaverMap? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -79,6 +82,9 @@ class EditAppoinmentActivity : BaseActivity() {
 
                 Log.d("출발지 위경도", "${mSelectedStartPlace.latitude}, ${mSelectedStartPlace.longitude}")
 
+                mNaverMap?.let {
+                    drawStartPlaceToDestination(it)
+                }
             }
         }
 
@@ -260,6 +266,8 @@ class EditAppoinmentActivity : BaseActivity() {
         mapFragment.getMapAsync {
             Log.d("지도 객체-바로 할 일", it.toString())
 
+            //멤버변수에서 null이던 네이버지도 변수를 채워넣기
+            mNaverMap=it
 //            학원 좌표를 지도 시작점으로(예제)
 //            it.mapType = NaverMap.MapType.Hybrid//그냥 해본거(다른 형태의 지도로 보기)
 

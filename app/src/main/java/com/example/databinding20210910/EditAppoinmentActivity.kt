@@ -5,6 +5,8 @@ import android.app.TimePickerDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.AdapterView
 import android.widget.DatePicker
 import android.widget.TimePicker
 import android.widget.Toast
@@ -21,6 +23,7 @@ import com.naver.maps.map.NaverMap
 import com.naver.maps.map.OnMapReadyCallback
 import com.naver.maps.map.overlay.Marker
 import com.naver.maps.map.overlay.OverlayImage
+import com.naver.maps.map.overlay.PolylineOverlay
 import net.daum.mf.map.api.MapView
 import retrofit2.Call
 import retrofit2.Callback
@@ -45,6 +48,12 @@ class EditAppoinmentActivity : BaseActivity() {
 //    출발지 목록을 담아줄 리스트
     val mStartPlaceList = ArrayList<PlaceData>()
 
+
+//    선택된 출발지를 담아줄 변수
+    lateinit var mSelectedStartPlace : PlaceData
+
+
+
     lateinit var mSpinnerAdapter : StartPlaceSpinnerAdapter
 
 
@@ -56,6 +65,24 @@ class EditAppoinmentActivity : BaseActivity() {
     }
 
     override fun setupEvent() {
+
+        //스피너의 선택 이벤트
+        binding.startPlaceSpinner.onItemClickListener = object : AdapterView.OnItemClickListener {
+            override fun onItemClick(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
+
+
+                //화면이 뜨면 자동으로 0번 아이템이 선택됨
+                Log.d("선택된 위치", position.toString())
+
+//                스피너의 위치에 맞는 장소를 선택된 출발지점으로 선정
+                mSelectedStartPlace = mStartPlaceList[position]
+
+                Log.d("출발지 위경도", "${mSelectedStartPlace.latitude}, ${mSelectedStartPlace.longitude}")
+
+            }
+        }
+
+
 
 //        일단은 날짜 선택부터
         binding.dateTxt.setOnClickListener {
@@ -254,8 +281,8 @@ class EditAppoinmentActivity : BaseActivity() {
             selectedPointMarker.icon = OverlayImage.fromResource(R.drawable.marker_pin_icon)
 
             it.setOnMapClickListener { pointF, latLng ->
-                Toast.makeText(mContext, "위도 : ${latLng.latitude}, 경도 : ${latLng.longitude}"
-                    , Toast.LENGTH_SHORT).show()
+               // Toast.makeText(mContext, "위도 : ${latLng.latitude}, 경도 : ${latLng.longitude}"
+                 //   , Toast.LENGTH_SHORT).show()
 
                 mSelectedLat = latLng.latitude
                 mSelectedLng = latLng.longitude
@@ -271,10 +298,39 @@ class EditAppoinmentActivity : BaseActivity() {
                 selectedPointMarker.position = LatLng(mSelectedLat, mSelectedLng)
                 selectedPointMarker.map = it
 
+
+                drawStartPlaceToDestination(it)
+
             }
             
         }
 
     }
+
+
+    fun drawStartPlaceToDestination(naverMap: NaverMap) {
+//        시작 지점의 위경도.
+        //mSelectedStartPlace.latitude등 활용
+
+//        도착 지점의 위경도
+        //mSelectedLnt 등 활용
+
+//        (예제) 시작지점 -> 도착지점으로 연결 선 그어주기
+
+        // 좌표 목록을 ArrayList로 담자
+        val points = ArrayList<LatLng>()
+
+        points.add( LatLng(mSelectedStartPlace.latitude, mSelectedStartPlace.longitude) )
+        points.add( LatLng(mSelectedLat, mSelectedLng) )
+
+        val polyline = PolylineOverlay()
+
+        polyline.coords = points
+
+        polyline.map = naverMap
+
+
+    }
+
 
 }

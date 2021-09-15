@@ -13,6 +13,7 @@ import androidx.databinding.DataBindingUtil
 import com.example.databinding20210910.databinding.ActivityMySettinsgBinding
 import com.example.databinding20210910.datas.BasicResponse
 import com.example.databinding20210910.utils.GlobalData
+import com.naver.maps.map.MapView
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -29,6 +30,8 @@ class MySettinsgActivity : BaseActivity() {
     }
 
     override fun setupEvent() {
+
+        //MapView.
 
         binding.myPlacesLayout.setOnClickListener {
             val myIntent = Intent(mContext, ViewMyPlaceListActivity::class.java)

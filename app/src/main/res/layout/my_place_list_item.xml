@@ -7,7 +7,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="20dp"
+        android:padding="10dp"
         android:id="@+id/backgroundLayout"
         android:gravity="center_vertical"
         android:orientation="horizontal">
@@ -26,7 +26,8 @@
             android:text="기본"
             android:textSize="12sp"
             android:padding="3dp"
-            android:background="@color/red"
+            android:layout_marginLeft="10dp"
+            android:background="@color/gray"
             android:paddingLeft="5dp"
             android:textColor="@color/white"/>
 
@@ -37,8 +38,8 @@
 
         <ImageView
             android:id="@+id/viewPlaceMapBtn"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:src="@drawable/flag_yellow_marker_icon"
             android:padding="5dp"/>
 

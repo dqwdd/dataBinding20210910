@@ -21,6 +21,10 @@ import com.naver.maps.map.NaverMap
 import com.naver.maps.map.overlay.Marker
 import com.naver.maps.map.overlay.OverlayImage
 import com.naver.maps.map.overlay.PathOverlay
+import com.odsay.odsayandroidsdk.API
+import com.odsay.odsayandroidsdk.ODsayData
+import com.odsay.odsayandroidsdk.ODsayService
+import com.odsay.odsayandroidsdk.OnResultCallbackListener
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -334,16 +338,39 @@ class EditAppoinmentActivity : BaseActivity() {
         // 좌표 목록을 ArrayList로 담자
         val points = ArrayList<LatLng>()
 
+        //출발지점의 좌표를 선의 출발점으로 설정
         points.add( LatLng(mSelectedStartPlace.latitude, mSelectedStartPlace.longitude) )
-        points.add( LatLng(mSelectedLat, mSelectedLng) )
 
-        //매번 새로 PollyLine을 그리면, 선이 하나씩 추가됨
-        //멤버변수로 선을 하나 지정해두고, 위치값만 변경하면서 사용
-        //val polyline = PolylineOverlay()
+        //대중교통 길찾기 API -> 들리는 좌표들을 제공 -> 목록을 담아주자
+        val odsay = ODsayService.init(mContext, "1LXXwKUp0wg5d7YQ7MA9QAvDw59XNPYusjqx/nbI4to")
 
-        mPath.coords = points
+        odsay.requestSearchPubTransPath(
+            mSelectedStartPlace.longitude.toString(), mSelectedStartPlace.latitude.toString(),
+            mSelectedLng.toString(), mSelectedLat.toString(), null, null, null,
+            object : OnResultCallbackListener{//갔다와서 뭐할건가여ㅛ
+                override fun onSuccess(p0: ODsayData?, p1: API?) {
+                    //경유지들 좌표를 목록에 추가
+                    //최종 목적지 좌표도 추가
 
-        mPath.map = naverMap
+                //최종 목적지 추가
+                points.add( LatLng(mSelectedLat, mSelectedLng) )
+
+                //매번 새로 PollyLine을 그리면, 선이 하나씩 추가됨
+                //멤버변수로 선을 하나 지정해두고, 위치값만 변경하면서 사용
+                //val polyline = PolylineOverlay()
+
+                mPath.coords = points
+
+                mPath.map = naverMap
+
+                }
+
+                override fun onError(p0: Int, p1: String?, p2: API?) {
+                    TODO("Not yet implemented")
+                }
+            })
+
+
 
 
     }

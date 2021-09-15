@@ -11,7 +11,7 @@ import com.example.databinding20210910.R
 import com.example.databinding20210910.datas.PlaceData
 
 class MyPlaceRecyclerAdapter(
-    mContext: Context, val mList: List<PlaceData>) : RecyclerView.Adapter<MyPlaceRecyclerAdapter.MyViewHolder>() {
+    val mContext: Context, val mList: List<PlaceData>) : RecyclerView.Adapter<MyPlaceRecyclerAdapter.MyViewHolder>() {
 
     class MyViewHolder(view : View) : RecyclerView.ViewHolder(view) {
 

@@ -74,6 +74,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textStyle="bold"
                     android:text="나의 외출 소요 시간"/>
 
                 <TextView
@@ -116,6 +117,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textStyle="bold"
                     android:text="비밀번호 변경하기"/>
 
                 <TextView
@@ -158,6 +160,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textStyle="bold"
                     android:text="내 출발 장소 관리"/>
 
                 <TextView

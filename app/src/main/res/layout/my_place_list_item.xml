@@ -33,7 +33,7 @@
         android:id="@+id/viewPlaceMapBtn"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:src="@drawable/marker_pin_icon"
+        android:src="@drawable/flag_yellow_marker_icon"
         android:padding="5dp"/>
 
 

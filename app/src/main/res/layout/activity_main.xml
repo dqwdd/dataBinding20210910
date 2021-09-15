@@ -19,7 +19,6 @@
                 android:id="@+id/appointmentRecyclerView">
 
 
-
             </androidx.recyclerview.widget.RecyclerView>
 
             <Button

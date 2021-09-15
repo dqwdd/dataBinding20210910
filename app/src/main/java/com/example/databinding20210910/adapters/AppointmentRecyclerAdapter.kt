@@ -12,6 +12,7 @@ import com.example.databinding20210910.R
 import com.example.databinding20210910.ViewMapActivity
 import com.example.databinding20210910.datas.AppointmentData
 import com.example.databinding20210910.datas.PlaceData
+import java.text.SimpleDateFormat
 
 class AppointmentRecyclerAdapter(
     val mContext: Context,
@@ -24,10 +25,13 @@ class AppointmentRecyclerAdapter(
         val placeNameTxt = view.findViewById<TextView>(R.id.placeNameTxt)
         val viewPlaceMapBtn = view.findViewById<ImageView>(R.id.viewPlaceMapBtn)
 
+        val dateTimeSDF = SimpleDateFormat("M/d a h:mm")
 
         fun bind( data: AppointmentData ) {
             titleTxt.text = data.title
-            dateTimeTxt.text = data.datetime
+
+//            약속 일시를 : Date형태로 파싱됨 -> String으로 가공해야 함 -> SimpleDateFormat을 사용해야 함
+            dateTimeTxt.text = dateTimeSDF.format( data.datetime)
             placeNameTxt.text = data.placeName
         }
 

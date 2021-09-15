@@ -38,7 +38,7 @@ class AppointmentAdapter(
 
 
         titleTxt.text = data.title
-        dateTimeTxt.text = data.datetime
+//        dateTimeTxt.text = data.datetime
         placeNameTxt.text = data.placeName
 
         viewPlaceMapBtn.setOnClickListener {

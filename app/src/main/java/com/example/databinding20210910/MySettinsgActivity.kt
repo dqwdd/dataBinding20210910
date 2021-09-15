@@ -1,6 +1,7 @@
 package com.example.databinding20210910
 
 import android.content.DialogInterface
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -29,6 +30,10 @@ class MySettinsgActivity : BaseActivity() {
 
     override fun setupEvent() {
 
+        binding.myPlacesLayout.setOnClickListener {
+            val myIntent = Intent(mContext, ViewMyPlaceListActivity::class.java)
+            startActivity(myIntent)
+        }
 
         binding.editNicknameLayout.setOnClickListener {
 
@@ -121,7 +126,9 @@ class MySettinsgActivity : BaseActivity() {
     override fun setValues() {
         titleTxt.text = "프로필설정"
         setUserInfo()
+    }
 
+    fun setUserInfo() {
         binding.nicknameTxt.text = GlobalData.loginUser!!.nickName
 
         //로그인 한 사람의 준비시간이 1시간 이상이냐 아니냐
@@ -138,7 +145,7 @@ class MySettinsgActivity : BaseActivity() {
         when(GlobalData.loginUser!!.provider) {
             "facebook" -> binding.socialLoginImg.setImageResource(R.drawable.facebook_logo_icon)
             "kakao" -> binding.socialLoginImg.setImageResource(R.drawable.kakaotalk_logo_icon)
-            else -> binding.socialLoginImg.visibility = View.VISIBLE
+            else -> binding.socialLoginImg.visibility = View.GONE
         }
 
         /*if (GlobalData.loginUser!!.provider == "facebook") {
@@ -154,12 +161,6 @@ class MySettinsgActivity : BaseActivity() {
             "default" -> binding.passwordLayout.visibility = View.VISIBLE
             else -> binding.passwordLayout.visibility = View.GONE
         }
-
-    }
-
-
-    fun setUserInfo() {
-
     }
 
 }

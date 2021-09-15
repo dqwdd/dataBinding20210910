@@ -23,12 +23,10 @@ class AppointmentAdapter(
     val mInflater = LayoutInflater.from(mContext)
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-
         var row = convertView
         if (row == null) {
             row = mInflater.inflate(R.layout.appointment_list_item, null)
         }
-
         row!!
 
         val data = mList[position]

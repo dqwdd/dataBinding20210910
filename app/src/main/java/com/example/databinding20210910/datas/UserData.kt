@@ -7,21 +7,9 @@ import java.io.Serializable
 class UserData (
     var id: Int,
     var provider: String,
-    var uid: String,
-    var email: String,
     @SerializedName("nick_name")
     var nickName: String,
+    var email: String,
     @SerializedName("ready_minute")
     var readyMinute: Int) : Serializable {
-
-//    constructor() : this(0, "", "", "", "", "", "")
-
-
-    companion object{
-
-
-
-    }
-
-
 }

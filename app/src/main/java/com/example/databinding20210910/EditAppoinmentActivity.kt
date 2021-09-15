@@ -60,7 +60,7 @@ class EditAppoinmentActivity : BaseActivity() {
                     mSelectedDateTime.set(year, month, day)
 
 //                    선택된 날짜로 문구 변경=> 2021-9-13 (월요일)
-                    val sdf = SimpleDateFormat("yyyy-MM-dd (E)")
+                    val sdf = SimpleDateFormat("yyyy. M. d (E)")
                     binding.dateTxt.text = sdf.format( mSelectedDateTime.time )
 
                 }
@@ -206,9 +206,9 @@ class EditAppoinmentActivity : BaseActivity() {
 
 
 //            좌표를 다루는 변수 - LatLng클래스 활용
-            val napplusCoord = LatLng(37.50586305676978, 126.75316685445878)
+            val neppplusCoord = LatLng(37.50586305676978, 126.75316685445878)
 
-            val cameraUpdate = CameraUpdate.scrollTo(napplusCoord)
+            val cameraUpdate = CameraUpdate.scrollTo(neppplusCoord)
             it.moveCamera(cameraUpdate)
 
             val uiSettings = it.uiSettings
@@ -220,7 +220,6 @@ class EditAppoinmentActivity : BaseActivity() {
             //22->
             val selectedPointMarker = Marker()
             selectedPointMarker.icon = OverlayImage.fromResource(R.drawable.marker_pin_icon)
-
 
             it.setOnMapClickListener { pointF, latLng ->
                 Toast.makeText(mContext, "위도 : ${latLng.latitude}, 경도 : ${latLng.longitude}"
@@ -237,7 +236,7 @@ class EditAppoinmentActivity : BaseActivity() {
 //                marker.map = it
 
 //                22의 코드
-                selectedPointMarker.position = LatLng(mSelectedLat,mSelectedLng)
+                selectedPointMarker.position = LatLng(mSelectedLat, mSelectedLng)
                 selectedPointMarker.map = it
 
             }

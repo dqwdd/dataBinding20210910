@@ -7,7 +7,6 @@ import retrofit2.http.*
 
 interface ServerAPIService {
 
-
     @FormUrlEncoded
     @PUT("/user")//어느 주소로 갈거냐
     fun putRequestSignUp(
@@ -39,7 +38,7 @@ interface ServerAPIService {
 //        @Header("X-Http-Token") token: String,   -> 달아주는 코딩(interceptor)만들어서 안써도 댐
         @Field("title") title: String,
         @Field("datetime") datetime: String,
-        @Field("place") place: String,
+        @Field("place") placeName: String,
         @Field("latitude") lat: Double,
         @Field("longitude") lng: Double, ) : Call<BasicResponse>
 
@@ -68,8 +67,8 @@ interface ServerAPIService {
     @PATCH("/user/place")
     fun postRequestAddMyPlace(
         @Field("name") name:String,
-        @Field("latitude") latitude :Double,
-        @Field("longitude") longitude:Double,
+        @Field("latitude") lat :Double,
+        @Field("longitude") lng:Double,
         @Field("is_primary") isPrimary:Boolean) : Call<BasicResponse>
 
 

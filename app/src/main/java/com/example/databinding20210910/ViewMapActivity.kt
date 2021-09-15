@@ -26,8 +26,8 @@ class ViewMapActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view_map)
-        setValues()
         setupEvent()
+        setValues()
     }
 
     override fun setupEvent() {
@@ -46,23 +46,22 @@ class ViewMapActivity : BaseActivity() {
 
         mapFragment.getMapAsync {
 
-            val appointmentLatLng = LatLng(mAppointmentData.latitude, mAppointmentData.longitude)
+            val appointmentLatLng = LatLng(mAppointmentData.latitude,  mAppointmentData.longitude)
 
-
-//            지도도 약속장소로 카메라를 옮겨주자
+//            지도도 약속장소로 카메라를 옮겨주자.
             val cameraUpdate = CameraUpdate.scrollTo(appointmentLatLng)
             it.moveCamera(cameraUpdate)
 
             //마커를 찍고 표시
 
             val marker = Marker()
-
             marker.position = appointmentLatLng
             marker.map = it
 
+
 //            기본적인 모양의 정보창 띄우기 (마커에 연결)
             val infoWindow = InfoWindow()
-            val myODsayService = ODsayService.init(mContext, "UqivPrD/2a9zX6LAlrVto3HvYEXgv/BCT+0xVMjCVCg")
+            val myODsayService = ODsayService.init(mContext, "1LXXwKUp0wg5d7YQ7MA9QAvDw59XNPYusjqx/nbI4to")
 
             myODsayService.requestSearchPubTransPath(
                 126.92971682319262.toString(),

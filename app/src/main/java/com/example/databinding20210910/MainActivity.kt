@@ -32,13 +32,11 @@ class MainActivity : BaseActivity() {
         setValues()
     }
 
-
     override fun onResume() {
         super.onResume()
         getAppointmentListFromServer()
 //        setValues에서 실행하던거 여기서 실행
     }
-
 
     override fun setupEvent() {
 

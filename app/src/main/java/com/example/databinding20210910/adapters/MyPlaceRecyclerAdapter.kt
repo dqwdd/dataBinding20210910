@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
@@ -19,6 +20,7 @@ class MyPlaceRecyclerAdapter(
         val placeNameTxt = view.findViewById<TextView>(R.id.placeNameTxt)
         val isPrimaryTxt = view.findViewById<TextView>(R.id.isPrimaryTxt)
         val viewPlaceMapBtn = view.findViewById<ImageView>(R.id.viewPlaceMapBtn)
+        val backgroundLayout = view.findViewById<LinearLayout>(R.id.backgroundLayout)
 
         fun setRealData( data: PlaceData ) {
             placeNameTxt.text = data.name
@@ -57,6 +59,20 @@ class MyPlaceRecyclerAdapter(
 ////        예시 : 실제 장소 이름만 출력
 //        holder.placeNameTxt.text = data.name
 
+        holder.setRealData(mList[position])
+
+//        이벤트처리는 mContext 변수때문에, 이 onBindViewHolder에서 처리하자
+        holder.viewPlaceMapBtn.setOnClickListener {
+
+            Toast.makeText(mContext, "지도 버튼을 눌렀습니다", Toast.LENGTH_SHORT).show()
+
+        }
+
+        holder.backgroundLayout.setOnClickListener {
+
+            Toast.makeText(mContext, "${mList[position].name}을 클릭", Toast.LENGTH_SHORT).show()
+
+        }
 
     }
 

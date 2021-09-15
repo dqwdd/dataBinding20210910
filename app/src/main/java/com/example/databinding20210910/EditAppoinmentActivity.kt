@@ -74,10 +74,8 @@ class EditAppoinmentActivity : BaseActivity() {
     override fun setupEvent() {
 
         //스피너의 선택 이벤트
-        binding.startPlaceSpinner.onItemClickListener = object : AdapterView.OnItemClickListener {
-            override fun onItemClick(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
-
-
+        binding.startPlaceSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
                 //화면이 뜨면 자동으로 0번 아이템이 선택됨
                 Log.d("선택된 위치", position.toString())
 
@@ -90,8 +88,11 @@ class EditAppoinmentActivity : BaseActivity() {
                     drawStartPlaceToDestination(it)
                 }
             }
-        }
 
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+
+            }
+        }
 
 
 //        일단은 날짜 선택부터
@@ -359,7 +360,30 @@ class EditAppoinmentActivity : BaseActivity() {
 
                     for ( i in 0 until subPathArr.length()) {
                         val subPathObj = subPathArr.getJSONObject(i)
-                        Log.d("길찾기 응답", subPathObj.toString())
+
+                        if (!subPathObj.isNull("passStopList")) {
+
+                            //정거장 목록을 불러내보자
+                            val passStopListObj = subPathObj.getJSONObject("passStopList")
+                            val stationsArr = passStopListObj.getJSONArray("stations")
+
+                            for ( j in 0 until stationsArr.length()) {
+
+                                val stationObj = stationsArr.getJSONObject(j)
+
+                                Log.d("길찾기 응답", stationObj.toString())
+
+                                val latLng = LatLng(stationObj.getString("y").toDouble(), stationObj.getString("x").toDouble())
+
+                                //points ArrayList에 경유지로 추가
+                                points.add(latLng)
+
+
+                            }
+
+                        }
+
+
                     }
 
                     //최종 목적지 좌표도 추가
@@ -378,7 +402,6 @@ class EditAppoinmentActivity : BaseActivity() {
                 }
 
                 override fun onError(p0: Int, p1: String?, p2: API?) {
-                    TODO("Not yet implemented")
                 }
             })
 

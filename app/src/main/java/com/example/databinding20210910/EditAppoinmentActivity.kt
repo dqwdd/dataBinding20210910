@@ -52,9 +52,9 @@ class EditAppoinmentActivity : BaseActivity() {
 //    선택된 출발지를 담아줄 변수
     lateinit var mSelectedStartPlace : PlaceData
 
-
-
     lateinit var mSpinnerAdapter : StartPlaceSpinnerAdapter
+
+    val mPolyLine = PolylineOverlay()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -323,11 +323,13 @@ class EditAppoinmentActivity : BaseActivity() {
         points.add( LatLng(mSelectedStartPlace.latitude, mSelectedStartPlace.longitude) )
         points.add( LatLng(mSelectedLat, mSelectedLng) )
 
-        val polyline = PolylineOverlay()
+        //매번 새로 PollyLine을 그리면, 선이 하나씩 추가됨
+        //멤버변수로 선을 하나 지정해두고, 위치값만 변경하면서 사용
+        //val polyline = PolylineOverlay()
 
-        polyline.coords = points
+        mPolyLine.coords = points
 
-        polyline.map = naverMap
+        mPolyLine.map = naverMap
 
 
     }

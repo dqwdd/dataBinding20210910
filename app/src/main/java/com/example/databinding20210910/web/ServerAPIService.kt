@@ -75,11 +75,7 @@ interface ServerAPIService {
 
 
     @GET("/user/place")
-    fun getRequestMyPlaceList(
-        @Field("name") name:String,
-        @Field("latitude") lat :Double,
-        @Field("longitude") lng:Double,
-        @Field("is_primary") isPrimary:Boolean) : Call<BasicResponse>
+    fun getRequestMyPlaceList() : Call<BasicResponse>
 
 
 

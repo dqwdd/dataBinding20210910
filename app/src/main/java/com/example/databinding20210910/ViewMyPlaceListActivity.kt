@@ -4,7 +4,10 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.LinearLayout
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.databinding20210910.adapters.MyPlaceRecyclerAdapter
 import com.example.databinding20210910.databinding.ActivityViewMyPlaceListBinding
 import com.example.databinding20210910.datas.BasicResponse
 import com.example.databinding20210910.datas.PlaceData
@@ -17,6 +20,9 @@ class ViewMyPlaceListActivity : BaseActivity() {
     lateinit var binding : ActivityViewMyPlaceListBinding
 
     val mMyPlaceList = ArrayList<PlaceData>()
+
+    lateinit var mPlaceAdapter : MyPlaceRecyclerAdapter
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,6 +46,12 @@ class ViewMyPlaceListActivity : BaseActivity() {
 
         editPlaceImg.visibility = View.VISIBLE
 
+        binding.myPlaceRecyclerView.layoutManager = LinearLayoutManager(mContext)
+
+        mPlaceAdapter = MyPlaceRecyclerAdapter(mContext, mMyPlaceList)
+
+        binding.myPlaceRecyclerView.adapter = mPlaceAdapter
+
     }
 
     override fun onResume() {
@@ -55,7 +67,12 @@ class ViewMyPlaceListActivity : BaseActivity() {
                 if (response.isSuccessful) {
                     val basicResponse = response.body()!!
 
-                    m
+                    mMyPlaceList.clear()
+
+                    mMyPlaceList.addAll( basicResponse.data.places )
+
+                    mPlaceAdapter.notifyDataSetChanged()
+
                 }
 
             }

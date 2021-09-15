@@ -361,7 +361,7 @@ class EditAppoinmentActivity : BaseActivity() {
                     val infoObj = firstPathObj.getJSONObject("info")
                     val totalTime = infoObj.getInt("totalTime")
 
-                    Log.d("총 소요시간 : ", totalTime.toString())
+                    Log.d("총 소요시간 : ", totalTime.toString())//
 
 
 

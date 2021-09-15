@@ -349,7 +349,19 @@ class EditAppoinmentActivity : BaseActivity() {
             mSelectedLng.toString(), mSelectedLat.toString(), null, null, null,
             object : OnResultCallbackListener{//갔다와서 뭐할건가여ㅛ
                 override fun onSuccess(p0: ODsayData?, p1: API?) {
-                    //경유지들 좌표를 목록에 추가
+                    //경유지들 좌표를 목록에 추가 ( 결과가 어떻게 되어있는지 분석. parsing)
+                    val jsonObj = p0!!.json
+                    val resultObj = jsonObj.getJSONObject("result")
+                    val pathArr = resultObj.getJSONArray("path")
+                    val firstPathObj = pathArr.getJSONObject(0)
+                    Log.d("길찾기 응답", firstPathObj.toString())
+                    val subPathArr = firstPathObj.getJSONArray("subPath")
+
+                    for ( i in 0 until subPathArr.length()) {
+                        val subPathObj = subPathArr.getJSONObject(i)
+                        Log.d("길찾기 응답", subPathObj.toString())
+                    }
+
                     //최종 목적지 좌표도 추가
 
                 //최종 목적지 추가

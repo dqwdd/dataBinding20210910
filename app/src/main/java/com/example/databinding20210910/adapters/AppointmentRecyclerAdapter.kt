@@ -1,6 +1,7 @@
 package com.example.databinding20210910.adapters
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.databinding20210910.R
+import com.example.databinding20210910.ViewMapActivity
 import com.example.databinding20210910.datas.AppointmentData
 import com.example.databinding20210910.datas.PlaceData
 
@@ -42,6 +44,12 @@ class AppointmentRecyclerAdapter(
         val data = mList[position]
 
         holder.bind(data)
+
+        holder.viewPlaceMapBtn.setOnClickListener {
+            val myIntent = Intent(mContext, ViewMapActivity::class.java)
+            myIntent.putExtra("appointment", data)
+            mContext.startActivity(myIntent)
+        }
 
     }
 

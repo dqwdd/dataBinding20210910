@@ -2,7 +2,6 @@ package com.example.databinding20210910
 
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -15,20 +14,16 @@ import com.example.databinding20210910.adapters.StartPlaceSpinnerAdapter
 import com.example.databinding20210910.databinding.ActivityEditAppoinmentBinding
 import com.example.databinding20210910.datas.BasicResponse
 import com.example.databinding20210910.datas.PlaceData
-import com.example.databinding20210910.utils.ContextUtil
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.CameraUpdate
 import com.naver.maps.map.MapFragment
 import com.naver.maps.map.NaverMap
-import com.naver.maps.map.OnMapReadyCallback
 import com.naver.maps.map.overlay.Marker
 import com.naver.maps.map.overlay.OverlayImage
-import com.naver.maps.map.overlay.PolylineOverlay
-import net.daum.mf.map.api.MapView
+import com.naver.maps.map.overlay.PathOverlay
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.sql.Time
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -55,7 +50,7 @@ class EditAppoinmentActivity : BaseActivity() {
     lateinit var mSpinnerAdapter : StartPlaceSpinnerAdapter
 
     //화면에 그려질 출발~도착지 연결 선
-    val mPolyLine = PolylineOverlay()
+    val mPath = PathOverlay()
 
     //네이버 지도를 멤버변수로 담자
     var mNaverMap : NaverMap? = null
@@ -335,9 +330,9 @@ class EditAppoinmentActivity : BaseActivity() {
         //멤버변수로 선을 하나 지정해두고, 위치값만 변경하면서 사용
         //val polyline = PolylineOverlay()
 
-        mPolyLine.coords = points
+        mPath.coords = points
 
-        mPolyLine.map = naverMap
+        mPath.map = naverMap
 
 
     }

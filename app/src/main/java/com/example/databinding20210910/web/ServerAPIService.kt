@@ -37,10 +37,10 @@ interface ServerAPIService {
     fun postRequestAppointment(
 //        @Header("X-Http-Token") token: String,   -> 달아주는 코딩(interceptor)만들어서 안써도 댐
         @Field("title") title: String,
-        @Field("start_longitude") startLng: Double,
+        @Field("datetime") datetime: String,
         @Field("start_place") startPlaceName: String,
         @Field("start_latitude") startLat: Double,
-        @Field("datetime") datetime: String,
+        @Field("start_longitude") startLng: Double,
         @Field("place") placeName: String,
         @Field("latitude") lat: Double,
         @Field("longitude") lng: Double, ) : Call<BasicResponse>

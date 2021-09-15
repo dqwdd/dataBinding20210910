@@ -219,12 +219,19 @@ class EditAppoinmentActivity : BaseActivity() {
             }
 
 
+//             출발지 정보도 같이 첨부
+            
+            
 //            서버에 API 호출
             apiService.postRequestAppointment(
 //                ContextUtil.getToken(mContext),
                 inputTitle,
                 finalDatetime,
-                inputPlaceName, mSelectedLat, mSelectedLng).enqueue(object : Callback<BasicResponse> {
+                mSelectedStartPlace.name,
+                mSelectedStartPlace.latitude,
+                mSelectedStartPlace.longitude,
+                inputPlaceName,
+                mSelectedLat, mSelectedLng).enqueue(object : Callback<BasicResponse> {
                 override fun onResponse(
                     call: Call<BasicResponse>,
                     response: Response<BasicResponse>

@@ -32,6 +32,16 @@ class MySettinsgActivity : BaseActivity() {
 
     override fun setupEvent() {
 
+        //프로필 사진 누르면 => 프사 변경 =-> 갤러릴로 프사 선택하러 진입/
+        //안드로이드가 제공하는 갤러리 화면 활용(trello의 Intent(4) 추가 항목)
+        //어떤 사진? 결과를 얻기 위해 화면 이동(trello의 Intent(3)의 활용)
+
+        binding.profileImg.setOnClickListener {
+            
+        }
+
+
+
         //MapView.
 
         binding.myPlacesLayout.setOnClickListener {

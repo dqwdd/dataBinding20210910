@@ -5,6 +5,7 @@ import android.app.TimePickerDialog
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.AdapterView
 import android.widget.DatePicker
 import android.widget.TimePicker
@@ -451,10 +452,6 @@ class EditAppoinmentActivity : BaseActivity() {
                 override fun onError(p0: Int, p1: String?, p2: API?) {
                 }
             })
-
-
-
-
     }
 
 }

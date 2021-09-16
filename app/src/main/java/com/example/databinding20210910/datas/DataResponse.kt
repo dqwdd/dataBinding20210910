@@ -10,7 +10,10 @@ class DataResponse(
 
 
     //장소 목록 파싱
-    var places: List<PlaceData>
+    var places : List<PlaceData>,
+
+    //친구 목록
+    var friends : List<UserData>
 ) {
 }
 

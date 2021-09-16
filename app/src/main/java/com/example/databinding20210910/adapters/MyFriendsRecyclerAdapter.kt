@@ -12,7 +12,8 @@ import com.example.databinding20210910.R
 
 class MyFriendsRecyclerAdapter(
     val mContext: Context,
-    val mList: List<UserData>) : RecyclerView.Adapter<MyFriendsRecyclerAdapter.FriendViewHolder>() {
+    val mList: ArrayList<com.example.databinding20210910.datas.UserData>
+) : RecyclerView.Adapter<MyFriendsRecyclerAdapter.FriendViewHolder>() {
 
     class FriendViewHolder(view : View) : RecyclerView.ViewHolder(view) {
         val friendProfileImg = view.findViewById<ImageView>(R.id.friendProfileImg)

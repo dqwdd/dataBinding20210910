@@ -13,7 +13,10 @@ class DataResponse(
     var places : List<PlaceData>,
 
     //친구 목록
-    var friends : List<UserData>
+    var friends : List<UserData>,
+
+    //검색 목록
+    var userId : List<UserData>
 ) {
 }
 

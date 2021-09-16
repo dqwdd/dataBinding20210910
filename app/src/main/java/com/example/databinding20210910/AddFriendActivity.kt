@@ -65,6 +65,8 @@ class AddFriendActivity : BaseActivity() {
 
     override fun setValues() {
 
+        titleTxt.text = "친구 검색/추가"
+
         mSearchedUserAdapter = SearchUserRecyclerAdapter(mContext, mSearchedUserList)
         binding.searchUserRecyclerView.adapter = mSearchedUserAdapter
 

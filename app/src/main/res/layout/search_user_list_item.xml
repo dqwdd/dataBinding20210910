@@ -31,4 +31,15 @@
         android:padding="3dp"
         android:src="@drawable/profile_icon"/>
 
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"/>
+
+    <Button
+        android:id="@+id/addFriendBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="친구추가"/>
+
 </LinearLayout>

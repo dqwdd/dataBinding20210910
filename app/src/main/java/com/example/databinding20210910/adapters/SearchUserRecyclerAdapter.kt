@@ -1,9 +1,12 @@
 package com.example.databinding20210910.adapters
 
+import android.app.AlertDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -20,13 +23,13 @@ class SearchUserRecyclerAdapter(
         val ProfileImg = view.findViewById<ImageView>(R.id.friendProfileImg)
         val nicknameTxt = view.findViewById<TextView>(R.id.nicknameTxt)
         val socialLoginImg = view.findViewById<ImageView>(R.id.socialLoginImg)
+        val addFriendBtn = view.findViewById<Button>(R.id.addFriendBtn)
+
 
         fun bind(context: Context, data: UserData) {
 
             nicknameTxt.text = data.nickName
-
             Glide.with(context).load(data.profileImgURL).into(ProfileImg)
-
             when (data.provider){
                 "facebook" -> {
                     socialLoginImg.setImageResource(R.drawable.facebook_logo_icon)
@@ -39,6 +42,19 @@ class SearchUserRecyclerAdapter(
                 else -> {
                     socialLoginImg.visibility = View.VISIBLE
                 }
+            }
+
+//            친구 추가 버튼 눌림 이벤트 처리
+            addFriendBtn.setOnClickListener {
+//                ~~님을 친구로 추가하시겠습니까?
+
+                val alert = AlertDialog.Builder(context)
+                alert.setMessage("${data.nickName}님을 친구추가 하시겠습니까?")
+                alert.setNegativeButton("확인" , DialogInterface.OnClickListener { dialogInterface, i ->
+                    //
+                })
+                alert.setPositiveButton("취소", null)
+                alert.show()
             }
 
         }

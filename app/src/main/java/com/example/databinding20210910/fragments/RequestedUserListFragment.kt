@@ -7,18 +7,19 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.example.databinding20210910.R
+import com.example.databinding20210910.databinding.FragmentRequestedUserListBinding
 import com.example.databinding20210910.databinding.FragmentsMyFriendsListBinding
 
-class MyFriendsListFragment : Fragment() {
+class RequestedUserListFragment : Fragment() {
 
-    lateinit var binding : FragmentsMyFriendsListBinding
+    lateinit var binding : FragmentRequestedUserListBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_my_friends_list, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_requested_user_list, container, false)
         return binding.root
     }
 

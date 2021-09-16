@@ -26,7 +26,7 @@ class ViewMyFriendsListActivity : BaseActivity() {
         vmfla = ViewMyFriendsListAdapter( supportFragmentManager )
         binding.friendsViewPager.adapter = vmfla
 
-        friendsTabLayout.setupWithViewPager(friendsViewPager)
+        binding.friendsTabLayout.setupWithViewPager(binding.friendsViewPager)
 
     }
 }

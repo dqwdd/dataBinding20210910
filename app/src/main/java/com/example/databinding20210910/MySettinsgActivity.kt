@@ -15,12 +15,17 @@ import com.bumptech.glide.Glide
 import com.example.databinding20210910.databinding.ActivityMySettinsgBinding
 import com.example.databinding20210910.datas.BasicResponse
 import com.example.databinding20210910.utils.GlobalData
+import com.example.databinding20210910.utils.URIPathHelper
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.normal.TedPermission
 import com.naver.maps.map.MapView
+import okhttp3.MediaType
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.File
 import java.util.jar.Manifest
 
 class MySettinsgActivity : BaseActivity() {
@@ -241,6 +246,27 @@ class MySettinsgActivity : BaseActivity() {
 
                 //API서버에 사진을 전송 => PUT -/user/image로 API 활용
                 //파일을 같이 첨부해야 한다=> Multipart형식의 데이터 첨부 활용 (기존 FormData와는 다르다)
+
+                //Uri -> File 형태로 변환 -> 그 파일의 실제 경로? 얻어낼 필요가 있다
+
+                val file = File( URIPathHelper().getPath(mContext, dataUri!!) )//getPath==경로 내놔
+
+//                파일을 Retrofit에 첨부할 수 있는 => RequestBody =>MultipartBody 형태로 변환
+                val fileReqBody = RequestBody.create(MediaType.get("image/*"), file)//이건 파일 자체를 변환한거
+                val body = MultipartBody.Part.createFormData("profile_image", "myFile.jpg", fileReqBody)
+                //이건 이름과 파라미터를 변환시킨거
+                //이제 apiService사용 가능
+
+                apiService.putRequestProfileImg(body).enqueue(object : Callback<BasicResponse> {
+                    override fun onResponse(
+                        call: Call<BasicResponse>,
+                        response: Response<BasicResponse>
+                    ) {
+                    }
+
+                    override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
+                    }
+                })
 
             }
         }

@@ -14,6 +14,7 @@ import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
 import com.example.databinding20210910.databinding.ActivityMySettinsgBinding
 import com.example.databinding20210910.datas.BasicResponse
+import com.example.databinding20210910.utils.ContextUtil
 import com.example.databinding20210910.utils.GlobalData
 import com.example.databinding20210910.utils.URIPathHelper
 import com.gun0912.tedpermission.PermissionListener
@@ -43,6 +44,32 @@ class MySettinsgActivity : BaseActivity() {
     }
 
     override fun setupEvent() {
+
+        binding.logoutImg.setOnClickListener {
+            val alert = AlertDialog.Builder(mContext)
+            alert.setMessage("정말 로그아웃 하시겠습니까?")
+            alert.setNegativeButton("확인", DialogInterface.OnClickListener { dialogInterface, i ->
+
+//             => token 없던걸로. => ContextUtil에 저장된 토큰값을 "" 으로 바꿔주자.
+                ContextUtil.setToken(mContext, "")
+
+//             => GlobalaData.loginUser 없던걸로. -> SplashActivity에서 Handler쪽 보면 로그인유저 관련된 함수 있음
+                GlobalData.loginUser = null
+
+//             => 모두 끝나면 모든 화면 종료, 로그인 화면으로 이동.
+
+                val myIntent = Intent(mContext, LoginActivity::class.java)
+                myIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                startActivity(myIntent)
+//                finish() => MyProfile화면 하나만 종료.
+//                Intent 부가기능 활용 -> flag로 기존화면 (열었던 모든화면) 전부 종료
+            })
+            alert.setPositiveButton("취소", null)
+            alert.show()
+        }
+
+
+
 
         //프로필 사진 누르면 => 프사 변경 =-> 갤러릴로 프사 선택하러 진입/
         //안드로이드가 제공하는 갤러리 화면 활용(trello의 Intent(4) 추가 항목)

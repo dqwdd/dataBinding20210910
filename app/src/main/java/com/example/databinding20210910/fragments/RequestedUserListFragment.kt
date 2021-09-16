@@ -8,9 +8,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.example.databinding20210910.R
 import com.example.databinding20210910.databinding.FragmentRequestedUserListBinding
-import com.example.databinding20210910.databinding.FragmentsMyFriendsListBinding
 
-class RequestedUserListFragment : Fragment() {
+class RequestedUserListFragment : BaseFragment() {
 
     lateinit var binding : FragmentRequestedUserListBinding
 
@@ -25,6 +24,13 @@ class RequestedUserListFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        setupEvents()
+        setValues()
+    }
 
+    override fun setupEvents() {
+    }
+
+    override fun setValues() {
     }
 }

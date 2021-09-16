@@ -7,11 +7,11 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.example.databinding20210910.R
-import com.example.databinding20210910.databinding.FragmentsMyFriendsListBinding
+import com.example.databinding20210910.databinding.FragmentMyFriendsListBinding
 
-class MyFriendsListFragment : Fragment() {
+class MyFriendsListFragment : BaseFragment() {
 
-    lateinit var binding : FragmentsMyFriendsListBinding
+    lateinit var binding : FragmentMyFriendsListBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -24,6 +24,13 @@ class MyFriendsListFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        setupEvents()
+        setValues()
+    }
 
+    override fun setupEvents() {
+    }
+
+    override fun setValues() {
     }
 }

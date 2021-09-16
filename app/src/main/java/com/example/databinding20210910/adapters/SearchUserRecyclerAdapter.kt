@@ -11,10 +11,16 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.databinding20210910.AddFriendActivity
 import com.example.databinding20210910.R
+import com.example.databinding20210910.datas.BasicResponse
 import com.example.databinding20210910.datas.UserData
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class SearchUserRecyclerAdapter(
+
     val mContext: Context,
     val mList: List<UserData>) : RecyclerView.Adapter<SearchUserRecyclerAdapter.UserViewHolder>() {
 
@@ -51,7 +57,20 @@ class SearchUserRecyclerAdapter(
                 val alert = AlertDialog.Builder(context)
                 alert.setMessage("${data.nickName}님을 친구추가 하시겠습니까?")
                 alert.setNegativeButton("확인" , DialogInterface.OnClickListener { dialogInterface, i ->
-                    //
+
+                    (context as AddFriendActivity).apiService.postRequestAddFriend(data.id).enqueue(object :
+                        Callback<BasicResponse> {
+                        override fun onResponse(
+                            call: Call<BasicResponse>,t
+                            response: Response<BasicResponse>
+                        ) {
+
+                        }
+
+                        override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
+                        }
+                    })
+
                 })
                 alert.setPositiveButton("취소", null)
                 alert.show()

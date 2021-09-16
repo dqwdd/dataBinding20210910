@@ -104,4 +104,19 @@ interface ServerAPIService {
     @GET("/search/user")
     fun getRequestSearchUser(@Query("nickname") type: String) : Call<BasicResponse>
 
+
+
+
+    //친구추가 요청 날리기
+    @FormUrlEncoded
+    @POST("/user/friend")
+    fun postRequestAddFriend(
+        @Field("user_id") userId: Int ) : Call<BasicResponse>
+
+
+//    @POST("/user/social")//어느 주소로 갈거냐
+//    fun postRequestSocialLogin(
+//        @Field("provider") provider: String,
+//        @Field("uid") id: String,
+//        @Field("nick_name") name: String) : Call<BasicResponse>
 }

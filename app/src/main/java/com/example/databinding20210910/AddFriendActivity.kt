@@ -47,6 +47,7 @@ class AddFriendActivity : BaseActivity() {
                         mSearchedUserList.addAll(basicResponse.data.users)
 
                         mSearchedUserAdapter.notifyDataSetChanged()
+
                         
                     }
                 }

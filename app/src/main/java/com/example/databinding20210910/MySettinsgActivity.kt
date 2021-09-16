@@ -4,6 +4,7 @@ import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.EditText
@@ -217,8 +218,34 @@ class MySettinsgActivity : BaseActivity() {
 
         //로그인한 사용자는 프로필 사진 경로(URL - String)도 들고 있다. -> profileImg에 적용 (Glide)
         Glide.with(mContext).load(GlobalData.loginUser!!.profileImgURL).into(binding.profileImg)
+    }
 
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        //갤러리에서 사진을 가져온 경우?
+        if (requestCode == REQ_FOR_GALLERY) {
+
+            //실제로 이미지를 선택한건지?
+            if (resultCode == RESULT_OK) {
+
+                Log.d("프사 선택", "실제로 선택까지 완료한 경우")
+
+//                실제로 담아준 Intent가 있는지? -> data가 null인지 아닌지?
+                data.let {
+                    Log.d("돌려준 사진", it.toString())
+                }
+
+
+            }
+            else {
+                Log.d("프사 선택", "실제로 선택까지는 안 함(취소)")
+            }
+
+        }
 
     }
+
 
 }

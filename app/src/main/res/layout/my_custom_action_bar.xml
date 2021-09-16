@@ -3,7 +3,15 @@
     android:layout_width="match_parent"
     android:layout_height="60dp"
     android:background="@color/white">
-    
+
+    <ImageView
+        android:id="@+id/logoImg"
+        android:layout_width="70dp"
+        android:layout_height="50dp"
+        android:src="@drawable/nepplus_image"
+        android:visibility="gone"
+        android:layout_gravity="center"/>
+
     <TextView
         android:id="@+id/titleTxt"
         android:layout_width="wrap_content"

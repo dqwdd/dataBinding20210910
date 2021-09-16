@@ -12,6 +12,7 @@ import java.security.MessageDigest
 import com.facebook.login.LoginResult
 
 import android.view.View
+import android.widget.ImageView
 import android.widget.Toast
 import com.example.databinding20210910.datas.BasicResponse
 import com.example.databinding20210910.datas.UserData
@@ -278,6 +279,9 @@ class LoginActivity : BaseActivity() {
     }
 
     override fun setValues() {
+
+        logoImg.visibility = View.VISIBLE
+        titleTxt.visibility = View.GONE
 
 //        카톡으로 받은 코드 복붙 => 키 해시값 추출
 

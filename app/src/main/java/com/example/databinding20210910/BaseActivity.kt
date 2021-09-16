@@ -25,6 +25,7 @@ abstract class BaseActivity : AppCompatActivity() {
     lateinit var profileImg : ImageView
     lateinit var titleTxt : TextView
     lateinit var editPlaceImg : ImageView
+    lateinit var logoImg : ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,6 +54,7 @@ abstract class BaseActivity : AppCompatActivity() {
         profileImg = defActionBar.customView.findViewById<ImageView>(R.id.profileImg)
         titleTxt = defActionBar.customView.findViewById<TextView>(R.id.titleTxt)
         editPlaceImg = defActionBar.customView.findViewById<ImageView>(R.id.editPlaceImg)
+        logoImg = defActionBar.customView.findViewById<ImageView>(R.id.logoImg)
 
     }
 

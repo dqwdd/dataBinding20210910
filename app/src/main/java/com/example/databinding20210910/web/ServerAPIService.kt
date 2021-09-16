@@ -1,6 +1,7 @@
 package com.example.databinding20210910.web
 
 import com.example.databinding20210910.datas.BasicResponse
+import okhttp3.MultipartBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.http.*
@@ -81,5 +82,12 @@ interface ServerAPIService {
     fun getRequestMyPlaceList() : Call<BasicResponse>
 
 
+
+    //프로필사진 첨부 => 사진첨부니까 Multipart활용
+    //Multipart 방식의 통신에서는 Field를 담지 않고, MultipartBody.Part 양식으로(파일)데이터 첨부
+    //사진 외의 데이터도 첨부할 때는(글이나 뭐 그런거), 나머지 항목들은 RequestBody 형태로 첨부함
+    @Multipart
+    @PUT("/user/image")
+    fun putRequestProfileImg(@Part profileImg : MultipartBody.Part) : Call<BasicResponse>
 
 }

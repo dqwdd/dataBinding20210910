@@ -14,10 +14,13 @@ import com.bumptech.glide.Glide
 import com.example.databinding20210910.databinding.ActivityMySettinsgBinding
 import com.example.databinding20210910.datas.BasicResponse
 import com.example.databinding20210910.utils.GlobalData
+import com.gun0912.tedpermission.PermissionListener
+import com.gun0912.tedpermission.normal.TedPermission
 import com.naver.maps.map.MapView
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.jar.Manifest
 
 class MySettinsgActivity : BaseActivity() {
 
@@ -35,9 +38,34 @@ class MySettinsgActivity : BaseActivity() {
         //프로필 사진 누르면 => 프사 변경 =-> 갤러릴로 프사 선택하러 진입/
         //안드로이드가 제공하는 갤러리 화면 활용(trello의 Intent(4) 추가 항목)
         //어떤 사진? 결과를 얻기 위해 화면 이동(trello의 Intent(3)의 활용)
-
         binding.profileImg.setOnClickListener {
-            
+            //갤러리를 개발자가 이용 -> 퍼미션 받아야 함 -> 권한 세팅 필요
+            //TedPermission 라이브러리
+
+            val permissionListener = object : PermissionListener {
+                override fun onPermissionGranted() {
+                    //권한이 ok일 때 -> 갤러리로 사진 가지러 이동(추가 작업)
+
+
+                }
+
+                override fun onPermissionDenied(deniedPermissions: MutableList<String>?) {
+                    //(최종으로)권한이 거절당했을 때 => 토스트로 안내만 하자
+                    Toast.makeText(mContext, "권한이 거부되어 갤러리에 접근이 불가능합니다", Toast.LENGTH_SHORT).show()
+
+                }
+            }
+
+//            실제로 권한 체크
+//            1) Manifest에 권한 등록 (READ_EXTERNAL_STORAGE)
+//            2) 실제로 라이브러리로 질문
+            TedPermission.create()
+                .setPermissionListener(permissionListener)
+                .setPermissions(android.Manifest.permission.READ_EXTERNAL_STORAGE)//Manifest여러개인데 고를 때 android 골라야 함
+                .setDeniedMessage("[설정] > [권한]에서 갤러리 권한을 열어주세요")
+                .check()
+
+
         }
 
 

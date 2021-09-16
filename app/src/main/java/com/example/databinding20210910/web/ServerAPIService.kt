@@ -100,8 +100,8 @@ interface ServerAPIService {
 
 
 
-    //유저 검색하기
+    //유저 검색하기(닉네임으로)
     @GET("/search/user")
-    fun getRequestUserList(@Query("nickname") type: String) : Call<BasicResponse>
+    fun getRequestSearchUser(@Query("nickname") type: String) : Call<BasicResponse>
 
 }

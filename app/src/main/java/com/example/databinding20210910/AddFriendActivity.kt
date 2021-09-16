@@ -1,6 +1,7 @@
 package com.example.databinding20210910
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.example.databinding20210910.adapters.SearchUserRecyclerAdapter
 import com.example.databinding20210910.databinding.ActivityAddFriendBinding
@@ -27,7 +28,33 @@ class AddFriendActivity : BaseActivity() {
     override fun setupEvent() {
 
         binding.searchBtn.setOnClickListener {
-            val inputText = binding.keywordEdt.text.toString()
+            val inputKetword = binding.keywordEdt.text.toString()
+
+//            validation - 2 자 이상
+            if (inputKetword.length <  2) {
+                Toast.makeText(mContext, "검색어를 2자 이상 입력해 주세요", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            apiService.getRequestSearchUser("my").enqueue(object : Callback<BasicResponse> {
+                override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
+                    if ( response.isSuccessful) {
+                        val basicResponse = response.body()!!
+
+                        mSearchList.clear()
+                        mSearchList.addAll(basicResponse.data.users)
+
+                        mFriendAdapter.notifyDataSetChanged()
+
+                    }
+                }
+
+                override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
+                    //
+                }
+            })
+
+
 
         }
 
@@ -36,31 +63,4 @@ class AddFriendActivity : BaseActivity() {
     override fun setValues() {
     }
 
-    override fun onResume() {
-        super.onResume()
-        getRequesstUserList()
-    }
-
-    fun getRequesstUserList() {
-
-        apiService.getRequestUserList("my").enqueue(object : Callback<BasicResponse> {
-            override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
-                if ( response.isSuccessful) {
-
-                    val basicResponse = response.body()!!
-
-                    mSearchList.clear()
-                    mSearchList.addAll(basicResponse.data.userId)
-
-                    mFriendAdapter.notifyDataSetChanged()
-
-                }
-            }
-
-            override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
-                //
-            }
-        })
-
-    }
 }

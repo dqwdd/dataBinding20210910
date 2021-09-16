@@ -16,7 +16,7 @@ class DataResponse(
     var friends : List<UserData>,
 
     //검색 목록
-    var userId : List<UserData>
+    var users : List<UserData>//json이랑 이름 같게 해야 함
 ) {
 }
 

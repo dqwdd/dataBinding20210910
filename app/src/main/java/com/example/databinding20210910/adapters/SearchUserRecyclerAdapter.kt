@@ -61,7 +61,7 @@ class SearchUserRecyclerAdapter(
                     (context as AddFriendActivity).apiService.postRequestAddFriend(data.id).enqueue(object :
                         Callback<BasicResponse> {
                         override fun onResponse(
-                            call: Call<BasicResponse>,t
+                            call: Call<BasicResponse>,
                             response: Response<BasicResponse>
                         ) {
 

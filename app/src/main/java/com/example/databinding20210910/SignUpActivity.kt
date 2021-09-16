@@ -55,6 +55,7 @@ class SignUpActivity : BaseActivity() {
 
 //                        runOnUiThread를 해주지 않아도 UI 접근 가능
                         Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show()
+                        finish()
                     }
                 }
                 override fun onFailure(call: Call<BasicResponse>, t: Throwable) {

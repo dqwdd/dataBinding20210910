@@ -94,9 +94,10 @@ class MySettinsgActivity : BaseActivity() {
                         //권한이 ok일 때 -> 갤러리로 사진 가지러 이동(추가 작업)
 
                         val myIntent = Intent()
-                        myIntent.action = Intent.ACTION_GET_CONTENT // 겟하러 간다
+                        myIntent.action = Intent.ACTION_PICK // 겟하러 간다
                         myIntent.type = "image/*"//다 가지러 갈거에요/*이 다인가봄
-                        startActivityForResult(Intent.createChooser(myIntent, "프사 선택하기"), REQ_FOR_GALLERY)
+                        myIntent.type = android.provider.MediaStore.Images.Media.CONTENT_TYPE
+                        startActivityForResult(myIntent, REQ_FOR_GALLERY)
                         //'(myIntent, "프사 선택하기"),' 이후 == "프사선택하기"가 뭘 가지러 가나
 
 

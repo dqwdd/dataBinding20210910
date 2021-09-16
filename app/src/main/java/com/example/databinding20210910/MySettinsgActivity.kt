@@ -229,20 +229,18 @@ class MySettinsgActivity : BaseActivity() {
 
             //실제로 이미지를 선택한건지?
             if (resultCode == RESULT_OK) {
+                //어떤 사진을 골랐는지? 파악하자 (data에 담긴듯)
+                //임시 : 고른 사진을 profileImg에 바로 적용만, (서버 전송x)
 
-                Log.d("프사 선택", "실제로 선택까지 완료한 경우")
+                    //data? --> 이전 화면이 넘겨준 intent
+                        //data?.data == 선택한 사진이 들어있는 경로 정보 (Uri)
+                val dataUri = data?.data
 
-//                실제로 담아준 Intent가 있는지? -> data가 null인지 아닌지?
-                data.let {
-                    Log.d("돌려준 사진", it.toString())
-                }
-
+                //Uri =-> 이미지뷰의 사진으로. (Glide)
+                Glide.with(mContext).load(dataUri).into(binding.profileImg)
+d
 
             }
-            else {
-                Log.d("프사 선택", "실제로 선택까지는 안 함(취소)")
-            }
-
         }
 
     }

@@ -22,6 +22,8 @@ class ViewMyFriendsListActivity : BaseActivity() {
 
     override fun setValues() {
 
+        titleTxt.text = "친구"
+
         vmfla = MyFriendsListAdapter( supportFragmentManager )
         binding.friendsViewPager.adapter = vmfla
 

@@ -45,6 +45,11 @@ class MySettinsgActivity : BaseActivity() {
 
     override fun setupEvent() {
 
+        binding.myFriendLayout.setOnClickListener {
+            val myIntent = Intent(mContext, ViewMyFriendsListActivity::class.java)
+            startActivity(myIntent)
+        }
+
         binding.logoutImg.setOnClickListener {
             val alert = AlertDialog.Builder(mContext)
             alert.setMessage("정말 로그아웃 하시겠습니까?")
@@ -75,39 +80,47 @@ class MySettinsgActivity : BaseActivity() {
         //안드로이드가 제공하는 갤러리 화면 활용(trello의 Intent(4) 추가 항목)
         //어떤 사진? 결과를 얻기 위해 화면 이동(trello의 Intent(3)의 활용)
         binding.profileImg.setOnClickListener {
-            //갤러리를 개발자가 이용 -> 퍼미션 받아야 함 -> 권한 세팅 필요
-            //TedPermission 라이브러리
 
-            val permissionListener = object : PermissionListener {
-                override fun onPermissionGranted() {
-                    //권한이 ok일 때 -> 갤러리로 사진 가지러 이동(추가 작업)
-
-                    val myIntent = Intent()
-                    myIntent.action = Intent.ACTION_GET_CONTENT // 겟하러 간다
-                    myIntent.type = "image/*"//다 가지러 갈거에요/*이 다인가봄
-                    startActivityForResult(Intent.createChooser(myIntent, "프사 선택하기"), REQ_FOR_GALLERY)
-                //'(myIntent, "프사 선택하기"),' 이후 == "프사선택하기"가 뭘 가지러 가나
+            val alert = AlertDialog.Builder(mContext)
+            alert.setMessage("프로필 이미지를 변경하시겠습니까?")
+            alert.setNegativeButton("확인", DialogInterface.OnClickListener { dialogInterface, i ->
 
 
+                //갤러리를 개발자가 이용 -> 퍼미션 받아야 함 -> 권한 세팅 필요
+                //TedPermission 라이브러리
+
+                val permissionListener = object : PermissionListener {
+                    override fun onPermissionGranted() {
+                        //권한이 ok일 때 -> 갤러리로 사진 가지러 이동(추가 작업)
+
+                        val myIntent = Intent()
+                        myIntent.action = Intent.ACTION_GET_CONTENT // 겟하러 간다
+                        myIntent.type = "image/*"//다 가지러 갈거에요/*이 다인가봄
+                        startActivityForResult(Intent.createChooser(myIntent, "프사 선택하기"), REQ_FOR_GALLERY)
+                        //'(myIntent, "프사 선택하기"),' 이후 == "프사선택하기"가 뭘 가지러 가나
+
+
+                    }
+
+                    override fun onPermissionDenied(deniedPermissions: MutableList<String>?) {
+                        //(최종으로)권한이 거절당했을 때 => 토스트로 안내만 하자
+                        Toast.makeText(mContext, "권한이 거부되어 갤러리에 접근이 불가능합니다", Toast.LENGTH_SHORT).show()
+
+                    }
                 }
-
-                override fun onPermissionDenied(deniedPermissions: MutableList<String>?) {
-                    //(최종으로)권한이 거절당했을 때 => 토스트로 안내만 하자
-                    Toast.makeText(mContext, "권한이 거부되어 갤러리에 접근이 불가능합니다", Toast.LENGTH_SHORT).show()
-
-                }
-            }
 
 //            실제로 권한 체크
 //            1) Manifest에 권한 등록 (READ_EXTERNAL_STORAGE)
 //            2) 실제로 라이브러리로 질문
-            TedPermission.create()
-                .setPermissionListener(permissionListener)
-                .setPermissions(android.Manifest.permission.READ_EXTERNAL_STORAGE)//Manifest여러개인데 고를 때 android 골라야 함
-                .setDeniedMessage("[설정] > [권한]에서 갤러리 권한을 열어주세요")
-                .check()
+                TedPermission.create()
+                    .setPermissionListener(permissionListener)
+                    .setPermissions(android.Manifest.permission.READ_EXTERNAL_STORAGE)//Manifest여러개인데 고를 때 android 골라야 함
+                    .setDeniedMessage("[설정] > [권한]에서 갤러리 권한을 열어주세요")
+                    .check()
 
-
+            })
+            alert.setPositiveButton("취소", null)
+            alert.show()
         }
 
 
@@ -229,7 +242,7 @@ class MySettinsgActivity : BaseActivity() {
         when(GlobalData.loginUser!!.provider) {
             "facebook" -> binding.socialLoginImg.setImageResource(R.drawable.facebook_logo_icon)
             "kakao" -> binding.socialLoginImg.setImageResource(R.drawable.kakaotalk_logo_icon)
-            else -> binding.socialLoginImg.visibility = View.GONE
+            else -> binding.socialLoginImg.visibility = View.VISIBLE
         }
 
         /*if (GlobalData.loginUser!!.provider == "facebook") {

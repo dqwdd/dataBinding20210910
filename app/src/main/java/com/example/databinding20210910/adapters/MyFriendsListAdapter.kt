@@ -10,14 +10,13 @@ class MyFriendsListAdapter (fm : FragmentManager) : FragmentPagerAdapter(fm) {
 
     override fun getPageTitle(position: Int): CharSequence? {
         return when (position) {
-            0 -> "이름"
-            1 -> "인사"
-            else -> "출생년도"
+            0 -> "친구목록"
+            else -> "친구요청"
         }
     }
 
     override fun getCount(): Int {
-        return 3
+        return 2
 
     }
     override fun getItem(position: Int): Fragment {

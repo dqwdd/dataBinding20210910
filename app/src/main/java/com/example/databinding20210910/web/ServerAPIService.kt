@@ -90,4 +90,16 @@ interface ServerAPIService {
     @PUT("/user/image")
     fun putRequestProfileImg(@Part profileImg : MultipartBody.Part) : Call<BasicResponse>
 
+
+
+
+    //친구목록 불러오기
+    //쿼리 파라미터를 넣어서 불러오기
+    @GET("/user/friend")
+    fun getRequestFriendList(@Query("type") type: String) : Call<BasicResponse>
+
+
+
+
+
 }

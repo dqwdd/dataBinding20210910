@@ -44,6 +44,8 @@ class MyFriendsListFragment : BaseFragment() {
         mFriendAdapter = MyFriendsRecyclerAdapter(mContext, mMyFriendList)
         binding.myFriendsRecyclerView.adapter = mFriendAdapter
 
+        binding.
+
     }
 
     override fun onResume() {

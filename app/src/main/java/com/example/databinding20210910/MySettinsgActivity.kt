@@ -10,6 +10,7 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
+import com.bumptech.glide.Glide
 import com.example.databinding20210910.databinding.ActivityMySettinsgBinding
 import com.example.databinding20210910.datas.BasicResponse
 import com.example.databinding20210910.utils.GlobalData
@@ -88,10 +89,10 @@ class MySettinsgActivity : BaseActivity() {
 
             val alert = AlertDialog.Builder(mContext)
 
-            alert.setTitle("준비시간결정")
+            alert.setTitle("외출 준비가 얼마나 걸리시나요?")
             //커스텀뷰를 가져와서 alert의 view로 설정
             alert.setView(customView)
-            alert.setPositiveButton("확인", DialogInterface.OnClickListener { dialogInterface, i ->
+            alert.setNegativeButton("확인", DialogInterface.OnClickListener { dialogInterface, i ->
 
                 val minuteEdt = customView.findViewById<EditText>(R.id.minuteEdt)
 
@@ -119,7 +120,7 @@ class MySettinsgActivity : BaseActivity() {
 
             })
 
-            alert.setNegativeButton("취소", null)
+            alert.setPositiveButton("취소", null)
             alert.show()
 
         }
@@ -164,6 +165,13 @@ class MySettinsgActivity : BaseActivity() {
             "default" -> binding.passwordLayout.visibility = View.VISIBLE
             else -> binding.passwordLayout.visibility = View.GONE
         }
+
+
+
+        //로그인한 사용자는 프로필 사진 경로(URL - String)도 들고 있다. -> profileImg에 적용 (Glide)
+        Glide.with(mContext).load(GlobalData.loginUser!!.profileImgURL).into(binding.profileImg)
+
+
     }
 
 }

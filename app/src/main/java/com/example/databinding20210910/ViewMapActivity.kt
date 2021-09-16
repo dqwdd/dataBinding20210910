@@ -14,6 +14,8 @@ import com.naver.maps.map.CameraUpdate
 import com.naver.maps.map.MapFragment
 import com.naver.maps.map.overlay.InfoWindow
 import com.naver.maps.map.overlay.Marker
+import com.naver.maps.map.overlay.OverlayImage
+import com.naver.maps.map.overlay.PathOverlay
 import com.odsay.odsayandroidsdk.API
 import com.odsay.odsayandroidsdk.ODsayData
 import com.odsay.odsayandroidsdk.ODsayService
@@ -58,14 +60,22 @@ class ViewMapActivity : BaseActivity() {
             marker.position = appointmentLatLng
             marker.map = it
 
+            marker.icon = OverlayImage.fromResource(R.drawable.marker_pin_icon)
+
+
+            //출발지도 마커를 찍고 표시
+            val startMarker = Marker()
+            startMarker.position = LatLng(mAppointmentData.startLatitude, mAppointmentData.startLongitude)
+            startMarker.map = it
+
 
 //            기본적인 모양의 정보창 띄우기 (마커에 연결)
             val infoWindow = InfoWindow()
             val myODsayService = ODsayService.init(mContext, "1LXXwKUp0wg5d7YQ7MA9QAvDw59XNPYusjqx/nbI4to")
 
             myODsayService.requestSearchPubTransPath(
-                126.92971682319262.toString(),
-                37.613082888996104.toString(),
+                mAppointmentData.startLongitude.toString(),
+                mAppointmentData.startLatitude.toString(),
                 mAppointmentData.longitude.toString(),
                 mAppointmentData.latitude.toString(),
                 null,
@@ -80,6 +90,43 @@ class ViewMapActivity : BaseActivity() {
 
 
                         val firstPath = pathArr.getJSONObject(0)
+
+
+                        //출발점 ~ 경유지 목록 ~ 도착지를 이어주는 Path 객체를 추가
+                        val points = ArrayList<LatLng>()
+                        // 출발지부터 추가
+                        points.add( LatLng(mAppointmentData.startLatitude, mAppointmentData.startLongitude) )
+
+//                        경유지목록 파싱 -> for문으로 추가.
+                        val subPathArr = firstPath.getJSONArray("subPath")
+                        for ( i in 0 until subPathArr.length()) {
+                            val subPathObj = subPathArr.getJSONObject(i)
+                            Log.d("응답 내용", subPathObj.toString())
+
+                            if (!subPathObj.isNull("passStopList")) {
+                                val passStopListObj = subPathObj.getJSONObject("passStopList")
+                                val stationsArr = passStopListObj.getJSONArray("stations")
+                                for ( j in 0 until stationsArr.length()) {
+                                    val stationObj = stationsArr.getJSONObject(j)
+                                    Log.d("정거장목록", stationObj.toString())
+
+                                    //각 정거장의 GPS 추출 -> 네이버지도의 위치객체로 변환
+                                    val latLng = LatLng(stationObj.getString("y").toDouble(), stationObj.getString("x").toDouble())
+
+                                    //지도의 선을 긋는 좌표 목록에 추가
+                                    points.add(latLng)
+                                }
+                            }
+
+                        }
+                        //모든 정거장이 추가됨 -> 실제 목적지 좌표 추가
+                        points.add( LatLng(mAppointmentData.latitude, mAppointmentData.longitude) )
+                        //모든 경로 설정 끝 -> 네이버지도에 선으로 이어주자
+                        val path = PathOverlay()
+                        path.coords = points
+                        path.map = it
+
+
                         val infoObj = firstPath.getJSONObject("info")
 
                         val totalTime = infoObj.getInt("totalTime")

@@ -9,7 +9,7 @@
         android:id="@+id/minuteEdt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="외출 준비가 얼마나 걸리시나요?"
+        android:hint="보통 몇 분이 걸리시나요?"
         android:inputType="number"/>
 
 

@@ -161,7 +161,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
-                    android:text="내 출발 장소 관리"/>
+                    android:text="내 출발 장소 관리하기"/>
 
                 <TextView
                     android:layout_width="0dp"

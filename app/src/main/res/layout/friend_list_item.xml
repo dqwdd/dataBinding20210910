@@ -28,6 +28,7 @@
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:layout_marginLeft="5dp"
-        android:src="@drawable/facebook_logo_icon"/>
+        android:padding="3dp"
+        android:src="@drawable/profile_icon"/>
 
 </LinearLayout>

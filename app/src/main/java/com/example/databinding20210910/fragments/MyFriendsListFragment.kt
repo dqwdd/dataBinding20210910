@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.databinding20210910.R
 import com.example.databinding20210910.adapters.MyFriendsRecyclerAdapter
 import com.example.databinding20210910.databinding.FragmentMyFriendsListBinding
@@ -44,7 +45,7 @@ class MyFriendsListFragment : BaseFragment() {
         mFriendAdapter = MyFriendsRecyclerAdapter(mContext, mMyFriendList)
         binding.myFriendsRecyclerView.adapter = mFriendAdapter
 
-        binding.
+        binding.myFriendsRecyclerView.layoutManager = LinearLayoutManager(mContext)
 
     }
 

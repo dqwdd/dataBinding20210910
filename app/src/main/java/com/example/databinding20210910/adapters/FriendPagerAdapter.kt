@@ -15,10 +15,8 @@ class FriendPagerAdapter (fm : FragmentManager) : FragmentPagerAdapter(fm) {
         }
     }
 
-    override fun getCount(): Int {
-        return 2
+    override fun getCount() = 2
 
-    }
     override fun getItem(position: Int): Fragment {
         return when (position) {
             0 -> MyFriendsListFragment()

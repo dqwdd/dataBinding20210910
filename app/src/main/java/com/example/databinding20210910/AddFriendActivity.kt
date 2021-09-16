@@ -38,7 +38,7 @@ class AddFriendActivity : BaseActivity() {
                 return@setOnClickListener
             }
 
-            apiService.getRequestSearchUser("my").enqueue(object : Callback<BasicResponse> {
+            apiService.getRequestSearchUser(inputKetword).enqueue(object : Callback<BasicResponse> {
                 override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
                     if ( response.isSuccessful) {
                         val basicResponse = response.body()!!

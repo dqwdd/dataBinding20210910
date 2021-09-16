@@ -6,7 +6,7 @@ import androidx.fragment.app.FragmentPagerAdapter
 import com.example.databinding20210910.fragments.MyFriendsListFragment
 import com.example.databinding20210910.fragments.RequestedUserListFragment
 
-class ViewMyFriendsListAdapter ( fm : FragmentManager) : FragmentPagerAdapter(fm) {
+class MyFriendsListAdapter (fm : FragmentManager) : FragmentPagerAdapter(fm) {
 
     override fun getPageTitle(position: Int): CharSequence? {
         return when (position) {

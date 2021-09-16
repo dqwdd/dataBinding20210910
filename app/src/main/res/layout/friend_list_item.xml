@@ -15,6 +15,7 @@
         app:civ_border_width="2dp"/>
 
     <TextView
+        android:id="@+id/nicknameTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="친구의 닉네임"
@@ -23,6 +24,7 @@
         android:textColor="@color/black"/>
 
     <ImageView
+        android:id="@+id/socialLoginImg"
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:layout_marginLeft="5dp"

@@ -1,15 +1,14 @@
 package com.example.databinding20210910
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
-import com.example.databinding20210910.adapters.ViewMyFriendsListAdapter
+import com.example.databinding20210910.adapters.MyFriendsListAdapter
 import com.example.databinding20210910.databinding.ActivityViewMyFriendsListBinding
 
 class ViewMyFriendsListActivity : BaseActivity() {
 
     lateinit var binding : ActivityViewMyFriendsListBinding
-    lateinit var vmfla : ViewMyFriendsListAdapter
+    lateinit var vmfla : MyFriendsListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,7 +22,7 @@ class ViewMyFriendsListActivity : BaseActivity() {
 
     override fun setValues() {
 
-        vmfla = ViewMyFriendsListAdapter( supportFragmentManager )
+        vmfla = MyFriendsListAdapter( supportFragmentManager )
         binding.friendsViewPager.adapter = vmfla
 
         binding.friendsTabLayout.setupWithViewPager(binding.friendsViewPager)

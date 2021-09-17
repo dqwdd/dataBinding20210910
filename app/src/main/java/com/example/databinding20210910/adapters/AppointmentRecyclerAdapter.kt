@@ -6,9 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.databinding20210910.R
+import com.example.databinding20210910.ViewAppointmentDetailActivity
 import com.example.databinding20210910.ViewMapActivity
 import com.example.databinding20210910.datas.AppointmentData
 import com.example.databinding20210910.datas.PlaceData
@@ -18,12 +20,14 @@ class AppointmentRecyclerAdapter(
     val mContext: Context,
     val mList: List<AppointmentData>) : RecyclerView.Adapter<AppointmentRecyclerAdapter.AppointmentViewHolder>() {
 
-    class AppointmentViewHolder(view : View) : RecyclerView.ViewHolder(view) {
+    class AppointmentViewHolder(val mContext: Context,view : View) : RecyclerView.ViewHolder(view) {
 
         val titleTxt = view.findViewById<TextView>(R.id.titleTxt)
         val dateTimeTxt = view.findViewById<TextView>(R.id.dateTimeTxt)
         val placeNameTxt = view.findViewById<TextView>(R.id.placeNameTxt)
         val viewPlaceMapBtn = view.findViewById<ImageView>(R.id.viewPlaceMapBtn)
+        val rootLayout = view.findViewById<LinearLayout>(R.id.rootLayout)
+
 
         val dateTimeSDF = SimpleDateFormat("M/d a h:mm")
 
@@ -44,6 +48,13 @@ class AppointmentRecyclerAdapter(
             }
 
 
+            rootLayout.setOnClickListener {
+                val myIntent = Intent(context, ViewAppointmentDetailActivity::class.java)
+                myIntent.putExtra("appointment", data)
+                context.startActivity(myIntent)
+            }
+
+
         }
 
     }
@@ -51,7 +62,7 @@ class AppointmentRecyclerAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AppointmentViewHolder {
         val view = LayoutInflater.from(mContext).inflate(R.layout.appointment_list_item, parent, false)
 
-        return AppointmentViewHolder(view)
+        return AppointmentViewHolder(mContext, view)
     }
 
     override fun onBindViewHolder(holder: AppointmentViewHolder, position: Int) {

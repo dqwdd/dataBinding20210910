@@ -5,6 +5,7 @@ import android.app.TimePickerDialog
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.core.view.setPadding
@@ -16,6 +17,7 @@ import com.example.databinding20210910.datas.BasicResponse
 import com.example.databinding20210910.datas.PlaceData
 import com.example.databinding20210910.datas.UserData
 import com.example.databinding20210910.utils.SizeUtil
+import com.example.databinding20210910.utils.SizeUtil.Companion.margin
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.CameraUpdate
 import com.naver.maps.map.MapFragment
@@ -119,7 +121,12 @@ class EditAppoinmentActivity : BaseActivity() {
 
             textView.setPadding(SizeUtil.dpToPx(mContext, 5f).toInt() )
 
-            textView.text = selectedFriend.nickName + " "
+            textView.margin(right = 20F)
+            //layout_example.margin(top = 20F)
+            //구글링 - marginRight 설정하기 => SizeUtil 이용해서 설정
+
+
+            textView.text = selectedFriend.nickName
 
 
             //리니어 레이아웃에 추가 + 친구 목록으로도 추가
@@ -136,11 +143,8 @@ class EditAppoinmentActivity : BaseActivity() {
                 mSelectedFriendList.remove(selectedFriend)
                 Toast.makeText(mContext, "${selectedFriend.nickName}님이 목록에서 삭제 되었습니다", Toast.LENGTH_SHORT).show()
             }
-
-
             
         }
-
 
 
 

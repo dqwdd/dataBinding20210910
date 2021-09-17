@@ -3,7 +3,11 @@ package com.example.databinding20210910
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.databinding.DataBindingUtil
+import com.bumptech.glide.Glide
 import com.example.databinding20210910.databinding.ActivityViewAppointmentDetailBinding
 import com.example.databinding20210910.datas.AppointmentData
 import com.example.databinding20210910.datas.PlaceData
@@ -51,6 +55,25 @@ class ViewAppointmentDetailActivity : BaseActivity() {
         //문제 3번
         setNaverMap()
 
+
+        //문제 4번
+        val inflater = LayoutInflater.from(mContext)
+
+        for (friend in mAppointmentData.invitedFriendList) {
+            val friendView = inflater.inflate(R.layout.invited_friends_list_item, null)
+
+            val friendPrifileImg = friendView.findViewById<ImageView>(R.id.friendProfileImg)
+            val nicknameTxt = friendView.findViewById<TextView>(R.id.nicknameTxt)
+            val statusTxt = friendView.findViewById<TextView>(R.id.statusTxt)
+
+            Glide.with(mContext).load(friend.profileImgURL).into(friendPrifileImg)
+            nicknameTxt.text = friend.nickName
+            statusTxt.text = ""
+
+
+            binding.invitedFriendsLayout.addView(friendView)
+
+        }
 
 
 
@@ -100,6 +123,9 @@ class ViewAppointmentDetailActivity : BaseActivity() {
             val cameraUpdate = CameraUpdate.scrollTo(dest)
             naverMap.moveCamera(cameraUpdate)
 
+            val uiSettings = it.uiSettings
+            uiSettings.isCompassEnabled = true
+            uiSettings.isScaleBarEnabled = false
 
 
 

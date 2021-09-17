@@ -303,6 +303,10 @@ class EditAppoinmentActivity : BaseActivity() {
             if (friendListStr != "") {
                 friendListStr = friendListStr.substring(0, friendListStr.length - 1)
             }
+//            if (friendListStr != "") {
+//                friendListStr = friendListStr
+//            }
+
             Log.d("첨부할 친구 목록", friendListStr)
 
 
@@ -329,6 +333,7 @@ class EditAppoinmentActivity : BaseActivity() {
                     }
                     else {
                         Toast.makeText(mContext, "뭔가 오류남", Toast.LENGTH_SHORT).show()
+                        Log.d("뭔가 오류남", friendListStr)
                     }
                 }
 

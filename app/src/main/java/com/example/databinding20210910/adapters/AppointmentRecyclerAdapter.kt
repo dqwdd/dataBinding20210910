@@ -27,12 +27,23 @@ class AppointmentRecyclerAdapter(
 
         val dateTimeSDF = SimpleDateFormat("M/d a h:mm")
 
-        fun bind( data: AppointmentData ) {
+        fun bind( context: Context, data: AppointmentData ) {
             titleTxt.text = data.title
 
 //            약속 일시를 : Date형태로 파싱됨 -> String으로 가공해야 함 -> SimpleDateFormat을 사용해야 함
             dateTimeTxt.text = data.getFormattedDateTime()
             placeNameTxt.text = data.placeName
+
+
+            // 이벤트 처리들
+
+            viewPlaceMapBtn.setOnClickListener {
+                val myIntent = Intent(context, ViewMapActivity::class.java)
+                myIntent.putExtra("appointment", data)
+                context.startActivity(myIntent)
+            }
+
+
         }
 
     }
@@ -47,13 +58,8 @@ class AppointmentRecyclerAdapter(
 
         val data = mList[position]
 
-        holder.bind(data)
+        holder.bind(mContext, data)
 
-        holder.viewPlaceMapBtn.setOnClickListener {
-            val myIntent = Intent(mContext, ViewMapActivity::class.java)
-            myIntent.putExtra("appointment", data)
-            mContext.startActivity(myIntent)
-        }
 
     }
 

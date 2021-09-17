@@ -296,7 +296,7 @@ class EditAppoinmentActivity : BaseActivity() {
                 Log.d("친구들", friend.id.toString())
 
                 friendListStr += friend.id
-                friendListStr += ", "
+                friendListStr += ","
             }
 
             //마지막의 ,를 제거  => 글자의 길이가 0보다 커야 수행 가능함

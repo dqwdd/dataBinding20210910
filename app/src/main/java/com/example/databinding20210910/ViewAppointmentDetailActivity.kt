@@ -2,10 +2,18 @@ package com.example.databinding20210910
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.databinding.DataBindingUtil
 import com.example.databinding20210910.databinding.ActivityViewAppointmentDetailBinding
 import com.example.databinding20210910.datas.AppointmentData
 import com.example.databinding20210910.datas.PlaceData
+import com.naver.maps.geometry.LatLng
+import com.naver.maps.map.CameraUpdate
+import com.naver.maps.map.MapFragment
+import com.naver.maps.map.NaverMap
+import com.naver.maps.map.overlay.Marker
+import com.naver.maps.map.overlay.OverlayImage
+import com.naver.maps.map.overlay.PathOverlay
 import java.text.SimpleDateFormat
 
 class ViewAppointmentDetailActivity : BaseActivity() {
@@ -40,6 +48,14 @@ class ViewAppointmentDetailActivity : BaseActivity() {
         binding.timeTxt.text = sdf.format(mAppointmentData.datetime)
 
 
+        //문제 3번
+        setNaverMap()
+
+
+
+
+
+
 
         //문제 1) 참여인원 수 => "(참여인원: ?명)" 이 양식으로 => 본인 빼고 초대된 사람들의 명수만
         //문제 2) 약속 시간 => "9/3 오후 6:06" 양식으로 가공
@@ -53,4 +69,44 @@ class ViewAppointmentDetailActivity : BaseActivity() {
         // ---> 대중교통 API 활용 => 1. 도착 예상 시간 표시 (infoWindow), 2. 실제 경유지로 PathOverlay 그어주기
 
     }
-}
+
+
+
+    fun setNaverMap() {
+        //지도 관련 코드
+        // --> 마커를 하나 생성 => 좌표에 찍어주기
+        // ---> 카메라 이동 => 도착지 좌표로 카메라 이동
+
+        val mStartPlaceMarker = Marker()
+        val selectedPointMarker = Marker()
+        val mPath = PathOverlay()
+
+        val fm = supportFragmentManager
+        val mapFragment = fm.findFragmentById(R.id.naverMapFrag) as MapFragment?
+            ?: MapFragment.newInstance().also {
+                fm.beginTransaction().add(R.id.naverMapFrag, it).commit()
+            }
+
+        mapFragment.getMapAsync {
+
+            val naverMap = it
+
+            val marker = Marker()
+            marker.position = LatLng(mAppointmentData.latitude, mAppointmentData.longitude)
+            marker.map = naverMap
+
+
+            val dest = LatLng(mAppointmentData.latitude, mAppointmentData.longitude)
+            val cameraUpdate = CameraUpdate.scrollTo(dest)
+            naverMap.moveCamera(cameraUpdate)
+
+
+
+
+            }
+
+        }
+
+    }
+
+

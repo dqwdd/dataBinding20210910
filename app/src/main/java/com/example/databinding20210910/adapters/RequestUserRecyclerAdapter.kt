@@ -13,8 +13,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.databinding20210910.AddFriendActivity
 import com.example.databinding20210910.R
+import com.example.databinding20210910.ViewMyFriendsListActivity
 import com.example.databinding20210910.datas.BasicResponse
 import com.example.databinding20210910.datas.UserData
+import com.example.databinding20210910.fragments.RequestedUserListFragment
 import com.example.databinding20210910.web.ServerAPI
 import com.example.databinding20210910.web.ServerAPIService
 import retrofit2.Call
@@ -63,7 +65,7 @@ class RequestUserRecyclerAdapter(
                     Log.d("서버로 보낼 값이 뭐냐 : ", okOrNo)
 
 //                    어댑터에서 API 서비스 사용법
-//                    1) 직접 만들자 (이 어댑터에서 사용할거)
+//                    1) 직접 만들자 (이 어댑터에서 사용할 방법)
 //                    2) 화면의 (context) 의 변수를 활용 (액티비티의 어댑터에서 활용이 편함)
 
                     val apiService = ServerAPI.getRetrofit(context).create(ServerAPIService::class.java)
@@ -73,6 +75,12 @@ class RequestUserRecyclerAdapter(
                             call: Call<BasicResponse>,
                             response: Response<BasicResponse>
                         ) {
+                            //프래그먼트의 요청목록 새로 받아오기 함수를 실행
+                            //어댑터에서 -> 액티비티 기능 : context 변수 활용
+
+                            //어댑터 -> 액티비티 -> ViewPager 어댑터 -> 1번째 프레그먼트 ->요청 목록 Frag로 변신 -> 기능 활용
+                            ((context as ViewMyFriendsListActivity).mFPA.getItem(1) as RequestedUserListFragment)
+                                .getRequestUserListFromServer()
 
                         }
 

@@ -44,6 +44,10 @@ class ViewAppointmentDetailActivity : BaseActivity() {
 
     lateinit var mAppointmentData : AppointmentData
 
+
+    //버튼이 눌리면 -=> API 전송해달라고 표시 flag
+    var needLocationSendServer = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_view_appointment_detail)
@@ -54,6 +58,9 @@ class ViewAppointmentDetailActivity : BaseActivity() {
     override fun setupEvent() {
 
         binding.arrivalBtn.setOnClickListener {
+
+            //서버에 위치를 보내야 한다고 flag 값을 true로
+            needLocationSendServer = true
 
             //내 위치를 파악. (현재 위치의 위도/경도 추출)
             //위치를 받아도 될지 권한부터 물어보자
@@ -74,6 +81,16 @@ class ViewAppointmentDetailActivity : BaseActivity() {
 
                             Log.d("위도", p0.latitude.toString())
                             Log.d("경도", p0.longitude.toString())
+
+                            if (needLocationSendServer) {
+                                //서버에 위도/경도갑 보내주기
+                                Log.d("위도", p0.latitude.toString())
+                                Log.d("경도", p0.longitude.toString())
+
+                                //응답이 성공적으로 돌아오면 -> 서버에 안보내기
+                                needLocationSendServer = false
+
+                            }
 
                         }
 

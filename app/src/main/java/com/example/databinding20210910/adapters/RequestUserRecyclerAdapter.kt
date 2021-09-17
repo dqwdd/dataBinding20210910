@@ -1,7 +1,6 @@
 package com.example.databinding20210910.adapters
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,14 +14,13 @@ import com.example.databinding20210910.AddFriendActivity
 import com.example.databinding20210910.R
 import com.example.databinding20210910.datas.BasicResponse
 import com.example.databinding20210910.datas.UserData
-import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class FriendRequestRecyclerAdapter(
+class RequestUserRecyclerAdapter(
     val mContext: Context,
-    val mList: List<UserData> ) : RecyclerView.Adapter<FriendRequestRecyclerAdapter.AddFriendViewHolder>() {
+    val mList: List<UserData> ) : RecyclerView.Adapter<RequestUserRecyclerAdapter.AddFriendViewHolder>() {
 
     class AddFriendViewHolder(view : View) : RecyclerView.ViewHolder(view) {
         val friendProfileImg = view.findViewById<ImageView>(R.id.friendProfileImg)
@@ -94,8 +92,7 @@ class FriendRequestRecyclerAdapter(
     }
 
     override fun onBindViewHolder(holder: AddFriendViewHolder, position: Int) {
-        val data = mList[position]
-        holder.bind(mContext, data)
+        holder.bind(mContext, mList[position])
     }
 
     override fun getItemCount() = mList.size

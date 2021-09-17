@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.databinding20210910.R
-import com.example.databinding20210910.adapters.FriendRequestRecyclerAdapter
+import com.example.databinding20210910.adapters.RequestUserRecyclerAdapter
 import com.example.databinding20210910.databinding.FragmentRequestedUserListBinding
 import com.example.databinding20210910.datas.BasicResponse
 import com.example.databinding20210910.datas.UserData
@@ -20,7 +20,7 @@ class RequestedUserListFragment : BaseFragment() {
     lateinit var binding : FragmentRequestedUserListBinding
 
     val mRequestedMyFriendList = ArrayList<UserData>()
-    lateinit var mRequestedFriendAdapter : FriendRequestRecyclerAdapter
+    lateinit var mRequestedFriendAdapter : RequestUserRecyclerAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,7 +43,7 @@ class RequestedUserListFragment : BaseFragment() {
 
     override fun setValues() {
 
-        mRequestedFriendAdapter = FriendRequestRecyclerAdapter(mContext, mRequestedMyFriendList)
+        mRequestedFriendAdapter = RequestUserRecyclerAdapter(mContext, mRequestedMyFriendList)
         binding.requestedFriendRecyclerView.adapter = mRequestedFriendAdapter
 
         binding.requestedFriendRecyclerView.layoutManager = LinearLayoutManager(mContext)

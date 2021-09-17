@@ -1,5 +1,6 @@
 package com.example.databinding20210910
 
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -15,9 +16,15 @@ import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.CameraUpdate
 import com.naver.maps.map.MapFragment
 import com.naver.maps.map.NaverMap
+import com.naver.maps.map.overlay.InfoWindow
 import com.naver.maps.map.overlay.Marker
 import com.naver.maps.map.overlay.OverlayImage
 import com.naver.maps.map.overlay.PathOverlay
+import com.naver.maps.map.util.MarkerIcons
+import com.odsay.odsayandroidsdk.API
+import com.odsay.odsayandroidsdk.ODsayData
+import com.odsay.odsayandroidsdk.ODsayService
+import com.odsay.odsayandroidsdk.OnResultCallbackListener
 import java.text.SimpleDateFormat
 
 class ViewAppointmentDetailActivity : BaseActivity() {
@@ -87,9 +94,9 @@ class ViewAppointmentDetailActivity : BaseActivity() {
         // ---> 카메라 이동 => 도착지 좌표로 카메라 이동
         //문제 4) 응용문제-1 친구목록을 불러서 => 레이아웃에 xml inflate해서 하나씩 addView
         //문제 5) 출발지 좌표도 지도에 설정
-        // ---> 마커 찍기 3)과 동일
-        // ---> 출발지 / 도착지 일직선 PathOverlay그어주기
-        // ---> 대중교통 API 활용 => 1. 도착 예상 시간 표시 (infoWindow), 2. 실제 경유지로 PathOverlay 그어주기
+        // ---> 마커 찍기 3)과 동일 -> 출발지 마커 찍기 --> 1
+        // ---> 출발지 / 도착지 일직선 PathOverlay그어주기 --> 2
+        // ---> 대중교통 API 활용 => 1. 도착 예상 시간 표시 (infoWindow), 2. 실제 경유지로 PathOverlay 그어주기 --> 3
 
     }
 
@@ -115,6 +122,8 @@ class ViewAppointmentDetailActivity : BaseActivity() {
             val naverMap = it
 
             val marker = Marker()
+            marker.icon = MarkerIcons.BLACK
+            marker.iconTintColor = Color.red()
             marker.position = LatLng(mAppointmentData.latitude, mAppointmentData.longitude)
             marker.map = naverMap
 
@@ -123,10 +132,20 @@ class ViewAppointmentDetailActivity : BaseActivity() {
             val cameraUpdate = CameraUpdate.scrollTo(dest)
             naverMap.moveCamera(cameraUpdate)
 
-            val uiSettings = it.uiSettings
-            uiSettings.isCompassEnabled = true
-            uiSettings.isScaleBarEnabled = false
 
+            //문제 5) 출발지 좌표도 지도에 설정
+            // ---> 마커 찍기 3)과 동일 -> 출발지 마커 찍기 --> 1
+            // ---> 출발지 / 도착지 일직선 PathOverlay그어주기
+            // ---> 대중교통 API 활용 => 1. 도착 예상 시간 표시 (infoWindow), 2. 실제 경유지로 PathOverlay 그어주기
+
+
+
+            // ---> 마커 찍기 3)과 동일 -> 출발지 마커 찍기 --> 1
+            val startLatLng = LatLng(mAppointmentData.startLatitude, mAppointmentData.startLongitude)
+
+            val startMarker = Marker()
+            startMarker.position = startLatLng
+            startMarker.map = naverMap
 
 
             }

@@ -60,6 +60,12 @@ class EditAppoinmentActivity : BaseActivity() {
     lateinit var mSelectedFriend : UserData
     lateinit var mFriendSpinnerAdapter : MyFriendSpinnerAdapter
 
+
+    //약속에 참가시킬 친구 리스트
+    val mSelectedFriendList = ArrayList<UserData>()
+
+
+
     //선택된 출발지를 보여줄 마커
     val mStartPlaceMarker = Marker()
 
@@ -93,12 +99,23 @@ class EditAppoinmentActivity : BaseActivity() {
             //고른 친구가 누구인지? => 스피너에서 선택되어 있는 친구를 찾아내자
             val selectedFriend = mMyFriendList [binding.myFriendSpinner.selectedItemPosition]
 
+
+
+            //이미 선택한 친구인지 검사
+            if ( mSelectedFriendList.contains(selectedFriend)) {
+                Toast.makeText(mContext, "이미 추가한 친구입니다", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+
             //텍스트뷰 하나를 코틀린에서 생성
             val textView = TextView(mContext)
-            textView.text = selectedFriend.nickName
+            textView.text = selectedFriend.nickName + " "
 
             //리니어 레이아웃에 추가 + 친구 목록으로도 추가
             binding.friendListLayout.addView(textView)
+
+            mSelectedFriendList.add(selectedFriend)
 
         }
 

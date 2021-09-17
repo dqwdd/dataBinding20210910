@@ -148,6 +148,20 @@ class ViewAppointmentDetailActivity : BaseActivity() {
             startMarker.map = naverMap
 
 
+
+            val path = PathOverlay()
+
+            val points = ArrayList<LatLng>()
+            points.add(startLatLng)
+
+            //둘 사이에서 -> 실제 경유지들을 추가
+
+            points.add(dest)
+
+            path.coords = points
+            path.map = naverMap
+
+
             }
 
         }

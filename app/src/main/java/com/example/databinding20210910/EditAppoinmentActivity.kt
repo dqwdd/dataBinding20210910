@@ -11,10 +11,12 @@ import android.widget.DatePicker
 import android.widget.TimePicker
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import com.example.databinding20210910.adapters.MyFriendSpinnerAdapter
 import com.example.databinding20210910.adapters.StartPlaceSpinnerAdapter
 import com.example.databinding20210910.databinding.ActivityEditAppoinmentBinding
 import com.example.databinding20210910.datas.BasicResponse
 import com.example.databinding20210910.datas.PlaceData
+import com.example.databinding20210910.datas.UserData
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.CameraUpdate
 import com.naver.maps.map.MapFragment
@@ -55,6 +57,11 @@ class EditAppoinmentActivity : BaseActivity() {
 
     lateinit var mSpinnerAdapter : StartPlaceSpinnerAdapter
 
+
+    //내 친구 목록을 담아줄 리스트
+    val mMyFriendList = ArrayList<UserData>()
+    lateinit var mSelectedFriend : UserData
+    lateinit var mFriendSpinnerAdapter : MyFriendSpinnerAdapter
 
     //선택된 출발지를 보여줄 마커
     val mStartPlaceMarker = Marker()
@@ -260,8 +267,23 @@ class EditAppoinmentActivity : BaseActivity() {
     override fun setValues() {
         titleTxt.text = "약속설정"
 
+        mFriendSpinnerAdapter = MyFriendSpinnerAdapter(mContext, R.layout.friend_list_item, mMyFriendList)
+        binding.myFriendSpinner.adapter = mFriendSpinnerAdapter
 
 
+        apiService.getRequestFriendList("my").enqueue(object : Callback<BasicResponse> {
+            override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
+                if (response.isSuccessful) {
+                    mMyFriendList.clear()
+                    mMyFriendList.addAll(response.body()!!.data.friends)
+                    mFriendSpinnerAdapter.notifyDataSetChanged()
+                }
+            }
+
+            override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
+
+            }
+        })
 
 
 

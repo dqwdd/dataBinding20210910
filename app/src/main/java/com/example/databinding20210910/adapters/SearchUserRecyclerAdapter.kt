@@ -56,7 +56,7 @@ class SearchUserRecyclerAdapter(
 //                ~~님을 친구로 추가하시겠습니까?
 
                 val alert = AlertDialog.Builder(context)
-                alert.setMessage("${data.nickName}님을 친구추가 하시겠습니까?")
+                alert.setMessage("${data.nickName}님에게 친구 요청을 보내시겠습니까?")
                 alert.setNegativeButton("확인" , DialogInterface.OnClickListener { dialogInterface, i ->
 
                     (context as AddFriendActivity).apiService.postRequestAddFriend(data.id).enqueue(object :

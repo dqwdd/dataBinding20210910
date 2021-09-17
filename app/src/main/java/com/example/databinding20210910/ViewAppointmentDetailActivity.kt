@@ -123,7 +123,7 @@ class ViewAppointmentDetailActivity : BaseActivity() {
 
             val marker = Marker()
             marker.icon = MarkerIcons.BLACK
-            marker.iconTintColor = Color.red()
+            marker.iconTintColor = Color.RED
             marker.position = LatLng(mAppointmentData.latitude, mAppointmentData.longitude)
             marker.map = naverMap
 

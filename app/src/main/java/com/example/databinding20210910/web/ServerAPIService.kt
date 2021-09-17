@@ -123,10 +123,8 @@ interface ServerAPIService {
         @Field("user_id") userId: Int,
         @Field("type") type: String) : Call<BasicResponse>
 
-//    @FormUrlEncoded
-//    @PUT("/user")//어느 주소로 갈거냐
-//    fun putRequestSignUp(
-//        @Field("email") email: String,
-//        @Field("password") pw: String,
-//        @Field("nick_name") nickname: String) : Call<BasicResponse>
+
+
+
+
 }

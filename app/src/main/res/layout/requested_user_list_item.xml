@@ -41,12 +41,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="수락"
+        android:tag="수락"
         android:layout_marginRight="10dp"/>
 
     <Button
         android:id="@+id/refuseBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:tag="거절"
         android:text="거절"/>
 
 </LinearLayout>

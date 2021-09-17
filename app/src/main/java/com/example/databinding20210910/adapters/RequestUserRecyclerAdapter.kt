@@ -1,6 +1,7 @@
 package com.example.databinding20210910.adapters
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +15,8 @@ import com.example.databinding20210910.AddFriendActivity
 import com.example.databinding20210910.R
 import com.example.databinding20210910.datas.BasicResponse
 import com.example.databinding20210910.datas.UserData
+import com.example.databinding20210910.web.ServerAPI
+import com.example.databinding20210910.web.ServerAPIService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -50,38 +53,39 @@ class RequestUserRecyclerAdapter(
             }
 
 
+            //수락 거절 둘 다 하는 일은 같지만 파라미터만 다르다
+            //버튼에 미리 태그를 달아두고 꺼내서 쓰는 동일한 작업
 
-            agreeBtn.setOnClickListener {
-                (context as AddFriendActivity).apiService.putRequestRequestReply(data.id, "수락")
-                    .enqueue(object : Callback<BasicResponse> {
-                    override fun onResponse(
-                        call: Call<BasicResponse>,
-                        response: Response<BasicResponse>
-                    ) {
-                        Toast.makeText(context, "친구 요청을 수락하셨습니다", Toast.LENGTH_SHORT).show()
-                    }
+            val sendOrNoToserver = object : View.OnClickListener {
+                override fun onClick(p0: View?) {
 
-                    override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
-                    }
-                })
-            }
+                    val okOrNo = p0!!.tag.toString()
+                    Log.d("서버로 보낼 값이 뭐냐 : ", okOrNo)
 
+//                    어댑터에서 API 서비스 사용법
+//                    1) 직접 만들자 (이 어댑터에서 사용할거)
+//                    2) 화면의 (context) 의 변수를 활용 (액티비티의 어댑터에서 활용이 편함)
 
-            refuseBtn.setOnClickListener {
-                (context as AddFriendActivity).apiService.putRequestRequestReply(data.id, "거절")
-                    .enqueue(object : Callback<BasicResponse> {
+                    val apiService = ServerAPI.getRetrofit(context).create(ServerAPIService::class.java)
+
+                    apiService.putRequestRequestReply(data.id, okOrNo).enqueue(object : Callback<BasicResponse> {
                         override fun onResponse(
                             call: Call<BasicResponse>,
                             response: Response<BasicResponse>
                         ) {
-                            Toast.makeText(context, "친구 요청을 거절하셨습니다", Toast.LENGTH_SHORT).show()
+
                         }
 
                         override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
                         }
                     })
+
+
+                }
             }
 
+            agreeBtn.setOnClickListener (sendOrNoToserver)
+            refuseBtn.setOnClickListener (sendOrNoToserver)
 
         }
     }

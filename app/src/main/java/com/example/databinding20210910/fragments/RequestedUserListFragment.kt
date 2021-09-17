@@ -19,8 +19,8 @@ class RequestedUserListFragment : BaseFragment() {
 
     lateinit var binding : FragmentRequestedUserListBinding
 
-    val mRequestedMyFriendList = ArrayList<UserData>()
-    lateinit var mRequestedFriendAdapter : RequestUserRecyclerAdapter
+    val mRequestUserList = ArrayList<UserData>()
+    lateinit var mRequestUserAdapter : RequestUserRecyclerAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,8 +43,8 @@ class RequestedUserListFragment : BaseFragment() {
 
     override fun setValues() {
 
-        mRequestedFriendAdapter = RequestUserRecyclerAdapter(mContext, mRequestedMyFriendList)
-        binding.requestedFriendRecyclerView.adapter = mRequestedFriendAdapter
+        mRequestUserAdapter = RequestUserRecyclerAdapter(mContext, mRequestUserList)
+        binding.requestedFriendRecyclerView.adapter = mRequestUserAdapter
 
         binding.requestedFriendRecyclerView.layoutManager = LinearLayoutManager(mContext)
 
@@ -52,21 +52,21 @@ class RequestedUserListFragment : BaseFragment() {
 
     override fun onResume() {
         super.onResume()
-        getMyFriendListFromServer()
+        getRequestUserListFromServer()
     }
 
-    fun getMyFriendListFromServer() {
+    fun getRequestUserListFromServer() {
 
         apiService.getRequestFriendList("requested").enqueue(object : Callback<BasicResponse> {
             override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
-                if ( response.isSuccessful) {
 
+                if ( response.isSuccessful) {
                     val basicResponse = response.body()!!
 
-                    mRequestedMyFriendList.clear()
-                    mRequestedMyFriendList.addAll(basicResponse.data.friends)
+                    mRequestUserList.clear()
+                    mRequestUserList.addAll(basicResponse.data.friends)
 
-                    mRequestedFriendAdapter.notifyDataSetChanged()
+                    mRequestUserAdapter.notifyDataSetChanged()
 
                 }
             }

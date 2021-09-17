@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
+import androidx.core.view.setPadding
 import androidx.databinding.DataBindingUtil
 import com.example.databinding20210910.adapters.MyFriendSpinnerAdapter
 import com.example.databinding20210910.adapters.StartPlaceSpinnerAdapter
@@ -14,6 +15,7 @@ import com.example.databinding20210910.databinding.ActivityEditAppoinmentBinding
 import com.example.databinding20210910.datas.BasicResponse
 import com.example.databinding20210910.datas.PlaceData
 import com.example.databinding20210910.datas.UserData
+import com.example.databinding20210910.utils.SizeUtil
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.CameraUpdate
 import com.naver.maps.map.MapFragment
@@ -114,6 +116,9 @@ class EditAppoinmentActivity : BaseActivity() {
             //텍스트뷰 하나를 코틀린에서 생성
             val textView = TextView(mContext)
             textView.setBackgroundResource(R.drawable.gray_box)
+
+            textView.setPadding(SizeUtil.dpToPx(mContext, 5f).toInt() )
+
             textView.text = selectedFriend.nickName + " "
 
 

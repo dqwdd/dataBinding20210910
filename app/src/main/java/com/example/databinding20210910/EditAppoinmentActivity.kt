@@ -260,6 +260,17 @@ class EditAppoinmentActivity : BaseActivity() {
     override fun setValues() {
         titleTxt.text = "약속설정"
 
+
+
+
+
+
+
+
+
+
+
+
         mSpinnerAdapter = StartPlaceSpinnerAdapter(mContext, R.layout.my_place_list_item, mStartPlaceList)
         binding.startPlaceSpinner.adapter = mSpinnerAdapter
 

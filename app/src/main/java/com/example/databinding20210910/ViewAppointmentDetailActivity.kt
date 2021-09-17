@@ -63,13 +63,13 @@ class ViewAppointmentDetailActivity : BaseActivity() {
                     Toast.makeText(mContext, "현재 위치 정보를 파악해야 약속 도착 인증이 가능합니다", Toast.LENGTH_SHORT).show()
                 }
             }
-
+            TedPermission.create()
+                .setPermissionListener(pl)
+                .setPermissions(Manifest.permission.ACCESS_FINE_LOCATION)//Manifest뜨는거 android 골라야 함
+                .check()
         }
 
-        TedPermission.create()
-            .setPermissionListener(pl)
-            .setPermissions(Manifest.permission.ACCESS_FINE_LOCATION)//Manifest뜨는거 android 골라야 함
-            .check()
+
     }
 
     override fun setValues() {

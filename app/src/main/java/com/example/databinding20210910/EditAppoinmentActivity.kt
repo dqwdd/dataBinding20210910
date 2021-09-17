@@ -109,15 +109,30 @@ class EditAppoinmentActivity : BaseActivity() {
             }
 
 
+
+
             //텍스트뷰 하나를 코틀린에서 생성
             val textView = TextView(mContext)
             textView.text = selectedFriend.nickName + " "
+
 
             //리니어 레이아웃에 추가 + 친구 목록으로도 추가
             binding.friendListLayout.addView(textView)
 
             mSelectedFriendList.add(selectedFriend)
 
+
+
+
+            //추가한 친구 클릭 시 추가한 친구 텍스트 삭제
+            textView.setOnClickListener {
+                binding.friendListLayout.removeView(textView)
+                mSelectedFriendList.remove(selectedFriend)
+                Toast.makeText(mContext, "${selectedFriend.nickName}님이 목록에서 삭제 되었습니다", Toast.LENGTH_SHORT).show()
+            }
+
+
+            
         }
 
 

@@ -25,6 +25,8 @@ import com.odsay.odsayandroidsdk.API
 import com.odsay.odsayandroidsdk.ODsayData
 import com.odsay.odsayandroidsdk.ODsayService
 import com.odsay.odsayandroidsdk.OnResultCallbackListener
+import okhttp3.*
+import java.io.IOException
 import java.text.SimpleDateFormat
 
 class ViewAppointmentDetailActivity : BaseActivity() {
@@ -179,6 +181,41 @@ class ViewAppointmentDetailActivity : BaseActivity() {
 
             val zoomLevel = 13.0 //두 좌표의 직선 거리에 따라 어느 줌 레벨이 적당한지 계산해줘야 함
             naverMap.moveCamera( CameraUpdate.zoomTo(zoomLevel) )
+
+
+
+
+
+
+
+
+            // 대중교통 API 활용 => 1. 도착시간 예상시간 표시 (infoWindow)
+            //2. 실제 경유지로 PathOverlay 그어주기 => 도전과제
+
+            //OkHttp -> 주소(URL) / 방식(메소드) / 파라미터 조합해서 Request 직접 생성
+
+            var url = HttpUrl.parse("https://api.odsay.com/v1/api/sarchPubtransPath")!!.newBuilder()
+            url.addQueryParameter("apiKey", "1LXXwKUp0wg5d7YQ7MA9QAvDw59XNPYusjqx/nbI4to")
+            url.addEncodedQueryParameter("SX", mAppointmentData.startLongitude.toString())
+            url.addEncodedQueryParameter("SY", mAppointmentData.startLatitude.toString())
+            url.addEncodedQueryParameter("EX", mAppointmentData.longitude.toString())
+            url.addEncodedQueryParameter("EY", mAppointmentData.latitude.toString())
+
+
+            val request = Request.Builder()
+                .url(url.toString())
+                .get()
+                .build()
+
+            val client = OkHttpClient()
+
+            client.newCall(request).enqueue( object : Callback {
+                override fun onFailure(call: Call, e: IOException) {
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+                }
+            })
 
 
             }

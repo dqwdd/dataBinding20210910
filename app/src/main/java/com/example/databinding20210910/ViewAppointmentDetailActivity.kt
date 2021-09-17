@@ -26,6 +26,7 @@ import com.odsay.odsayandroidsdk.ODsayData
 import com.odsay.odsayandroidsdk.ODsayService
 import com.odsay.odsayandroidsdk.OnResultCallbackListener
 import okhttp3.*
+import org.json.JSONObject
 import java.io.IOException
 import java.text.SimpleDateFormat
 
@@ -214,6 +215,9 @@ class ViewAppointmentDetailActivity : BaseActivity() {
                 }
 
                 override fun onResponse(call: Call, response: Response) {
+                    val bodyString = response.body()!!.string()
+                    val jsonObj = JSONObject(bodyString)
+                    Log.d("서버응답", jsonObj.toString())
                 }
             })
 

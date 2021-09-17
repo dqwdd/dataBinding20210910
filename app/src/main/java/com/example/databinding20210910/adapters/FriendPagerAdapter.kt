@@ -19,7 +19,7 @@ class FriendPagerAdapter (fm : FragmentManager) : FragmentPagerAdapter(fm) {
 
     override fun getItem(position: Int): Fragment {
         return when (position) {
-            0 -> MyFriendsListFragment()
+            0 -> MyFriendsListFragment.getFrag()
             else -> RequestedUserListFragment.getFrag()
         }
     }

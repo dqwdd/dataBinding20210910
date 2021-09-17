@@ -1,16 +1,24 @@
 package com.example.databinding20210910.adapters
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.databinding20210910.AddFriendActivity
 import com.example.databinding20210910.R
+import com.example.databinding20210910.datas.BasicResponse
 import com.example.databinding20210910.datas.UserData
+import org.json.JSONObject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class FriendRequestRecyclerAdapter(
     val mContext: Context,
@@ -41,6 +49,39 @@ class FriendRequestRecyclerAdapter(
                 else -> {
                     socialLoginImg.visibility = View.VISIBLE
                 }
+            }
+
+
+
+            agreeBtn.setOnClickListener {
+                (context as AddFriendActivity).apiService.putRequestRequestReply(data.id, "수락")
+                    .enqueue(object : Callback<BasicResponse> {
+                    override fun onResponse(
+                        call: Call<BasicResponse>,
+                        response: Response<BasicResponse>
+                    ) {
+                        Toast.makeText(context, "친구 요청을 수락하셨습니다", Toast.LENGTH_SHORT).show()
+                    }
+
+                    override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
+                    }
+                })
+            }
+
+
+            refuseBtn.setOnClickListener {
+                (context as AddFriendActivity).apiService.putRequestRequestReply(data.id, "거절")
+                    .enqueue(object : Callback<BasicResponse> {
+                        override fun onResponse(
+                            call: Call<BasicResponse>,
+                            response: Response<BasicResponse>
+                        ) {
+                            Toast.makeText(context, "친구 요청을 거절하셨습니다", Toast.LENGTH_SHORT).show()
+                        }
+
+                        override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
+                        }
+                    })
             }
 
 

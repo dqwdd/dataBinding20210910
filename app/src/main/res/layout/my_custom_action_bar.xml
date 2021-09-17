@@ -38,7 +38,7 @@
         android:src="@drawable/plus_icon"
         android:layout_gravity="right|center_vertical"
         android:padding="5dp"
-        android:layout_marginRight="5dp"
+        android:layout_marginRight="15dp"
         android:visibility="gone"/>
 
 

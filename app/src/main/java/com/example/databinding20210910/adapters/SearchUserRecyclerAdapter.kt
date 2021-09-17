@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.databinding20210910.AddFriendActivity
@@ -64,7 +65,7 @@ class SearchUserRecyclerAdapter(
                             call: Call<BasicResponse>,
                             response: Response<BasicResponse>
                         ) {
-
+                            Toast.makeText(context, "${data.nickName}님에게 친구 요청을 보냈습니다", Toast.LENGTH_SHORT).show()
                         }
 
                         override fun onFailure(call: Call<BasicResponse>, t: Throwable) {

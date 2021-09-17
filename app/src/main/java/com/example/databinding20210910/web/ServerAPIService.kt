@@ -114,9 +114,19 @@ interface ServerAPIService {
         @Field("user_id") userId: Int ) : Call<BasicResponse>
 
 
-//    @POST("/user/social")//어느 주소로 갈거냐
-//    fun postRequestSocialLogin(
-//        @Field("provider") provider: String,
-//        @Field("uid") id: String,
-//        @Field("nick_name") name: String) : Call<BasicResponse>
+
+
+    //친구추가 요청 수락/거절 하기
+    @FormUrlEncoded
+    @PUT("/user/friend")//어느 주소로 갈거냐
+    fun putRequestRequestReply(
+        @Field("user_id") userId: Int,
+        @Field("type") type: String) : Call<BasicResponse>
+
+//    @FormUrlEncoded
+//    @PUT("/user")//어느 주소로 갈거냐
+//    fun putRequestSignUp(
+//        @Field("email") email: String,
+//        @Field("password") pw: String,
+//        @Field("nick_name") nickname: String) : Call<BasicResponse>
 }

@@ -95,11 +95,9 @@ class MySettinsgActivity : BaseActivity() {
 
                         val myIntent = Intent()
                         myIntent.action = Intent.ACTION_PICK // 겟하러 간다
-                        myIntent.type = "image/*"//다 가지러 갈거에요/*이 다인가봄
                         myIntent.type = android.provider.MediaStore.Images.Media.CONTENT_TYPE
                         startActivityForResult(myIntent, REQ_FOR_GALLERY)
                         //'(myIntent, "프사 선택하기"),' 이후 == "프사선택하기"가 뭘 가지러 가나
-
 
                     }
 
@@ -303,6 +301,15 @@ class MySettinsgActivity : BaseActivity() {
                         call: Call<BasicResponse>,
                         response: Response<BasicResponse>
                     ) {
+
+                        if (response.isSuccessful) {
+//                            1. 선택한 이미지로 UI 프사 변경
+                            Glide.with(mContext).load(dataUri).into(binding.profileImg)
+//                            2. 토스트로 성공 메시지
+                            Toast.makeText(mContext, "프로필 사진이 변경되었습니다", Toast.LENGTH_SHORT).show()
+
+                        }
+
                     }
 
                     override fun onFailure(call: Call<BasicResponse>, t: Throwable) {

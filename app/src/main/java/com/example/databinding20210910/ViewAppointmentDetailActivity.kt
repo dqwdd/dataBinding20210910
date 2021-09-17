@@ -129,8 +129,8 @@ class ViewAppointmentDetailActivity : BaseActivity() {
 
 
             val dest = LatLng(mAppointmentData.latitude, mAppointmentData.longitude)
-            val cameraUpdate = CameraUpdate.scrollTo(dest)
-            naverMap.moveCamera(cameraUpdate)
+            //val cameraUpdate = CameraUpdate.scrollTo(dest)
+            //naverMap.moveCamera(cameraUpdate)
 
 
             //문제 5) 출발지 좌표도 지도에 설정
@@ -160,6 +160,25 @@ class ViewAppointmentDetailActivity : BaseActivity() {
 
             path.coords = points
             path.map = naverMap
+
+
+
+
+
+            //두 좌표의 중간점으로 카메라 이동?
+            val centerOfStartAndDest = LatLng(
+                (mAppointmentData.startLatitude + mAppointmentData.latitude)/2
+                , (mAppointmentData.startLongitude + mAppointmentData.longitude)/2
+            )
+
+            val cameraUpdate = CameraUpdate.scrollTo(centerOfStartAndDest)
+            naverMap.moveCamera(cameraUpdate)
+
+
+            //거리에 따른 줌 레벨 변경 (도전 과제)
+
+            val zoomLevel = 13.0 //두 좌표의 직선 거리에 따라 어느 줌 레벨이 적당한지 계산해줘야 함
+            naverMap.moveCamera( CameraUpdate.zoomTo(zoomLevel) )
 
 
             }

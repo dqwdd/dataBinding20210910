@@ -6,10 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import android.widget.AdapterView
-import android.widget.DatePicker
-import android.widget.TimePicker
-import android.widget.Toast
+import android.widget.*
 import androidx.databinding.DataBindingUtil
 import com.example.databinding20210910.adapters.MyFriendSpinnerAdapter
 import com.example.databinding20210910.adapters.StartPlaceSpinnerAdapter
@@ -89,6 +86,25 @@ class EditAppoinmentActivity : BaseActivity() {
     }
 
     override fun setupEvent() {
+
+        //친구 추가 버튼
+        binding.addFriendToListBtn.setOnClickListener {
+
+            //고른 친구가 누구인지? => 스피너에서 선택되어 있는 친구를 찾아내자
+            val selectedFriend = mMyFriendList [binding.myFriendSpinner.selectedItemPosition]
+
+            //텍스트뷰 하나를 코틀린에서 생성
+            val textView = TextView(mContext)
+            textView.text = selectedFriend.nickName
+
+            //리니어 레이아웃에 추가 + 친구 목록으로도 추가
+            binding.friendListLayout.addView(textView)
+
+        }
+
+
+
+
         //지도 영역에 손을 대면 => 스크롤뷰 정지하게하자
 //        대안 = > 지도 위에 겹쳐둔 텍스트뷰에 손을 대면 => 스크롤뷰 정지
 

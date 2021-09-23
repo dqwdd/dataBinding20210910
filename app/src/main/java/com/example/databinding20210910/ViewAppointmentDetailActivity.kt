@@ -231,43 +231,58 @@ class ViewAppointmentDetailActivity : BaseActivity() {
     fun getAppointmentFromServer() {
 
         //친구 목록 등의 내용을 서버에서 새로 받자
-        //문제 4번
-        val inflater = LayoutInflater.from(mContext)
+        apiService.getRequestAppointmentDetail(mAppointmentData.id).enqueue(object : Callback<BasicResponse>{
+            override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
 
-        for (friend in mAppointmentData.invitedFriendList) {
-            val friendView = inflater.inflate(R.layout.invited_friends_list_item, null)
+                val basicResponse = response.body()!!
 
-            val friendPrifileImg = friendView.findViewById<ImageView>(R.id.friendProfileImg)
-            val nicknameTxt = friendView.findViewById<TextView>(R.id.nicknameTxt)
-            val statusTxt = friendView.findViewById<TextView>(R.id.statusTxt)
+                mAppointmentData = basicResponse.data.appointment
 
 
 
 
-            val sdf = SimpleDateFormat("M/d a h:mm")
+                //문제 4번
+                val inflater = LayoutInflater.from(mContext)
+                val sdf = SimpleDateFormat("M/d a h:mm")
 
-            if (friend.arrivedAt == null) {
-                //아직 도착 x
-                statusTxt.text = "도착 전"
+                for (friend in mAppointmentData.invitedFriendList) {
+                    val friendView = inflater.inflate(R.layout.invited_friends_list_item, null)
+
+                    val friendPrifileImg = friendView.findViewById<ImageView>(R.id.friendProfileImg)
+                    val nicknameTxt = friendView.findViewById<TextView>(R.id.nicknameTxt)
+                    val statusTxt = friendView.findViewById<TextView>(R.id.statusTxt)
+
+
+                    if (friend.arrivedAt == null) {
+                        //아직 도착 x
+                        statusTxt.text = "도착 전"
+                    }
+                    else {
+                        //도착 시간 ok
+                        statusTxt.text = sdf.format(friend.arrivedAt!!)
+
+                    }
+
+                    friend.arrivedAt?.let {
+                        Log.d("친구 도착 시간", "${friend.nickName} - ${friend.arrivedAt.toString()}")
+                    }
+
+                    Glide.with(mContext).load(friend.profileImgURL).into(friendPrifileImg)
+                    nicknameTxt.text = friend.nickName
+                    statusTxt.text = ""
+
+
+                    binding.invitedFriendsLayout.addView(friendView)
+
+                }
+
+
+
             }
-            else {
-                //도착 시간 ok
-                statusTxt.text = sdf.format(friend.arrivedAt!!)
 
+            override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
             }
-
-            friend.arrivedAt?.let {
-                Log.d("친구 도착 시간", "${friend.nickName} - ${friend.arrivedAt.toString()}")
-            }
-
-            Glide.with(mContext).load(friend.profileImgURL).into(friendPrifileImg)
-            nicknameTxt.text = friend.nickName
-            statusTxt.text = ""
-
-
-            binding.invitedFriendsLayout.addView(friendView)
-
-        }
+        })
 
     }
 

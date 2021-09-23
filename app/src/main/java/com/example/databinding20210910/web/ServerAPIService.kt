@@ -136,4 +136,13 @@ interface ServerAPIService {
         @Field("longitude") lnt: Double ) : Call<BasicResponse>
 
 
+
+
+
+    @GET("/appointment/{appointment_id}")
+    fun getRequestAppointmentDetail(
+        @Path("appointment_id") id: Int//여기있는 변수를 받아서 위에 {appointment_id}에 넣는다!
+    ) : Call<BasicResponse>
+
+
 }

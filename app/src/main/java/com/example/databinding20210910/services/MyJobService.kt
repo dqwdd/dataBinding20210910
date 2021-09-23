@@ -48,7 +48,7 @@ class MyJobService : JobService() {
         val triggerTime = SystemClock.elapsedRealtime() + 60 * 1000
 
         //실제 알람 시간 : 교통 소요 시간 (API), 내 준비 시간 고려
-
+        //출발지 좌표 / 약속장소 좌표 필요
 
 
 

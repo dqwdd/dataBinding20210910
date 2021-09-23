@@ -375,8 +375,12 @@ class EditAppoinmentActivity : BaseActivity() {
                         val jobTime = mSelectedDateTime.timeInMillis - now.timeInMillis
 
 
+                        //jobInfo=>ID값을 넣을 수 있다. 약속의 ID 값을 넣어보자
+                        //약속 작성 화면 => 만든 약속의 id값?(우리가 알 수 없음-서버에게 받은거 봐야지)
+                        val basicResponse = response.body()!!
 
-                        val jobInfo = JobInfo.Builder(MyJobService.JOB_TIME_SET, serviceComponent)
+
+                        val jobInfo = JobInfo.Builder(basicResponse.data.appointment.id, serviceComponent)
                             .setMinimumLatency(jobTime)//약속시간 기준으로 2시간 전이면 실행
 
 //                            .setMinimumLatency(TimeUnit.MINUTES.toMillis(1))

@@ -130,7 +130,12 @@ class ViewAppointmentDetailActivity : BaseActivity() {
                                         call: Call<BasicResponse>,
                                         response: Response<BasicResponse>
                                     ) {
+
                                         if (response.isSuccessful) {
+
+                                            //응답이 성공적으로 돌아오면 -> 서버에 안보내기
+                                            needLocationSendServer = false
+                                            Toast.makeText(mContext, "약속 인증 하셨습니다", Toast.LENGTH_SHORT).show()
 
                                         }
                                         else {
@@ -141,7 +146,6 @@ class ViewAppointmentDetailActivity : BaseActivity() {
                                             Log.d("응답전문", jsonObj.toString())
 
                                             val message = jsonObj.getString("message")
-
                                             Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show()
                                         }
                                     }
@@ -152,10 +156,6 @@ class ViewAppointmentDetailActivity : BaseActivity() {
                                     ) {
                                     }
                                 })
-
-
-                                //응답이 성공적으로 돌아오면 -> 서버에 안보내기
-                                needLocationSendServer = false
 
                             }
 

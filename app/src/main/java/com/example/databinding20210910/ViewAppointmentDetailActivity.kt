@@ -283,7 +283,6 @@ class ViewAppointmentDetailActivity : BaseActivity() {
 
                     Glide.with(mContext).load(friend.profileImgURL).into(friendPrifileImg)
                     nicknameTxt.text = friend.nickName
-                    statusTxt.text = ""
 
 
 

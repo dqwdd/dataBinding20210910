@@ -1,6 +1,7 @@
 package com.example.databinding20210910
 
 import android.Manifest
+import android.content.pm.PackageManager
 import android.graphics.Color
 import android.location.Location
 import android.location.LocationListener
@@ -13,6 +14,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
 import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
 import com.example.databinding20210910.databinding.ActivityViewAppointmentDetailBinding
@@ -70,9 +72,37 @@ class ViewAppointmentDetailActivity : BaseActivity() {
             //위치를 받아도 될지 권한부터 물어보자
             val pl = object : PermissionListener {
                 override fun onPermissionGranted() {
+
+
+
+
+
+                    //그 빨간줄 많았던거 체크 누르니까 뜸
+                    if (ActivityCompat.checkSelfPermission(
+                            mContext,
+                            Manifest.permission.ACCESS_FINE_LOCATION
+                        ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                            mContext,
+                            Manifest.permission.ACCESS_COARSE_LOCATION
+                        ) != PackageManager.PERMISSION_GRANTED
+                    ) {
+
+                        //권한이 하나라도 없다면 밑의 코드 실행 x  라는 뜻
+                        return
+                    }
+
+
+
+
+
+
+
+
+
                     //실제 위치 물어보기 (안드로이드 폰에게)
                     //위치 관리자부터 가져오자
                     val locationManger = getSystemService(LOCATION_SERVICE) as LocationManager
+
 
 
 

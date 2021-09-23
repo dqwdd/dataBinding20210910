@@ -63,6 +63,17 @@ class ViewAppointmentDetailActivity : BaseActivity() {
 
     override fun setupEvent() {
 
+        binding.refreshBtn.setOnClickListener {
+
+            getAppointmentFromServer()
+
+
+
+        }
+
+
+
+
         binding.arrivalBtn.setOnClickListener {
 
             //서버에 위치를 보내야 한다고 flag 값을 true로
@@ -240,6 +251,9 @@ class ViewAppointmentDetailActivity : BaseActivity() {
 
 
 
+                //기존에 달려있는 친구목록 View들을 전부 제거 => 그 다음에 친구 목록 다시 받기
+                binding.invitedFriendsLayout.removeAllViews()
+
 
                 //문제 4번
                 val inflater = LayoutInflater.from(mContext)
@@ -270,6 +284,7 @@ class ViewAppointmentDetailActivity : BaseActivity() {
                     Glide.with(mContext).load(friend.profileImgURL).into(friendPrifileImg)
                     nicknameTxt.text = friend.nickName
                     statusTxt.text = ""
+
 
 
                     binding.invitedFriendsLayout.addView(friendView)

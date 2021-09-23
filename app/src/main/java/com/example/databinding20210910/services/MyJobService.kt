@@ -47,6 +47,12 @@ class MyJobService : JobService() {
         val now = Calendar.getInstance()//현재 시간 가져오기
         val triggerTime = SystemClock.elapsedRealtime() + 60 * 1000
 
+        //실제 알람 시간 : 교통 소요 시간 (API), 내 준비 시간 고려
+
+
+
+
+
         //실제 알람 기능 설정
         alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, triggerTime, pendingIntent)
         //핸드폰이 잠겨있어도 울리게 해주는거(==WAKEUP)

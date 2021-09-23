@@ -359,9 +359,27 @@ class EditAppoinmentActivity : BaseActivity() {
                         //백그라운드 작업을 가정해야 함 => 서비스 클래스 작업이 필요
                         val serviceComponent = ComponentName(mContext, MyJobService::class.java)
 
+
                         //"언제?" 어떤 일을? 모아주는 클래스
+                        //언제? (약속시간 - 2시간) - 현재시간 => 이 시차만큼 지나면 실행되도록
+                        //약속시간 : 시차 보정 => 2시간 빼주자
+                        mSelectedDateTime.add(Calendar.HOUR_OF_DAY, -2)
+
+
+                        //현재 시간 : 시차 보정 x => 시차 보정
+                        val now = Calendar.getInstance()
+                        val timeOffset = now.timeZone.rawOffset / 1000 / 60 / 60
+                        now.add(Calendar.HOUR_OF_DAY, -timeOffset)
+
+                        //필요한 시간이 지나면 예약 작업이 실행되도록
+                        val jobTime = mSelectedDateTime.timeInMillis - now.timeInMillis
+
+
+
                         val jobInfo = JobInfo.Builder(MyJobService.JOB_TIME_SET, serviceComponent)
-                            .setMinimumLatency(TimeUnit.MINUTES.toMillis(1))
+                            .setMinimumLatency(jobTime)//약속시간 기준으로 2시간 전이면 실행
+
+//                            .setMinimumLatency(TimeUnit.MINUTES.toMillis(1))
                             // 얼마 후에 실행 할건지?, 임시 1분, 약속 시간 기준으로
                             // -> 약속 시간 기준으로 하려면 그게 몇 분 후 인지 계산 필요
                             .setOverrideDeadline(TimeUnit.MINUTES.toMillis(3))

@@ -43,6 +43,8 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.io.IOException
 import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class ViewAppointmentDetailActivity : BaseActivity() {
 
@@ -124,9 +126,6 @@ class ViewAppointmentDetailActivity : BaseActivity() {
                     object : LocationListener {
                         override fun onLocationChanged(p0: Location) {
 
-                            Log.d("위도", p0.latitude.toString())
-                            Log.d("경도", p0.longitude.toString())
-
                             if (needLocationSendServer) {
                                 //서버에 위도/경도값 보내주기
                                 Log.d("위도", p0.latitude.toString())
@@ -146,7 +145,8 @@ class ViewAppointmentDetailActivity : BaseActivity() {
 
                                             //응답이 성공적으로 돌아오면 -> 서버에 안보내기
                                             needLocationSendServer = false
-                                            Toast.makeText(mContext, "약속 인증 하셨습니다", Toast.LENGTH_SHORT).show()
+                                            Toast.makeText(mContext, "약속 인증 하셨습니다",
+                                                Toast.LENGTH_SHORT).show()
 
                                         }
                                         else {

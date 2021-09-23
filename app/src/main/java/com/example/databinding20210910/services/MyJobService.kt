@@ -13,6 +13,7 @@ import android.widget.TextView
 import com.example.databinding20210910.R
 import com.example.databinding20210910.datas.BasicResponse
 import com.example.databinding20210910.receivers.AlarmReceiver
+import com.example.databinding20210910.utils.ContextUtil
 import com.example.databinding20210910.utils.GlobalData
 import com.example.databinding20210910.web.ServerAPI
 import com.example.databinding20210910.web.ServerAPIService
@@ -97,9 +98,9 @@ class MyJobService : JobService() {
                                 val now = Calendar.getInstance()
                                 appointmentData.datetime.time += now.timeZone.rawOffset
                                 val alarmTime = appointmentData.datetime.time -
-                                        (totalTime*60*1000 - GlobalData.loginUser!!.readyMinute * 60 * 1000)
+                                        (totalTime*60*1000 - ContextUtil.getMyReadyMinute(applicationContext) * 60 * 1000)
                                         //appointmentData.datetime.time==Long타입임
-                                setAlarmByMinute(alarmTime)
+                                setAlarmByMilliSecond(alarmTime)
 
                             }
 
@@ -126,7 +127,7 @@ class MyJobService : JobService() {
 
 
     //언제 알람을 울릴지 계산해서 넘겨주면 단순히 울리기만 하는 함수
-    fun setAlarmByMinute(timeInMillis: Long) {
+    fun setAlarmByMilliSecond(timeInMillis: Long) {
         //알람을 울리게 도와주는 도구 => BroadCast 송신
         val alarmManager = getSystemService(ALARM_SERVICE) as AlarmManager
 

@@ -2,6 +2,7 @@ package com.example.databinding20210910
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.example.databinding20210910.databinding.ActivityEditMyPlaceBinding
@@ -34,19 +35,20 @@ class EditMyPlaceActivity : BaseActivity() {
             //멤버변수에 있는 lat/lng 사용하자
 
             apiService.postRequestAddMyPlace(inputName, mSelectedLat, mSelectedLng, true)
-                .enqueue(object : Callback<BasicResponse> {
+                .enqueue(object : Callback<BasicResponse>  {
                     override fun onResponse(
                         call: Call<BasicResponse>,
                         response: Response<BasicResponse>
                     ) {
-                        if(response.isSuccessful) {
-                            Toast.makeText(mContext, "내 출발 장소를 추가했습니다", Toast.LENGTH_SHORT).show()
+                        if (response.isSuccessful) {
+                            Toast.makeText(mContext, "장소가 등록되었습니다", Toast.LENGTH_SHORT).show()
                             finish()
                         }
+
                     }
 
                     override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
-                        TODO("Not yet implemented")
+                        Toast.makeText(mContext, "뭔가 오류남", Toast.LENGTH_SHORT).show()
                     }
                 })
 

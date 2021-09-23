@@ -36,7 +36,10 @@ class AppointmentData(
     //현재 시간 :
         val now = Calendar.getInstance() //현재 일시
 
-//    약속시간 - 현재시간 : 몇시간?
+//    약속시간(UTC시간대)=>폰설정타임존 변환 - 현재시간(이건 폰 설정 타임존) : 몇시간?
+        val dateTimeToTimeZone = this.datetime.time + now.timeZone.rawOffset
+
+
         val diff = this.datetime.time - now.timeInMillis
         Log.d("약속시간-현재시간 : ", diff.toString())
 
@@ -53,7 +56,7 @@ class AppointmentData(
         }
         else {
             val sdf = SimpleDateFormat("M/d a h:mm")
-            return sdf.format(this.datetime)
+            return sdf.format(dateTimeToTimeZone)
         }
         return "테스트"
 

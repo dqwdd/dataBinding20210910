@@ -261,6 +261,19 @@ class EditAppoinmentActivity : BaseActivity() {
             }
 
 //            여기 코드 실행 된다 : 일자 / 시간 모두 설정했다.
+
+
+
+//            약속 일시를 => UTC 시간대로 변경해주자. 서버가 사용하는 시간대는 UTC라서
+//            앱에서 폰의 시간대를 찾아서 보정해주자
+//            어떻게찾냐?
+            val myTimeZone = mSelectedDateTime.timeZone//이게 내 폰의 시간대
+//            내 시간대가 시차가 utc로 부터 얼마나 나느냐~
+            val myTimeOffset = myTimeZone.rawOffset / 1000 / 60 / 60 //밀리초에서 시간으로 변환
+            //선택된 시간을 보정(더해져 있는 시차를 빼주자)
+            mSelectedDateTime.add(Calendar.HOUR_OF_DAY, -myTimeOffset)//빼주자는 없는데 더해주자는 있음
+
+
 //            선택된 약속일시를 -> "yyyy-MM-dd HH:mm"양식으로 가공(스웨거에 나온 양식) => 최종 서버에 파라미터로 첨부
             val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm")
             val finalDatetime = sdf.format(mSelectedDateTime.time)

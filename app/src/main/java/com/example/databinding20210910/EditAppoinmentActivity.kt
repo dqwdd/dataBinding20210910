@@ -382,6 +382,7 @@ class EditAppoinmentActivity : BaseActivity() {
 
                         val jobInfo = JobInfo.Builder(basicResponse.data.appointment.id, serviceComponent)
                             .setMinimumLatency(jobTime)//약속시간 기준으로 2시간 전이면 실행
+//                            .setMinimumLatency(TimeUnit.SECONDS.toMillis(20))//위의 코드가 너무 오래 걸려서 20초 뒤에로 바꿈
 
 //                            .setMinimumLatency(TimeUnit.MINUTES.toMillis(1))
                             // 얼마 후에 실행 할건지?, 임시 1분, 약속 시간 기준으로

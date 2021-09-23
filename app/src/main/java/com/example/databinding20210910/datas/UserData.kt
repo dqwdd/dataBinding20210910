@@ -3,6 +3,7 @@ package com.example.databinding20210910.datas
 import com.google.gson.annotations.SerializedName
 import org.json.JSONObject
 import java.io.Serializable
+import java.util.*
 
 class UserData (
     var id: Int,
@@ -13,5 +14,7 @@ class UserData (
     @SerializedName("profile_img")
     var profileImgURL: String,
     @SerializedName("ready_minute")
-    var readyMinute: Int) : Serializable {
+    var readyMinute: Int,
+    @SerializedName("arrived_at")
+    var arrivedAt : Date?) : Serializable {
 }

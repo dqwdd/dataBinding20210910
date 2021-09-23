@@ -212,31 +212,7 @@ class ViewAppointmentDetailActivity : BaseActivity() {
         //문제 3번
         setNaverMap()
 
-
-        //문제 4번
-        val inflater = LayoutInflater.from(mContext)
-
-        for (friend in mAppointmentData.invitedFriendList) {
-            val friendView = inflater.inflate(R.layout.invited_friends_list_item, null)
-
-            val friendPrifileImg = friendView.findViewById<ImageView>(R.id.friendProfileImg)
-            val nicknameTxt = friendView.findViewById<TextView>(R.id.nicknameTxt)
-            val statusTxt = friendView.findViewById<TextView>(R.id.statusTxt)
-
-            Glide.with(mContext).load(friend.profileImgURL).into(friendPrifileImg)
-            nicknameTxt.text = friend.nickName
-            statusTxt.text = ""
-
-
-            binding.invitedFriendsLayout.addView(friendView)
-
-        }
-
-
-
-
-
-
+        getAppointmentFromServer()
         //문제 1) 참여인원 수 => "(참여인원: ?명)" 이 양식으로 => 본인 빼고 초대된 사람들의 명수만
         //문제 2) 약속 시간 => "9/3 오후 6:06" 양식으로 가공
         //문제 3) 도착지 좌표를 지도에 설정
@@ -252,14 +228,59 @@ class ViewAppointmentDetailActivity : BaseActivity() {
 
 
 
+    fun getAppointmentFromServer() {
+
+        //친구 목록 등의 내용을 서버에서 새로 받자
+        //문제 4번
+        val inflater = LayoutInflater.from(mContext)
+
+        for (friend in mAppointmentData.invitedFriendList) {
+            val friendView = inflater.inflate(R.layout.invited_friends_list_item, null)
+
+            val friendPrifileImg = friendView.findViewById<ImageView>(R.id.friendProfileImg)
+            val nicknameTxt = friendView.findViewById<TextView>(R.id.nicknameTxt)
+            val statusTxt = friendView.findViewById<TextView>(R.id.statusTxt)
+
+
+
+
+            val sdf = SimpleDateFormat("M/d a h:mm")
+
+            if (friend.arrivedAt == null) {
+                //아직 도착 x
+                statusTxt.text = "도착 전"
+            }
+            else {
+                //도착 시간 ok
+                statusTxt.text = sdf.format(friend.arrivedAt!!)
+
+            }
+
+            friend.arrivedAt?.let {
+                Log.d("친구 도착 시간", "${friend.nickName} - ${friend.arrivedAt.toString()}")
+            }
+
+            Glide.with(mContext).load(friend.profileImgURL).into(friendPrifileImg)
+            nicknameTxt.text = friend.nickName
+            statusTxt.text = ""
+
+
+            binding.invitedFriendsLayout.addView(friendView)
+
+        }
+
+    }
+
+
+
+
+
+
+
     fun setNaverMap() {
         //지도 관련 코드
         // --> 마커를 하나 생성 => 좌표에 찍어주기
         // ---> 카메라 이동 => 도착지 좌표로 카메라 이동
-
-        val mStartPlaceMarker = Marker()
-        val selectedPointMarker = Marker()
-        val mPath = PathOverlay()
 
         val fm = supportFragmentManager
         val mapFragment = fm.findFragmentById(R.id.naverMapFrag) as MapFragment?

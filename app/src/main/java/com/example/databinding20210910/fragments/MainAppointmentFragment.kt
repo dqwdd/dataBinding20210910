@@ -77,7 +77,6 @@ class MainAppointmentFragment : BaseFragment() {
     }
 
 
-
     fun getAppointmentListFromServer() {
 
         apiService.getRequestAppointmentList().enqueue(object : Callback<BasicResponse> {

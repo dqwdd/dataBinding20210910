@@ -147,11 +147,4 @@ interface ServerAPIService {
 
 
 
-
-
-    @GET("/appointment/{invited_appointments}")
-    fun getRequestInvitedAppointment(
-        @Path("invited_appointments") id: Int
-    ) : Call<BasicResponse>
-
 }

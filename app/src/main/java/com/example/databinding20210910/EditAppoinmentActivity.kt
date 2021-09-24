@@ -38,6 +38,7 @@ import com.odsay.odsayandroidsdk.OnResultCallbackListener
 import okhttp3.HttpUrl
 import okhttp3.OkHttpClient
 import okhttp3.Request
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -131,6 +132,7 @@ class EditAppoinmentActivity : BaseActivity() {
 
             //3. 어떤 파라미터 / 헤더
             val request = Request.Builder()
+                .url(urlString)
                 .get()
                 .header("Authorization", "KakaoAK 78045276548393d2b1f8f9416fdb095c")
                 .build()
@@ -142,6 +144,31 @@ class EditAppoinmentActivity : BaseActivity() {
                 }
 
                 override fun onResponse(call: okhttp3.Call, response: okhttp3.Response) {
+
+                    val jsonObj = JSONObject( response.body()!!.string() )
+                    Log.d("장소 검색 결과", jsonObj.toString())
+
+                    val documentsArr = jsonObj.getJSONArray("documents")
+
+                    for ( i in 0 until documentsArr.length() ) {
+                        val docu = documentsArr.getJSONObject(i)
+
+                        Log.d("문서 아이템", docu.toString())
+
+                        val placeName = docu.getString("place_name")
+                        Log.d("장소명", placeName)
+
+                        val lat = docu.getString("y").toDouble()
+                        val lng = docu.getString("x").toDouble()
+                        Log.d("위경도", "${lat} / ${lng}")
+
+
+                        //임시 : 첫 번째 장소만 파싱되면 사용할 예정
+                        break
+
+                    }
+
+
                 }
             })
 

@@ -53,7 +53,7 @@ class ViewNotificationActivity : BaseActivity() {
 
                     mMyNotificationList.clear()
 
-                    mMyNotificationList.addAll( basicResponse.data.notifications )
+//                    mMyNotificationList.addAll( basicResponse.data.notifications )
 
                     mNotificationAdapter.notifyDataSetChanged()
                 }

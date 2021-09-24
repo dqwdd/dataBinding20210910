@@ -2,7 +2,6 @@ package com.example.databinding20210910.fragments
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,20 +9,28 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.databinding20210910.EditAppoinmentActivity
 import com.example.databinding20210910.R
-import com.example.databinding20210910.adapters.AppointmentRecyclerAdapter
 import com.example.databinding20210910.adapters.InvitedAppointmentRecyclerAdapter
-import com.example.databinding20210910.databinding.FragmentMainAppointmentBinding
 import com.example.databinding20210910.databinding.FragmentMainInvitedAppointmentBinding
 import com.example.databinding20210910.datas.AppointmentData
 import com.example.databinding20210910.datas.BasicResponse
-import com.example.databinding20210910.datas.InvitedAppointmentData
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class MainInvitedAppointmentFragment : BaseFragment() {
 
-    val mInvitedAppointmentList = ArrayList<InvitedAppointmentData>()
+    companion object {
+        private var frag : MainInvitedAppointmentFragment? = null
+        fun getFrag() : MainInvitedAppointmentFragment {
+            if (frag == null) {
+                frag = MainInvitedAppointmentFragment()
+            }
+
+            return frag!!
+        }
+    }
+
+    val mInvitedAppointmentList = ArrayList<AppointmentData>()
 
     lateinit var mRecyclerAdapter : InvitedAppointmentRecyclerAdapter
 

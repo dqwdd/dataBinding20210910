@@ -14,13 +14,10 @@ import com.example.databinding20210910.R
 import com.example.databinding20210910.ViewAppointmentDetailActivity
 import com.example.databinding20210910.ViewMapActivity
 import com.example.databinding20210910.datas.AppointmentData
-import com.example.databinding20210910.datas.InvitedAppointmentData
-import com.example.databinding20210910.datas.PlaceData
-import java.text.SimpleDateFormat
 
 class InvitedAppointmentRecyclerAdapter(
     val mContext: Context,
-    val mList: List<InvitedAppointmentData>) :
+    val mList: List<AppointmentData>) :
     RecyclerView.Adapter<InvitedAppointmentRecyclerAdapter.AppointmentViewHolder>() {
 
     class AppointmentViewHolder(val mContext: Context,view : View) : RecyclerView.ViewHolder(view) {
@@ -34,14 +31,11 @@ class InvitedAppointmentRecyclerAdapter(
         val inviteUserName = view.findViewById<TextView>(R.id.inviteUserName)
 
 
-        val dateTimeSDF = SimpleDateFormat("M/d a h:mm")
-
-        fun bind( context: Context, data: InvitedAppointmentData ) {
+        fun bind( context: Context, data: AppointmentData ) {
             titleTxt.text = data.title
 
 //            약속 일시를 : Date형태로 파싱됨 -> String으로 가공해야 함 -> SimpleDateFormat을 사용해야 함
             dateTimeTxt.text = data.getFormattedDateTime()
-            placeNameTxt.text = data.placeName
             placeNameTxt.text = data.placeName
 
 
@@ -62,7 +56,6 @@ class InvitedAppointmentRecyclerAdapter(
                 myIntent.putExtra("appointment", data)
                 context.startActivity(myIntent)
             }
-
 
         }
 

@@ -18,8 +18,10 @@ import androidx.core.app.ActivityCompat
 import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
 import com.example.databinding20210910.databinding.ActivityViewAppointmentDetailBinding
+import com.example.databinding20210910.databinding.ActivityViewInvitedAppointmentDetailBinding
 import com.example.databinding20210910.datas.AppointmentData
 import com.example.databinding20210910.datas.BasicResponse
+import com.example.databinding20210910.datas.InvitedAppointmentData
 import com.example.databinding20210910.datas.PlaceData
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.normal.TedPermission
@@ -46,11 +48,11 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
-class ViewAppointmentDetailActivity : BaseActivity() {
+class ViewInvitedAppointmentDetailActivity : BaseActivity() {
 
-    lateinit var binding : ActivityViewAppointmentDetailBinding
+    lateinit var binding : ActivityViewInvitedAppointmentDetailBinding
 
-    lateinit var mAppointmentData : AppointmentData
+    lateinit var mAppointmentData : InvitedAppointmentData
 
 
     //버튼이 눌리면 -=> API 전송해달라고 표시 flag
@@ -58,7 +60,7 @@ class ViewAppointmentDetailActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_view_appointment_detail)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_view_invited_appointment_detail)
         setValues()
         setupEvent()
     }
@@ -196,7 +198,7 @@ class ViewAppointmentDetailActivity : BaseActivity() {
 
         titleTxt.text = "약속 상세 확인"
 
-        mAppointmentData = intent.getSerializableExtra("appointment") as AppointmentData
+        mAppointmentData = intent.getSerializableExtra("appointment") as InvitedAppointmentData
 
         binding.titleTxt.text = mAppointmentData.title
         binding.placeTxt.text = mAppointmentData.placeName

@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.databinding20210910.R
 import com.example.databinding20210910.ViewAppointmentDetailActivity
 import com.example.databinding20210910.ViewMapActivity
@@ -29,6 +30,8 @@ class InvitedAppointmentRecyclerAdapter(
         val placeNameTxt = view.findViewById<TextView>(R.id.placeNameTxt)
         val viewPlaceMapBtn = view.findViewById<ImageView>(R.id.viewPlaceMapBtn)
         val rootLayout = view.findViewById<LinearLayout>(R.id.rootLayout)
+        val inviteUserProfile = view.findViewById<ImageView>(R.id.inviteUserProfile)
+        val inviteUserName = view.findViewById<TextView>(R.id.inviteUserName)
 
 
         val dateTimeSDF = SimpleDateFormat("M/d a h:mm")
@@ -39,7 +42,11 @@ class InvitedAppointmentRecyclerAdapter(
 //            약속 일시를 : Date형태로 파싱됨 -> String으로 가공해야 함 -> SimpleDateFormat을 사용해야 함
             dateTimeTxt.text = data.getFormattedDateTime()
             placeNameTxt.text = data.placeName
+            placeNameTxt.text = data.placeName
 
+
+            inviteUserName.text = data.user.nickName
+            Glide.with(context).load(data.user.profileImgURL).into(inviteUserProfile)
 
             // 이벤트 처리들
 
@@ -62,7 +69,7 @@ class InvitedAppointmentRecyclerAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AppointmentViewHolder {
-        val view = LayoutInflater.from(mContext).inflate(R.layout.appointment_list_item, parent, false)
+        val view = LayoutInflater.from(mContext).inflate(R.layout.invited_appointment_list_item, parent, false)
 
         return AppointmentViewHolder(mContext, view)
     }

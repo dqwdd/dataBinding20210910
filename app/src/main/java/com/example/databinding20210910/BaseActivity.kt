@@ -71,7 +71,8 @@ abstract class BaseActivity : AppCompatActivity() {
 
 
         alarmIcon.setOnClickListener {
-
+            val myIntent = Intent(mContext, ViewNotificationActivity::class.java)
+            startActivity(myIntent)
         }
 
 

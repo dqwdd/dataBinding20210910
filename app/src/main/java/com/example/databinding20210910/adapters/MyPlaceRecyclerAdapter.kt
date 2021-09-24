@@ -23,6 +23,7 @@ class MyPlaceRecyclerAdapter(
         val backgroundLayout = view.findViewById<LinearLayout>(R.id.backgroundLayout)
 
         fun setRealData( data: PlaceData ) {
+
             placeNameTxt.text = data.name
 
             if (data.isPrimary) {

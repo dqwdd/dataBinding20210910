@@ -81,8 +81,6 @@ class ViewAppointmentDetailActivity : BaseActivity() {
             val pl = object : PermissionListener {
                 override fun onPermissionGranted() {
 
-
-
                     //그 빨간줄 많았던거 체크 누르니까 뜸
                     if (ActivityCompat.checkSelfPermission(
                             mContext,
@@ -96,8 +94,6 @@ class ViewAppointmentDetailActivity : BaseActivity() {
                         //권한이 하나라도 없다면 밑의 코드 실행 x  라는 뜻
                         return
                     }
-
-
 
 
                     //실제 위치 물어보기 (안드로이드 폰에게)

@@ -11,6 +11,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.databinding20210910.adapters.AppointmentAdapter
 import com.example.databinding20210910.adapters.AppointmentRecyclerAdapter
 import com.example.databinding20210910.adapters.MainViewPagerAdapter
@@ -38,8 +39,17 @@ class MainActivity : BaseActivity() {
         setValues()
     }
 
+    override fun onResume() {
+        super.onResume()
+
+    }
+
 
     override fun setupEvent() {
+
+
+
+
 
         profileImg.setOnClickListener {
             val myIntent = Intent(mContext, MySettinsgActivity::class.java)

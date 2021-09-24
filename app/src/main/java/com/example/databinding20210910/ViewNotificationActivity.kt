@@ -47,10 +47,6 @@ class ViewNotificationActivity : BaseActivity() {
                 }
             })
 
-
-
-
-
         }
 
     }
@@ -78,15 +74,10 @@ class ViewNotificationActivity : BaseActivity() {
 
 
 
-    fun getRequestNotifications() {
+    override fun getRequestNotifications() {
 
         apiService.getRequestNotifications("true").enqueue(object : Callback<BasicResponse>{
             override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
-                if(response.isSuccessful) {
-                    val basicResponse = response.body()!!
-
-
-                }
             }
 
             override fun onFailure(call: Call<BasicResponse>, t: Throwable) {

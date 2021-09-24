@@ -110,7 +110,7 @@ class EditAppoinmentActivity : BaseActivity() {
     override fun setupEvent() {
 
         binding.placeSearchBtn.setOnClickListener {
-            val inputPlaceName = binding.paceSearchEdt.text.toString()
+            val inputPlaceName = binding.placeSearchEdt.text.toString()
 
             if (inputPlaceName.length < 2) {
                 Toast.makeText(mContext, "최소 2글자 이상 입력해 주세요", Toast.LENGTH_SHORT).show()
@@ -161,6 +161,28 @@ class EditAppoinmentActivity : BaseActivity() {
                         val lat = docu.getString("y").toDouble()
                         val lng = docu.getString("x").toDouble()
                         Log.d("위경도", "${lat} / ${lng}")
+
+
+
+                        runOnUiThread {
+
+
+                            //UI (지도 / Edt)에 반영
+
+                            binding.placeSearchEdt.setText(placeName)
+
+                            //지도 - 마커 찍기 + 카메라 이동
+                            //좌표를 미리 생성
+                            val findPlaceLatLng = LatLng(lat, lng)
+
+                            selectedPointMarker.position = findPlaceLatLng
+                            selectedPointMarker.map = mNaverMap
+
+
+                            mNaverMap?.moveCamera( CameraUpdate.scrollTo(findPlaceLatLng))
+
+                        }
+
 
 
                         //임시 : 첫 번째 장소만 파싱되면 사용할 예정
@@ -365,7 +387,7 @@ class EditAppoinmentActivity : BaseActivity() {
 
 //            3. 약속 장소?
 //            - 장소 이름
-            val inputPlaceName = binding.paceSearchEdt.text.toString()
+            val inputPlaceName = binding.placeSearchEdt.text.toString()
 
 //            장소 위도/경도 ?
 //            val lat = 37.57795738970527

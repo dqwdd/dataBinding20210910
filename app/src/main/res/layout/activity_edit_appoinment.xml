@@ -151,7 +151,7 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/paceSearchEdt"
+                    android:id="@+id/placeSearchEdt"
                     android:layout_width="250dp"
                     android:layout_height="wrap_content"
                     android:singleLine="true"

@@ -19,7 +19,12 @@ class DataResponse(
     var users : List<UserData>,//json이랑 이름 같게 해야 함
 
     //하나의 상세 약속 정보
-    var appointment: AppointmentData
+    var appointment: AppointmentData,
+
+    var notifications: String,
+
+    var unread_noty_count: Int
+
 ) {
 }
 

@@ -3,13 +3,18 @@ package com.example.databinding20210910
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import com.example.databinding20210910.datas.BasicResponse
 import com.example.databinding20210910.web.ServerAPI
 import com.example.databinding20210910.web.ServerAPIService
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import retrofit2.Retrofit
 
 abstract class BaseActivity : AppCompatActivity() {
@@ -26,6 +31,8 @@ abstract class BaseActivity : AppCompatActivity() {
     lateinit var titleTxt : TextView
     lateinit var editPlaceImg : ImageView
     lateinit var logoImg : ImageView
+    lateinit var alarmIcon : ImageView
+    lateinit var alarmIconRed : ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +46,10 @@ abstract class BaseActivity : AppCompatActivity() {
         }
     }
 
-    abstract fun setupEvent()
+    abstract fun setupEvent(
+
+
+    )
     abstract fun setValues()
 
     fun setCustomActionBar() {
@@ -55,6 +65,35 @@ abstract class BaseActivity : AppCompatActivity() {
         titleTxt = defActionBar.customView.findViewById<TextView>(R.id.titleTxt)
         editPlaceImg = defActionBar.customView.findViewById<ImageView>(R.id.editPlaceImg)
         logoImg = defActionBar.customView.findViewById<ImageView>(R.id.logoImg)
+        alarmIcon = defActionBar.customView.findViewById<ImageView>(R.id.alarmIcon)
+        alarmIconRed = defActionBar.customView.findViewById<ImageView>(R.id.alarmIconRed)
+
+
+
+        alarmIcon.setOnClickListener {
+
+        }
+
+
+        apiService.getRequestNotifications("true").enqueue(object :
+            Callback<BasicResponse> {
+            override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
+
+                if (response.isSuccessful) {
+
+                    val basicResponse = response.body()!!
+
+                    if (basicResponse.data.unread_noty_count != 0) {
+                        alarmIconRed.visibility = View.VISIBLE
+                    }
+
+                }
+
+            }
+
+            override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
+            }
+        })
 
     }
 

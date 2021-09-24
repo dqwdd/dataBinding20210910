@@ -21,6 +21,32 @@
         android:textSize="16sp"
         android:layout_gravity="center"/>
 
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|right">
+
+        <ImageView
+            android:id="@+id/alarmIcon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/alarm_icon"
+            android:layout_marginRight="60dp"
+            android:padding="4dp"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/alarmIconRed"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:src="@color/red"
+            android:layout_marginTop="4dp"
+            android:visibility="gone"
+            android:layout_marginLeft="22dp"/>
+
+    </FrameLayout>
+
+
     <ImageView
         android:id="@+id/profileImg"
         android:layout_width="40dp"

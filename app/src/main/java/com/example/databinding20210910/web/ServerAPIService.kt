@@ -147,4 +147,9 @@ interface ServerAPIService {
 
 
 
+
+    //알림 목록 50개 조회
+    @GET("/notifications")
+    fun getRequestNotifications(
+        @Query("need_all_notis") notice: String) : Call<BasicResponse>
 }

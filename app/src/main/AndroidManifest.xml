@@ -4,7 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
@@ -16,6 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DataBinding20210910"
         android:usesCleartextTraffic="true">
+        <activity
+            android:name=".ViewNotificationActivity"
+            android:exported="true" />
         <activity
             android:name=".ViewAppointmentDetailActivity"
             android:exported="true" />
@@ -102,12 +105,13 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".services.MyJobService"
-            android:permission="android.permission.BIND_JOB_SERVICE"/>
+        <service
+            android:name=".services.MyJobService"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
 
-        <receiver android:name=".receivers.AlarmReceiver"
-            android:exported="false"/>
-        
+        <receiver
+            android:name=".receivers.AlarmReceiver"
+            android:exported="false" />
     </application>
 
 </manifest>

@@ -76,7 +76,7 @@ abstract class BaseActivity : AppCompatActivity() {
         }
 
 
-        apiService.getRequestNotifications("true").enqueue(object :
+        apiService.getRequestNotifications("false").enqueue(object :
             Callback<BasicResponse> {
             override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
 

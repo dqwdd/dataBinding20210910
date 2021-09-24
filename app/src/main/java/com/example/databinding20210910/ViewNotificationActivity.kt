@@ -1,12 +1,16 @@
 package com.example.databinding20210910
 
 import android.os.Bundle
+import android.util.Log
+import android.view.View
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.databinding20210910.adapters.NotificationRecyclerAdapter
 import com.example.databinding20210910.databinding.ActivityViewNotificationBinding
 import com.example.databinding20210910.datas.BasicResponse
 import com.example.databinding20210910.datas.DataResponse
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -28,9 +32,39 @@ class ViewNotificationActivity : BaseActivity() {
     }
 
     override fun setupEvent() {
+
+        binding.readBtn.setOnClickListener {
+
+            apiService.postRequestNotificatioRead(100).enqueue(object : Callback<BasicResponse>{
+                override fun onResponse(
+                    call: Call<BasicResponse>,
+                    response: Response<BasicResponse>
+                ) {
+
+                }
+
+                override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
+                }
+            })
+
+
+
+
+
+        }
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        getRequestNotifications()
     }
 
     override fun setValues() {
+
+        alarmIcon.visibility = View.GONE
+        alarmIconRed.visibility = View.GONE
+
         titleTxt.text = "알림"
 
         mNotificationAdapter = NotificationRecyclerAdapter(mContext, mMyNotificationList)
@@ -38,7 +72,7 @@ class ViewNotificationActivity : BaseActivity() {
 
         binding.notificationRecyclerView.layoutManager = LinearLayoutManager(mContext)
 
-        getRequestNotifications()
+
    }
 
 
@@ -51,11 +85,7 @@ class ViewNotificationActivity : BaseActivity() {
                 if(response.isSuccessful) {
                     val basicResponse = response.body()!!
 
-                    mMyNotificationList.clear()
 
-//                    mMyNotificationList.addAll( basicResponse.data.notifications )
-
-                    mNotificationAdapter.notifyDataSetChanged()
                 }
             }
 

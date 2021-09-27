@@ -45,6 +45,11 @@ class MySettinsgActivity : BaseActivity() {
 
     override fun setupEvent() {
 
+        binding.passwordLayout.setOnClickListener {
+            val myIntent = Intent(mContext, EditPasswordActivity::class.java)
+            startActivity(myIntent)
+        }
+
         binding.myFriendLayout.setOnClickListener {
             val myIntent = Intent(mContext, ViewMyFriendsListActivity::class.java)
             startActivity(myIntent)

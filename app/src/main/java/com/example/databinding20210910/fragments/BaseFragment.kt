@@ -3,6 +3,7 @@ package com.example.databinding20210910.fragments
 import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import com.example.databinding20210910.BaseActivity
 import com.example.databinding20210910.web.ServerAPI
 import com.example.databinding20210910.web.ServerAPIService
 import retrofit2.Retrofit
@@ -13,6 +14,12 @@ abstract class BaseFragment : Fragment() {
 
     private lateinit var retrofit: Retrofit
     lateinit var apiService : ServerAPIService
+
+    /*lateinit var mainActivity: BaseActivity
+
+    override fun onAttach(mContext: Context) { super.onAttach(mContext)
+        mainActivity = mContext as BaseActivity
+    }*/
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)

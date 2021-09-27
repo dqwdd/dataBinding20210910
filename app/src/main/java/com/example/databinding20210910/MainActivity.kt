@@ -14,11 +14,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.databinding20210910.adapters.AppointmentAdapter
 import com.example.databinding20210910.adapters.AppointmentRecyclerAdapter
+import com.example.databinding20210910.adapters.InvitedAppointmentRecyclerAdapter
 import com.example.databinding20210910.adapters.MainViewPagerAdapter
 import com.example.databinding20210910.databinding.ActivityMainBinding
 import com.example.databinding20210910.datas.AppointmentData
 import com.example.databinding20210910.datas.BasicResponse
 import com.example.databinding20210910.utils.GlobalData
+import com.naver.maps.geometry.LatLng
+import com.naver.maps.map.CameraUpdate
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -27,10 +30,7 @@ class MainActivity : BaseActivity() {
 
     lateinit var mainViewPagerAdapter : MainViewPagerAdapter
 
-
     lateinit var binding: ActivityMainBinding
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,14 +43,13 @@ class MainActivity : BaseActivity() {
         super.onResume()
     }
 
-
     override fun setupEvent() {
         profileImg.setOnClickListener {
             val myIntent = Intent(mContext, MySettinsgActivity::class.java)
             startActivity(myIntent)
         }
-
     }
+
 
     override fun setValues() {
 
@@ -60,11 +59,9 @@ class MainActivity : BaseActivity() {
         binding.mainTabLayout.setupWithViewPager( binding.mainViewPager )
 
 
-
         Toast.makeText(mContext, "${GlobalData.loginUser!!.nickName}님 환영합니다!", Toast.LENGTH_SHORT).show()
 
 //        getAppointmentListFromServer()
-
 
         //상속받은 액션바에 있는 프로필버튼 보여주기
         profileImg.visibility = View.VISIBLE
@@ -73,8 +70,6 @@ class MainActivity : BaseActivity() {
         titleTxt.text = "메인화면"
 
     }
-
-
 
 }
 //http://3.36.146.152/api/docs/

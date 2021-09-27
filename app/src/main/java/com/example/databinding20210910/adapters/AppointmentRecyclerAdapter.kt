@@ -1,9 +1,11 @@
 package com.example.databinding20210910.adapters
 
 import android.app.AlertDialog
+import android.app.PendingIntent.getActivity
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,10 +14,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import com.example.databinding20210910.R
-import com.example.databinding20210910.ViewAppointmentDetailActivity
-import com.example.databinding20210910.ViewMapActivity
-import com.example.databinding20210910.ViewMyFriendsListActivity
+import com.example.databinding20210910.*
 import com.example.databinding20210910.datas.AppointmentData
 import com.example.databinding20210910.datas.BasicResponse
 import com.example.databinding20210910.datas.PlaceData
@@ -89,6 +88,7 @@ class AppointmentRecyclerAdapter(
                             else {
                                 Toast.makeText(mContext, "자신의 약속만 삭제할 수 있습니다", Toast.LENGTH_SHORT).show()
                             }
+
                         }
 
                         override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
@@ -97,28 +97,19 @@ class AppointmentRecyclerAdapter(
                 })
                 alert.setPositiveButton("취소", null)
                 alert.show()
-
                 return@setOnLongClickListener true
             }
-
-
         }
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AppointmentViewHolder {
         val view = LayoutInflater.from(mContext).inflate(R.layout.appointment_list_item, parent, false)
-
         return AppointmentViewHolder(mContext, view)
     }
 
     override fun onBindViewHolder(holder: AppointmentViewHolder, position: Int) {
-
         val data = mList[position]
-
         holder.bind(mContext, data)
-
-
     }
 
     override fun getItemCount(): Int {

@@ -170,4 +170,11 @@ interface ServerAPIService {
     fun getRequestAppointmentDelete(
         @Query("appointment_id") appointmentId: Int) : Call<BasicResponse>
 
+
+
+    @PATCH("/user/password")
+    fun getRequestUserPasswordChange(
+        @Field("current_password") currentPassword : String,
+        @Field("new_password") newPassword  : String) : Call<BasicResponse>
+
 }

@@ -1,13 +1,16 @@
 package com.example.databinding20210910.fragments
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.databinding20210910.BaseActivity
 import com.example.databinding20210910.EditAppoinmentActivity
 import com.example.databinding20210910.R
 import com.example.databinding20210910.adapters.AppointmentRecyclerAdapter
@@ -15,6 +18,8 @@ import com.example.databinding20210910.databinding.FragmentMainAppointmentBindin
 import com.example.databinding20210910.databinding.FragmentMyFriendsListBinding
 import com.example.databinding20210910.datas.AppointmentData
 import com.example.databinding20210910.datas.BasicResponse
+import com.naver.maps.geometry.LatLng
+import com.naver.maps.map.CameraUpdate
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -30,6 +35,7 @@ class MainAppointmentFragment : BaseFragment() {
             return frag!!
         }
     }
+
 
     val mAppointmentList = ArrayList<AppointmentData>()
 
@@ -48,8 +54,11 @@ class MainAppointmentFragment : BaseFragment() {
 
     override fun onResume() {
         super.onResume()
+        /*mainActivity.runOnUiThread {
+            //        setValues에서 실행하던거 여기서 실행
+            getAppointmentListFromServer()
+        }*/
         getAppointmentListFromServer()
-//        setValues에서 실행하던거 여기서 실행
     }
 
 
@@ -65,6 +74,7 @@ class MainAppointmentFragment : BaseFragment() {
             val myIntent = Intent(mContext, EditAppoinmentActivity::class.java)
             startActivity(myIntent)
         }
+
     }
 
     override fun setValues() {
@@ -73,7 +83,6 @@ class MainAppointmentFragment : BaseFragment() {
         binding.appointmentRecyclerView.adapter = mRecyclerAdapter
 
         binding.appointmentRecyclerView.layoutManager = LinearLayoutManager(mContext)
-
     }
 
 
@@ -91,6 +100,7 @@ class MainAppointmentFragment : BaseFragment() {
 
 //                어댑터 새로고침
                 mRecyclerAdapter.notifyDataSetChanged()
+
             }
 
             override fun onFailure(call: Call<BasicResponse>, t: Throwable) {

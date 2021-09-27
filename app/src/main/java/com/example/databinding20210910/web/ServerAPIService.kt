@@ -171,7 +171,7 @@ interface ServerAPIService {
         @Query("appointment_id") appointmentId: Int) : Call<BasicResponse>
 
 
-
+    @FormUrlEncoded
     @PATCH("/user/password")
     fun getRequestUserPasswordChange(
         @Field("current_password") currentPassword : String,

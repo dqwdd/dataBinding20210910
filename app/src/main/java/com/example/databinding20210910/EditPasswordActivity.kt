@@ -1,6 +1,8 @@
 package com.example.databinding20210910
 
 import android.app.AlertDialog
+import android.content.DialogInterface
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -9,6 +11,8 @@ import androidx.databinding.DataBindingUtil
 import com.example.databinding20210910.databinding.ActivityEditPasswordBinding
 import com.example.databinding20210910.databinding.ActivityMySettinsgBinding
 import com.example.databinding20210910.datas.BasicResponse
+import com.example.databinding20210910.utils.ContextUtil
+import com.example.databinding20210910.utils.GlobalData
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
@@ -46,10 +50,14 @@ class EditPasswordActivity : BaseActivity() {
                         response: Response<BasicResponse>
                     ) {
                         if (response.isSuccessful) {
+                            val basicResponse = response.body()!!
                             val alert = AlertDialog.Builder(mContext)
                             alert.setMessage("비밀번호가 변경되었습니다")
-                            alert.setPositiveButton("확인", null)
+                            alert.setPositiveButton("확인", DialogInterface.OnClickListener { dialogInterface, i ->
+                                finish()
+                            })
                             alert.show()
+                            ContextUtil.setToken(mContext, basicResponse.data.token)
                         }
                         else {
                             val jsonObj = JSONObject(response.errorBody()!!.string())

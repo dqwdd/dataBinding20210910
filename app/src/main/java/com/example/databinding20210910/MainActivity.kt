@@ -41,16 +41,10 @@ class MainActivity : BaseActivity() {
 
     override fun onResume() {
         super.onResume()
-
     }
 
 
     override fun setupEvent() {
-
-
-
-
-
         profileImg.setOnClickListener {
             val myIntent = Intent(mContext, MySettinsgActivity::class.java)
             startActivity(myIntent)

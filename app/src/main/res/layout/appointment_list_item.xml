@@ -33,10 +33,10 @@
 
         <ImageView
             android:id="@+id/viewPlaceMapBtn"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_marginLeft="5dp"
-            android:padding="10dp"
+            android:layout_gravity="center_vertical"
             android:src="@drawable/flag_yellow_marker_icon"/>
 
         <TextView
@@ -44,8 +44,7 @@
             android:padding="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="장소이름"
-            android:textSize="18dp"/>
+            android:text="장소이름"/>
 
         <TextView
             android:layout_width="0dp"
@@ -57,8 +56,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="약속일시"
-            android:padding="10dp"
-            android:textSize="15dp"/>
+            android:padding="10dp"/>
 
     </LinearLayout>
 

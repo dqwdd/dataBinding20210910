@@ -22,7 +22,7 @@ class NotificationRecyclerAdapter(
         val noticeTxt = view.findViewById<TextView>(R.id.noticeTxt)
 
         fun bind(context: Context, data: DataResponse) {
-            noticeTxt.text = data.notifications
+            //noticeTxt.text = data.notifications.toString()
         }
 
     }

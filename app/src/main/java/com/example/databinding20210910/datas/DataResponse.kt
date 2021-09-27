@@ -1,5 +1,7 @@
 package com.example.databinding20210910.datas
 
+import android.app.Notification
+
 class DataResponse(
 //    로그인 성공 시 파싱용 변수
     var user: UserData,
@@ -21,7 +23,7 @@ class DataResponse(
     //하나의 상세 약속 정보
     var appointment: AppointmentData,
 
-    var notifications: String,
+    var notifications: List<NotificationData>,
 
     var unread_noty_count: Int
 

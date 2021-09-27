@@ -47,9 +47,8 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     abstract fun setupEvent(
-
-
     )
+
     abstract fun setValues()
 
     fun setCustomActionBar() {
@@ -91,12 +90,12 @@ abstract class BaseActivity : AppCompatActivity() {
                 if (response.isSuccessful) {
 
                     val basicResponse = response.body()!!
-
                     if (basicResponse.data.unread_noty_count != 0) {
                         alarmIconRed.visibility = View.VISIBLE
                     }
                 }
             }
+
             override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
             }
         })

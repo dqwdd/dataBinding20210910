@@ -32,25 +32,23 @@ class MyPlaceRecyclerAdapter(
             else {
                 isPrimaryTxt.visibility = View.GONE
             }
-
-
 //            이벤트처리
 //            viewPlaceMapBtn.setOnClickListener {
 //                Toast.makeText(, "", Toast.LENGTH_SHORT).show()
 //            }
-
-
         }
-
     }
+
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
 
         val view = LayoutInflater.from(mContext).inflate(R.layout.my_place_list_item, parent, false)
         return MyViewHolder(view)
 
-
     }
+
+
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
 //          위에 fun setRealData( data: PlaceData ) 만들어서 여기에 쓸 거 대신 넣어도 됨

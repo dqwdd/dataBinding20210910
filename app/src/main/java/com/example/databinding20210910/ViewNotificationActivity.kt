@@ -10,6 +10,7 @@ import com.example.databinding20210910.adapters.NotificationRecyclerAdapter
 import com.example.databinding20210910.databinding.ActivityViewNotificationBinding
 import com.example.databinding20210910.datas.BasicResponse
 import com.example.databinding20210910.datas.DataResponse
+import com.example.databinding20210910.datas.NotificationData
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
@@ -76,8 +77,17 @@ class ViewNotificationActivity : BaseActivity() {
 
     override fun getRequestNotifications() {
 
-        apiService.getRequestNotifications("true").enqueue(object : Callback<BasicResponse>{
+        apiService.getRequestNotifications("false").enqueue(object : Callback<BasicResponse>{
             override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
+
+                if (response.isSuccessful) {
+                    val basicResponse = response.body()!!
+
+//                    mMyNotificationList.clear()
+//                    mMyNotificationList.addAll( basicResponse.data )
+//                    mNotificationAdapter.notifyDataSetChanged()
+                }
+
             }
 
             override fun onFailure(call: Call<BasicResponse>, t: Throwable) {

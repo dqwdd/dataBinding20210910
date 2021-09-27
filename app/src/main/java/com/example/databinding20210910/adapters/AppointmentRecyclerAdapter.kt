@@ -31,7 +31,9 @@ class AppointmentRecyclerAdapter(
     val mContext: Context,
     val mList: List<AppointmentData>) : RecyclerView.Adapter<AppointmentRecyclerAdapter.AppointmentViewHolder>() {
 
-    class AppointmentViewHolder(val mContext: Context,view : View) : RecyclerView.ViewHolder(view) {
+    class AppointmentViewHolder(val mContext: Context,view: View, val adapater: AppointmentRecyclerAdapter) : RecyclerView.ViewHolder(view) {
+
+        //view: View, val adapater: AppointmentRecyclerAdapter
 
         val titleTxt = view.findViewById<TextView>(R.id.titleTxt)
         val dateTimeTxt = view.findViewById<TextView>(R.id.dateTimeTxt)
@@ -84,6 +86,7 @@ class AppointmentRecyclerAdapter(
                         ) {
                             if (response.isSuccessful) {
                                 Toast.makeText(mContext, "약속이 삭제되었습니다", Toast.LENGTH_SHORT).show()
+                                adapater.notifyDataSetChanged()
                             }
                             else {
                                 Toast.makeText(mContext, "자신의 약속만 삭제할 수 있습니다", Toast.LENGTH_SHORT).show()
@@ -104,7 +107,7 @@ class AppointmentRecyclerAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AppointmentViewHolder {
         val view = LayoutInflater.from(mContext).inflate(R.layout.appointment_list_item, parent, false)
-        return AppointmentViewHolder(mContext, view)
+        return AppointmentViewHolder(mContext, view, this)
     }
 
     override fun onBindViewHolder(holder: AppointmentViewHolder, position: Int) {

@@ -54,7 +54,6 @@ class MainActivity : BaseActivity() {
         if (doubleBackToExit) {
             finishAffinity()
         } else {
-            Toast.makeText(mContext, "종료하시려면 뒤로가기를 한 번 더 눌러주세요.", Toast.LENGTH_SHORT).show()
             doubleBackToExit = true
             runDelayed(2000L) {
                 doubleBackToExit = false

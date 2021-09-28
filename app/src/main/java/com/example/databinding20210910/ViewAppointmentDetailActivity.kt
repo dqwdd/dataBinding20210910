@@ -66,7 +66,6 @@ class ViewAppointmentDetailActivity : BaseActivity() {
         }
 
 
-
         binding.refreshBtn.setOnClickListener {
             getAppointmentFromServer()
         }

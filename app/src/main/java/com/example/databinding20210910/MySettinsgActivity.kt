@@ -275,6 +275,7 @@ class MySettinsgActivity : BaseActivity() {
         when(GlobalData.loginUser!!.provider) {
             "facebook" -> binding.socialLoginImg.setImageResource(R.drawable.facebook_logo_icon)
             "kakao" -> binding.socialLoginImg.setImageResource(R.drawable.kakaotalk_logo_icon)
+            "naver" -> binding.socialLoginImg.setImageResource(R.drawable.naver_icon)
             else -> binding.socialLoginImg.visibility = View.VISIBLE
         }
 

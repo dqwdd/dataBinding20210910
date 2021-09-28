@@ -69,7 +69,16 @@ class LoginActivity : BaseActivity() {
                         val accessToken = mNaverLoginModule.getAccessToken(mContext)
                         Log.d("네이버 토큰 값", accessToken)
 
-                        moveToMain()
+                        //별개의 통신용 스레드 생성 -> 내 정보 요청
+                        Thread {
+//                            이 내부의 코드를 백그라운드 실행
+                            val url = "https://openapi.naver.com/v1/nid/me"
+                            val jsonObj = JSONObject(mNaverLoginModule.requestApi(mContext, accessToken, url))
+                            Log.d("네이버 로그인 내 정보", jsonObj.toString())
+
+                        }.start()
+
+
 
                     }
                     else {

@@ -62,6 +62,7 @@ class ViewAppointmentDetailActivity : BaseActivity() {
 
         binding.modifyLayout.setOnClickListener {
             val myIntent = Intent(mContext, ModifyAppointmentActivity::class.java)
+            myIntent.putExtra("appointments", mAppointmentData)
             startActivity(myIntent)
         }
 

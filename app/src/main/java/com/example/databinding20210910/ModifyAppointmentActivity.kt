@@ -54,7 +54,7 @@ class ModifyAppointmentActivity : BaseActivity() {
 
     lateinit var binding : ActivityModifyAppointmentBinding
 
-    //lateinit var mAppointmentData : AppointmentData
+    lateinit var mAppointmentData : AppointmentData
 
     val mSelectedDateTime = Calendar.getInstance()//기본값 = 현재 시간
 
@@ -285,8 +285,8 @@ class ModifyAppointmentActivity : BaseActivity() {
             }
 
 
-            //Log.d("에에", mAppointmentData.id.toString())
-            //Log.d("에에", mAppointmentData.title.toString())
+            Log.d("에에", mAppointmentData.id.toString())
+            Log.d("에에", mAppointmentData.title.toString())
             Log.d("에에", finalDatetime.toString())
             Log.d("에에", inputPlaceName.toString())
             Log.d("에에", mSelectedLat.toString())
@@ -294,8 +294,8 @@ class ModifyAppointmentActivity : BaseActivity() {
             Log.d("에에", friendListStr.toString())
 
             apiService.putRequestModifyAppointment(
-                165,
-                "testing",
+                mAppointmentData.id,
+                mAppointmentData.title,
                 finalDatetime,
                 inputPlaceName,
                 mSelectedLat,
@@ -355,6 +355,8 @@ class ModifyAppointmentActivity : BaseActivity() {
         titleTxt.text = "약속 수정"
 
 
+        mAppointmentData = intent.getSerializableExtra("appointments") as AppointmentData
+
         mFriendSpinnerAdapter = MyFriendSpinnerAdapter(mContext, R.layout.friend_list_item, mMyFriendList)
         binding.myFriendSpinner.adapter = mFriendSpinnerAdapter
 
@@ -373,7 +375,7 @@ class ModifyAppointmentActivity : BaseActivity() {
             }
         })
 
-        //getAppointmentFromServer()
+        getAppointmentFromServer()
 
         val fm = supportFragmentManager
         val mapFragment = fm.findFragmentById(R.id.map_fragment) as MapFragment?
@@ -405,7 +407,7 @@ class ModifyAppointmentActivity : BaseActivity() {
     }
 
 
-    /*
+
     fun getAppointmentFromServer() {
 
         //친구 목록 등의 내용을 서버에서 새로 받자
@@ -423,7 +425,7 @@ class ModifyAppointmentActivity : BaseActivity() {
         })
 
     }
-    */
+
 
 
 }

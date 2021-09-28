@@ -29,6 +29,7 @@ import java.util.*
 import com.kakao.sdk.common.util.Utility
 import com.kakao.sdk.user.UserApiClient
 import com.nhn.android.naverlogin.OAuthLogin
+import com.nhn.android.naverlogin.OAuthLoginHandler
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -55,6 +56,29 @@ class LoginActivity : BaseActivity() {
     }
 
     override fun setupEvent() {
+
+
+        binding.naverLoginBtn.setOnClickListener {
+
+            mNaverLoginModule.startOauthLoginActivity(this, object : OAuthLoginHandler(){
+                override fun run(success: Boolean) {
+
+                    if (success) {
+
+                        //네이버 로그인 성공하면 그 계정의 토큰 값 추출
+                        val accessToken = mNaverLoginModule.getAccessToken(mContext)
+
+                    }
+                    else {
+                        Toast.makeText(mContext, "네이버 로그인에 실패했습니다", Toast.LENGTH_SHORT).show()
+                    }
+
+                }
+            })
+
+        }
+
+
 
         binding.loginBtn.setOnClickListener {
 

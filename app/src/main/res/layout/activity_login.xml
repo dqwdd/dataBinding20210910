@@ -89,6 +89,15 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:src="@drawable/kakaotalk_image"/>
+            <TextView
+                android:layout_width="50dp"
+                android:layout_height="50dp"/>
+
+            <ImageView
+                android:id="@+id/naverLoginBtn"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/naver_icon"/>
 
         </LinearLayout>
 

@@ -46,6 +46,34 @@ class MySettinsgActivity : BaseActivity() {
 
     override fun setupEvent() {
 
+        binding.ProfileRefreshIcon.setOnClickListener {
+            val alert = AlertDialog.Builder(mContext)
+            alert.setMessage("프로필을 삭제 하시겠습니까?")
+            alert.setNegativeButton("확인", DialogInterface.OnClickListener { dialogInterface, i ->
+
+                apiService.getRequestProfileImageDelete().enqueue(object : Callback<BasicResponse> {
+                    override fun onResponse(
+                        call: Call<BasicResponse>,
+                        response: Response<BasicResponse>
+                    ) {
+                        if (response.isSuccessful) {
+                            Toast.makeText(mContext, "프로필이 삭제되었습니다", Toast.LENGTH_SHORT).show()
+                        }
+
+                    }
+
+                    override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
+                    }
+                })
+
+            })
+            alert.setPositiveButton("취소", null)
+            alert.show()
+
+
+        }
+
+
         binding.passwordLayout.setOnClickListener {
             val myIntent = Intent(mContext, EditPasswordActivity::class.java)
             startActivity(myIntent)

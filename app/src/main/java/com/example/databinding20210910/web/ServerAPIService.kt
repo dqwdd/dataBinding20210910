@@ -171,10 +171,18 @@ interface ServerAPIService {
         @Query("appointment_id") appointmentId: Int) : Call<BasicResponse>
 
 
+    //비밀번호 변경
     @FormUrlEncoded
     @PATCH("/user/password")
     fun getRequestUserPasswordChange(
         @Field("current_password") currentPassword : String,
         @Field("new_password") newPassword  : String) : Call<BasicResponse>
 
+
+
+
+
+    //약속 삭제 처리
+    @DELETE("/user/image")
+    fun getRequestProfileImageDelete() : Call<BasicResponse>
 }

@@ -112,8 +112,6 @@ class AppointmentRecyclerAdapter(
     override fun onBindViewHolder(holder: AppointmentViewHolder, position: Int) {
         val data = mList[position]
         holder.bind(mContext, data)
-
-
     }
 
     override fun getItemCount(): Int {

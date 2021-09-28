@@ -36,6 +36,10 @@ class MyFriendsRecyclerAdapter(
                     socialLoginImg.setImageResource(R.drawable.kakaotalk_logo_icon)
                     socialLoginImg.visibility = View.VISIBLE
                 }
+                "naver" -> {
+                    socialLoginImg.setImageResource(R.drawable.naver_icon)
+                    socialLoginImg.visibility = View.VISIBLE
+                }
                 else -> {
                     socialLoginImg.visibility = View.VISIBLE
                 }

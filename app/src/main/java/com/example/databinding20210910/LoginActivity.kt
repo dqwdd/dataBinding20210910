@@ -245,14 +245,12 @@ class LoginActivity : BaseActivity() {
             }//이제부턴
         }
 
-        callbackManager = CallbackManager.Factory.create();
 
-        binding.loginButton.setReadPermissions("email")
 
 
         binding.facebookLoginBtn.setOnClickListener {
-//            우리가 붙인 버튼에 기능 활용
 
+//            우리가 붙인 버튼에 기능 활용
 
 //            커스텀 버튼에 로그인 하고 돌아온 callback을 따로 설정
 
@@ -354,6 +352,11 @@ class LoginActivity : BaseActivity() {
     }
 
     override fun setValues() {
+
+
+        //페북 로그인 콜백 관련 함수
+        callbackManager = CallbackManager.Factory.create();
+
 
         //네이버 로그인 모듈 세팅
         mNaverLoginModule = OAuthLogin.getInstance()

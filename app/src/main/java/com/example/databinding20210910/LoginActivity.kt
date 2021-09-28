@@ -67,6 +67,9 @@ class LoginActivity : BaseActivity() {
 
                         //네이버 로그인 성공하면 그 계정의 토큰 값 추출
                         val accessToken = mNaverLoginModule.getAccessToken(mContext)
+                        Log.d("네이버 토큰 값", accessToken)
+
+                        moveToMain()
 
                     }
                     else {

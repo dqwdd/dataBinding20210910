@@ -185,4 +185,21 @@ interface ServerAPIService {
     //약속 삭제 처리
     @DELETE("/user/image")
     fun getRequestProfileImageDelete() : Call<BasicResponse>
+
+
+
+
+
+
+    // 아이디/닉네임 중복 검사
+    @GET("/user/check")
+    fun getRequestIDNicknameCheck(
+        @Query("type") type: String,
+        @Query("value") value: String) : Call<BasicResponse>
+
+
+
+
+
+
 }

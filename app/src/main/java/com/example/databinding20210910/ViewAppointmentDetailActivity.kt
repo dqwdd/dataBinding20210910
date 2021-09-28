@@ -65,12 +65,16 @@ class ViewAppointmentDetailActivity : BaseActivity() {
 
     override fun setupEvent() {
 
-        binding.refreshBtn.setOnClickListener {
 
-            getAppointmentFromServer()
-
+        binding.modifyBtn.setOnClickListener {
+            //
         }
 
+
+
+        binding.refreshBtn.setOnClickListener {
+            getAppointmentFromServer()
+        }
 
         binding.arrivalBtn.setOnClickListener {
             //서버에 위치를 보내야 한다고 flag 값을 true로

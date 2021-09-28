@@ -74,31 +74,26 @@ abstract class BaseActivity : AppCompatActivity() {
             startActivity(myIntent)
         }
 
-    }
-
-    override fun onResume() {
-        super.onResume()
-        getRequestNotifications()
-    }
-
-
-    open fun getRequestNotifications() {
         apiService.getRequestNotifications("false").enqueue(object :
             Callback<BasicResponse> {
             override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
 
                 if (response.isSuccessful) {
-
-//                    val basicResponse = response.body()!!
-//                    if (basicResponse.data.unread_noty_count != 0) {
-//                        alarmIconRed.visibility = View.VISIBLE
-//                    }
+                    val basicResponse = response.body()!!
+                    if (basicResponse.data.unread_noty_count != 0) {
+                        alarmIconRed.visibility = View.VISIBLE
+                    }
                 }
             }
 
             override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
             }
         })
+
+    }
+
+    override fun onResume() {
+        super.onResume()
     }
 
 

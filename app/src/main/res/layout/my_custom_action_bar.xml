@@ -41,7 +41,7 @@
             android:layout_height="10dp"
             android:src="@color/red"
             android:layout_marginTop="4dp"
-            android:visibility="gone"
+            android:visibility="invisible"
             android:layout_marginLeft="22dp"/>
 
     </FrameLayout>

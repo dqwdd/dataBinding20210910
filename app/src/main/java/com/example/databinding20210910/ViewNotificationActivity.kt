@@ -54,13 +54,12 @@ class ViewNotificationActivity : BaseActivity() {
 
     override fun onResume() {
         super.onResume()
-        getRequestNotifications()
     }
 
     override fun setValues() {
 
         alarmIcon.visibility = View.GONE
-        alarmIconRed.visibility = View.GONE
+        alarmIconRed.visibility = View.INVISIBLE
 
         titleTxt.text = "알림"
 
@@ -74,26 +73,5 @@ class ViewNotificationActivity : BaseActivity() {
 
 
 
-
-    override fun getRequestNotifications() {
-
-        apiService.getRequestNotifications("false").enqueue(object : Callback<BasicResponse>{
-            override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
-
-                if (response.isSuccessful) {
-                    val basicResponse = response.body()!!
-
-//                    mMyNotificationList.clear()
-//                    mMyNotificationList.addAll( basicResponse.data )
-//                    mNotificationAdapter.notifyDataSetChanged()
-                }
-
-            }
-
-            override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
-            }
-        })
-
-    }
 
 }

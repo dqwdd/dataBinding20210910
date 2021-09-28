@@ -81,7 +81,6 @@ class MainActivity : BaseActivity() {
         binding.mainTabLayout.setupWithViewPager( binding.mainViewPager )
 
 
-        Toast.makeText(mContext, "${GlobalData.loginUser!!.nickName}님 환영합니다!", Toast.LENGTH_SHORT).show()
 
 //        getAppointmentListFromServer()
 

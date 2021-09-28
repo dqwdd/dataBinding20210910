@@ -136,9 +136,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:orientation="horizontal">
-
-            </com.nex3z.flowlayout.FlowLayout>
+                android:orientation="horizontal"/>
 
             <TextView
                 android:layout_width="wrap_content"

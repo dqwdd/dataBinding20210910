@@ -171,6 +171,8 @@ interface ServerAPIService {
         @Query("appointment_id") appointmentId: Int) : Call<BasicResponse>
 
 
+
+
     //비밀번호 변경
     @FormUrlEncoded
     @PATCH("/user/password")
@@ -201,18 +203,17 @@ interface ServerAPIService {
 
 
 
+    //약속 수정하기
     @FormUrlEncoded
     @PUT("/appointment")//어느 주소로 갈거냐
     fun putRequestModifyAppointment(
         @Field("appointment_id") appointmentId : Int,//
         @Field("title") title : String,//
         @Field("datetime") dateTime: String,//
-        @Field("start_place") startPlace: String,
-        @Field("start_latitude") startLatitude: Double,
-        @Field("start_longitude") startLongitude: Double,
         @Field("place") place: String,//
         @Field("latitude") latitude : Double,//
         @Field("longitude") longitude : Double,//
-        @Field("friend_list") friendList: String ) : Call<BasicResponse>
+        @Field("friend_list") friendList: String
+    ) : Call<BasicResponse>
 
 }

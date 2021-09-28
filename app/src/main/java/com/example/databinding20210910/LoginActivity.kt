@@ -22,11 +22,13 @@ import com.facebook.*
 import com.facebook.login.LoginManager
 
 import com.facebook.login.widget.LoginButton
+import com.kakao.sdk.auth.model.OAuthToken
 import org.json.JSONObject
 import java.util.*
 
 import com.kakao.sdk.common.util.Utility
 import com.kakao.sdk.user.UserApiClient
+import com.nhn.android.naverlogin.OAuthLogin
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -37,6 +39,9 @@ class LoginActivity : BaseActivity() {
     lateinit var binding : ActivityLoginBinding
 
     lateinit var callbackManager: CallbackManager
+
+
+    lateinit var mNaverLoginModule: OAuthLogin
 
 //    var keyHash = Utility.getKeyHash(this)
 
@@ -279,6 +284,18 @@ class LoginActivity : BaseActivity() {
     }
 
     override fun setValues() {
+
+        //네이버 로그인 모듈 세팅
+        mNaverLoginModule = OAuthLogin.getInstance()
+        mNaverLoginModule.init(mContext,
+            resources.getString(R.string.naver_client_id),
+            resources.getString(R.string.naver_secret_key),
+            resources.getString(R.string.naver_client_name)
+        )
+
+
+
+
 
         logoImg.visibility = View.VISIBLE
         titleTxt.visibility = View.GONE

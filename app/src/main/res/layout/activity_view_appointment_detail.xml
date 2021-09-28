@@ -56,13 +56,13 @@
                             android:layout_weight="1"/>
 
                         <LinearLayout
+                            android:id="@+id/modifyLayout"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
                             android:gravity="center_vertical">
 
                             <TextView
-                                android:id="@+id/modifyBtn"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="약속 수정하기" />

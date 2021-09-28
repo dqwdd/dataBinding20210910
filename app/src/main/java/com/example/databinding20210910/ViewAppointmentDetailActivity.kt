@@ -1,12 +1,12 @@
 package com.example.databinding20210910
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -20,30 +20,24 @@ import com.bumptech.glide.Glide
 import com.example.databinding20210910.databinding.ActivityViewAppointmentDetailBinding
 import com.example.databinding20210910.datas.AppointmentData
 import com.example.databinding20210910.datas.BasicResponse
-import com.example.databinding20210910.datas.PlaceData
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.normal.TedPermission
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.CameraUpdate
 import com.naver.maps.map.MapFragment
-import com.naver.maps.map.NaverMap
 import com.naver.maps.map.overlay.InfoWindow
 import com.naver.maps.map.overlay.Marker
-import com.naver.maps.map.overlay.OverlayImage
 import com.naver.maps.map.overlay.PathOverlay
 import com.naver.maps.map.util.MarkerIcons
 import com.odsay.odsayandroidsdk.API
 import com.odsay.odsayandroidsdk.ODsayData
 import com.odsay.odsayandroidsdk.ODsayService
 import com.odsay.odsayandroidsdk.OnResultCallbackListener
-import okhttp3.*
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.io.IOException
 import java.text.SimpleDateFormat
-import java.util.*
 import kotlin.collections.ArrayList
 
 class ViewAppointmentDetailActivity : BaseActivity() {
@@ -66,8 +60,9 @@ class ViewAppointmentDetailActivity : BaseActivity() {
     override fun setupEvent() {
 
 
-        binding.modifyBtn.setOnClickListener {
-            //
+        binding.modifyLayout.setOnClickListener {
+            val myIntent = Intent(mContext, ModifyAppointmentActivity::class.java)
+            startActivity(myIntent)
         }
 
 

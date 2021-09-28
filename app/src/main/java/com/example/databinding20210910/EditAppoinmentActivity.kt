@@ -639,9 +639,9 @@ class EditAppoinmentActivity : BaseActivity() {
 
     }
 
-
+    //        시작 지점의 위경도
     fun drawStartPlaceToDestination(naverMap: NaverMap) {
-//        시작 지점의 위경도.
+
         //mSelectedStartPlace.latitude등 활용
 
         //시작 지점의 좌표(마커) 찍어주기

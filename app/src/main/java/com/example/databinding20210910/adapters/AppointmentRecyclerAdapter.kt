@@ -31,7 +31,7 @@ class AppointmentRecyclerAdapter(
     val mContext: Context,
     val mList: List<AppointmentData>) : RecyclerView.Adapter<AppointmentRecyclerAdapter.AppointmentViewHolder>() {
 
-    class AppointmentViewHolder(val mContext: Context,view: View, val adapater: AppointmentRecyclerAdapter) : RecyclerView.ViewHolder(view) {
+    class AppointmentViewHolder(val mContext: Context,view: View, val adapter: AppointmentRecyclerAdapter) : RecyclerView.ViewHolder(view) {
 
         //view: View, val adapater: AppointmentRecyclerAdapter
 
@@ -86,12 +86,11 @@ class AppointmentRecyclerAdapter(
                         ) {
                             if (response.isSuccessful) {
                                 Toast.makeText(mContext, "약속이 삭제되었습니다", Toast.LENGTH_SHORT).show()
-                                adapater.notifyDataSetChanged()
+                                adapter.notifyDataSetChanged()
                             }
                             else {
                                 Toast.makeText(mContext, "자신의 약속만 삭제할 수 있습니다", Toast.LENGTH_SHORT).show()
                             }
-
                         }
 
                         override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
@@ -113,11 +112,12 @@ class AppointmentRecyclerAdapter(
     override fun onBindViewHolder(holder: AppointmentViewHolder, position: Int) {
         val data = mList[position]
         holder.bind(mContext, data)
+
+
     }
 
     override fun getItemCount(): Int {
         return mList.size
     }
-
 
 }

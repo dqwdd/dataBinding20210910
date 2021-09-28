@@ -19,6 +19,7 @@ abstract class BaseFragment : Fragment() {
 
     override fun onAttach(mContext: Context) { super.onAttach(mContext)
         mainActivity = mContext as BaseActivity
+        //runOnUiThread쓰는 코드
     }*/
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

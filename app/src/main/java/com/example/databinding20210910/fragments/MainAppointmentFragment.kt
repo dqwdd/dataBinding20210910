@@ -52,16 +52,6 @@ class MainAppointmentFragment : BaseFragment() {
     }
 
 
-    override fun onResume() {
-        super.onResume()
-        /*mainActivity.runOnUiThread {
-            //        setValues에서 실행하던거 여기서 실행
-            getAppointmentListFromServer()
-        }*/
-        getAppointmentListFromServer()
-    }
-
-
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         setupEvents()
@@ -77,6 +67,8 @@ class MainAppointmentFragment : BaseFragment() {
 
     }
 
+
+
     override fun setValues() {
 
         mRecyclerAdapter = AppointmentRecyclerAdapter(mContext, mAppointmentList)
@@ -86,21 +78,29 @@ class MainAppointmentFragment : BaseFragment() {
     }
 
 
+    override fun onResume() {
+        super.onResume()
+        getAppointmentListFromServer()
+    }
+
+
+
     fun getAppointmentListFromServer() {
 
         apiService.getRequestAppointmentList().enqueue(object : Callback<BasicResponse> {
             override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
 
-                val basicResponse = response.body()!!
+                if ( response.isSuccessful) {
+                    val basicResponse = response.body()!!
 
-                mAppointmentList.clear()
+                    mAppointmentList.clear()
 
 //                약속 목록 변수에 서버가 알려준 약속 목록을 전부 추가
-                mAppointmentList.addAll( basicResponse.data.appointments )
+                    mAppointmentList.addAll( basicResponse.data.appointments )
 
 //                어댑터 새로고침
-                mRecyclerAdapter.notifyDataSetChanged()
-
+                    mRecyclerAdapter.notifyDataSetChanged()
+                }
             }
 
             override fun onFailure(call: Call<BasicResponse>, t: Throwable) {

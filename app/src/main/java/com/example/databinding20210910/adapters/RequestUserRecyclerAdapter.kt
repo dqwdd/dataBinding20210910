@@ -58,6 +58,8 @@ class RequestUserRecyclerAdapter(
             //수락 거절 둘 다 하는 일은 같지만 파라미터만 다르다
             //버튼에 미리 태그를 달아두고 꺼내서 쓰는 동일한 작업
 
+
+
             val sendOrNoToserver = object : View.OnClickListener {
                 override fun onClick(p0: View?) {
 
@@ -79,7 +81,8 @@ class RequestUserRecyclerAdapter(
                             //어댑터에서 -> 액티비티 기능 : context 변수 활용
 
                             //어댑터 -> 액티비티 -> ViewPager 어댑터 -> 1번째 프레그먼트 ->요청 목록 Frag로 변신 -> 기능 활용
-                            ((context as ViewMyFriendsListActivity).mFPA.getItem(1) as RequestedUserListFragment)
+                            ((context as ViewMyFriendsListActivity)
+                                .mFPA.getItem(1) as RequestedUserListFragment)
                                 .getRequestUserListFromServer()
 
                         }

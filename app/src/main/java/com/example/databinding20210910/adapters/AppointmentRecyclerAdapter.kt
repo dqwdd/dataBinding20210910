@@ -31,7 +31,7 @@ class AppointmentRecyclerAdapter(
     val mContext: Context,
     val mList: List<AppointmentData>) : RecyclerView.Adapter<AppointmentRecyclerAdapter.AppointmentViewHolder>() {
 
-    class AppointmentViewHolder(val mContext: Context,view: View, val adapter: AppointmentRecyclerAdapter) : RecyclerView.ViewHolder(view) {
+    class AppointmentViewHolder(val mContext: Context,view: View) : RecyclerView.ViewHolder(view) {
 
         //view: View, val adapater: AppointmentRecyclerAdapter
 
@@ -67,16 +67,15 @@ class AppointmentRecyclerAdapter(
                 context.startActivity(myIntent)
             }
 
+
             rootLayout.setOnLongClickListener {
-
-                val apiService = ServerAPI.getRetrofit(context).create(ServerAPIService::class.java)
-
 
                 val alert = AlertDialog.Builder(mContext)
                 alert.setMessage("정말 약속을 삭제하시겠습니까?")
                 alert.setNegativeButton("확인", DialogInterface.OnClickListener { dialogInterface, i ->
 
 //                해당 답글 삭제 -> API 요청 + 새로고침
+                    val apiService = ServerAPI.getRetrofit(context).create(ServerAPIService::class.java)
 
                     apiService.getRequestAppointmentDelete(data.id).enqueue(object :
                         Callback<BasicResponse> {
@@ -85,8 +84,14 @@ class AppointmentRecyclerAdapter(
                             response: Response<BasicResponse>
                         ) {
                             if (response.isSuccessful) {
+                                Log.d("서버응답", "")
                                 Toast.makeText(mContext, "약속이 삭제되었습니다", Toast.LENGTH_SHORT).show()
-                                adapter.notifyDataSetChanged()
+                                ((context as MainActivity)
+                                    .mainViewPagerAdapter.getItem(0) as MainAppointmentFragment)
+                                    .getAppointmentListFromServer()
+                                //((context as ViewMyFriendsListActivity)
+                                // .mFPA.getItem(1) as RequestedUserListFragment)
+                                //\.getRequestUserListFromServer()
                             }
                             else {
                                 Toast.makeText(mContext, "자신의 약속만 삭제할 수 있습니다", Toast.LENGTH_SHORT).show()
@@ -106,7 +111,7 @@ class AppointmentRecyclerAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AppointmentViewHolder {
         val view = LayoutInflater.from(mContext).inflate(R.layout.appointment_list_item, parent, false)
-        return AppointmentViewHolder(mContext, view, this)
+        return AppointmentViewHolder(mContext, view)
     }
 
     override fun onBindViewHolder(holder: AppointmentViewHolder, position: Int) {

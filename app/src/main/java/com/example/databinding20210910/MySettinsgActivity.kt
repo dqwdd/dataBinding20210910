@@ -15,6 +15,7 @@ import com.bumptech.glide.Glide
 import com.example.databinding20210910.databinding.ActivityMySettinsgBinding
 import com.example.databinding20210910.datas.BasicResponse
 import com.example.databinding20210910.utils.ContextUtil
+import com.example.databinding20210910.utils.FontChanger
 import com.example.databinding20210910.utils.GlobalData
 import com.example.databinding20210910.utils.URIPathHelper
 import com.gun0912.tedpermission.PermissionListener

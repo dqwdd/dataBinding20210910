@@ -10,6 +10,7 @@ import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.example.databinding20210910.datas.BasicResponse
+import com.example.databinding20210910.utils.FontChanger
 import com.example.databinding20210910.web.ServerAPI
 import com.example.databinding20210910.web.ServerAPIService
 import retrofit2.Call
@@ -45,6 +46,16 @@ abstract class BaseActivity : AppCompatActivity() {
             setCustomActionBar()
         }
     }
+
+    override fun onStart() {
+        super.onStart()
+
+        // (액티비티 최상위 테그) rootView를 받아와서 폰트변경기에 의뢰
+        val rootView = window.decorView.rootView//껍데기
+        FontChanger.setGlobalFont(mContext, rootView)
+
+    }
+
 
     abstract fun setupEvent(
     )

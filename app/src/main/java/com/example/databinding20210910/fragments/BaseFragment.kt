@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.example.databinding20210910.BaseActivity
+import com.example.databinding20210910.utils.FontChanger
 import com.example.databinding20210910.web.ServerAPI
 import com.example.databinding20210910.web.ServerAPIService
 import retrofit2.Retrofit

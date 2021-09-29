@@ -62,11 +62,13 @@ class MySettinsgActivity : BaseActivity() {
                             Toast.makeText(mContext, "프로필이 삭제되었습니다", Toast.LENGTH_SHORT).show()
 
                             try {
+
                                 val intent = intent
                                 finish() //현재 액티비티 종료 실시
                                 overridePendingTransition(0, 0) //인텐트 애니메이션 없애기
                                 startActivity(intent) //현재 액티비티 재실행 실시
                                 overridePendingTransition(0, 0) //인텐트 애니메이션 없애기
+
                             } catch (e: Exception) {
                                 e.printStackTrace()
                             }

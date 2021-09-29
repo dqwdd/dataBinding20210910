@@ -15,6 +15,7 @@ import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.lang.Exception
 
 class ViewNotificationActivity : BaseActivity() {
 
@@ -40,7 +41,17 @@ class ViewNotificationActivity : BaseActivity() {
                     call: Call<BasicResponse>,
                     response: Response<BasicResponse>
                 ) {
+                    try {
 
+                        val intent = intent
+                        finish() //현재 액티비티 종료 실시
+                        overridePendingTransition(0, 0) //인텐트 애니메이션 없애기
+                        startActivity(intent) //현재 액티비티 재실행 실시
+                        overridePendingTransition(0, 0) //인텐트 애니메이션 없애기
+
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                    }
                 }
 
                 override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
@@ -51,15 +62,11 @@ class ViewNotificationActivity : BaseActivity() {
 
     }
 
-    override fun onResume() {
-        super.onResume()
-    }
-
 
     override fun setValues() {
 
         alarmIcon.visibility = View.GONE
-        alarmIconRed.visibility = View.INVISIBLE
+        alarmIconRed.visibility = View.GONE
 
         titleTxt.text = "알림"
 
@@ -68,10 +75,6 @@ class ViewNotificationActivity : BaseActivity() {
 
         binding.notificationRecyclerView.layoutManager = LinearLayoutManager(mContext)
 
-
    }
-
-
-
 
 }

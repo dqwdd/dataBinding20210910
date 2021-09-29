@@ -217,4 +217,11 @@ interface ServerAPIService {
         @Field("friend_list") friendList: String
     ) : Call<BasicResponse>
 
+
+
+
+    //친구 삭제 처리
+    @DELETE("/user/friend")
+    fun getRequestFriendDelete(
+        @Query("user_id") userId: Int) : Call<BasicResponse>
 }

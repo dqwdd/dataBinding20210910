@@ -94,6 +94,9 @@ abstract class BaseActivity : AppCompatActivity() {
                     if (basicResponse.data.unread_noty_count != 0) {
                         alarmIconRed.visibility = View.VISIBLE
                     }
+                    else {
+                        alarmIconRed.visibility = View.GONE
+                    }
                 }
             }
 

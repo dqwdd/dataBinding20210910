@@ -48,6 +48,7 @@ class MyFriendsListFragment : BaseFragment() {
     }
 
     override fun setupEvents() {
+
     }
 
     override fun setValues() {

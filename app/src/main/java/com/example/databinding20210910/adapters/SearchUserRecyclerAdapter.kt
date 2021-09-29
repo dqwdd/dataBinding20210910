@@ -25,7 +25,7 @@ class SearchUserRecyclerAdapter(
     val mContext: Context,
     val mList: List<UserData>) : RecyclerView.Adapter<SearchUserRecyclerAdapter.UserViewHolder>() {
 
-    class UserViewHolder(view : View) : RecyclerView.ViewHolder(view) {
+    inner class UserViewHolder(view : View) : BaseViewHolder(mContext, view) {
 
         val ProfileImg = view.findViewById<ImageView>(R.id.friendProfileImg)
         val nicknameTxt = view.findViewById<TextView>(R.id.nicknameTxt)

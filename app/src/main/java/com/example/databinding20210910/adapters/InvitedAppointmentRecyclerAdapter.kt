@@ -29,7 +29,7 @@ class InvitedAppointmentRecyclerAdapter(
     val mList: List<AppointmentData>) :
     RecyclerView.Adapter<InvitedAppointmentRecyclerAdapter.AppointmentViewHolder>() {
 
-    class AppointmentViewHolder(val mContext: Context,view : View) : RecyclerView.ViewHolder(view) {
+    inner class AppointmentViewHolder(view : View) : BaseViewHolder(mContext, view) {
 
         val titleTxt = view.findViewById<TextView>(R.id.titleTxt)
         val dateTimeTxt = view.findViewById<TextView>(R.id.dateTimeTxt)
@@ -109,7 +109,7 @@ class InvitedAppointmentRecyclerAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AppointmentViewHolder {
         val view = LayoutInflater.from(mContext).inflate(R.layout.invited_appointment_list_item, parent, false)
 
-        return AppointmentViewHolder(mContext, view)
+        return AppointmentViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: AppointmentViewHolder, position: Int) {

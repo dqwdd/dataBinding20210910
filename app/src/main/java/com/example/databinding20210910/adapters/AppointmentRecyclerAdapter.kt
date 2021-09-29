@@ -29,7 +29,7 @@ class AppointmentRecyclerAdapter(
     val mContext: Context,
     val mList: List<AppointmentData>) : RecyclerView.Adapter<AppointmentRecyclerAdapter.AppointmentViewHolder>() {
 
-    inner class AppointmentViewHolder(val mContext: Context,view: View) : RecyclerView.ViewHolder(view) {
+    inner class AppointmentViewHolder(view: View) : BaseViewHolder(mContext, view) {
 
         //view: View, val adapater: AppointmentRecyclerAdapter
 
@@ -69,7 +69,7 @@ class AppointmentRecyclerAdapter(
 
             rootLayout.setOnLongClickListener {
 
-                val alert = AlertDialog.Builder(this.mContext)
+                val alert = AlertDialog.Builder(mContext)
                 alert.setMessage("정말 약속을 삭제하시겠습니까?")
                 alert.setNegativeButton("확인", DialogInterface.OnClickListener { dialogInterface, i ->
 
@@ -84,7 +84,7 @@ class AppointmentRecyclerAdapter(
                         ) {
                             if (response.isSuccessful) {
                                 Log.d("서버응답", "")
-                                Toast.makeText(this@AppointmentViewHolder.mContext, "약속이 삭제되었습니다", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(mContext, "약속이 삭제되었습니다", Toast.LENGTH_SHORT).show()
                                 ((mContext as MainActivity)
                                     .mainViewPagerAdapter.getItem(0) as MainAppointmentFragment)
                                     .getAppointmentListFromServer()
@@ -93,7 +93,7 @@ class AppointmentRecyclerAdapter(
                                 //\.getRequestUserListFromServer()
                             }
                             else {
-                                Toast.makeText(this@AppointmentViewHolder.mContext, "자신의 약속만 삭제할 수 있습니다", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(mContext, "자신의 약속만 삭제할 수 있습니다", Toast.LENGTH_SHORT).show()
                             }
                         }
 
@@ -111,7 +111,7 @@ class AppointmentRecyclerAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AppointmentViewHolder {
         val view = LayoutInflater.from(mContext).inflate(R.layout.appointment_list_item, parent, false)
         FontChanger.setGlobalFont(mContext, view)
-        return AppointmentViewHolder(mContext, view)
+        return AppointmentViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: AppointmentViewHolder, position: Int) {

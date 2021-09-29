@@ -18,7 +18,7 @@ class NotificationRecyclerAdapter(
     val mContext: Context,
     val mList: List<NotificationData> ) : RecyclerView.Adapter<NotificationRecyclerAdapter.FriendViewHolder>() {
 
-    class FriendViewHolder(view : View) : RecyclerView.ViewHolder(view) {
+    inner class FriendViewHolder(view : View) : BaseViewHolder(mContext, view) {
 
         val noticeTxt = view.findViewById<TextView>(R.id.noticeTxt)
 

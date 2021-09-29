@@ -27,7 +27,7 @@ class RequestUserRecyclerAdapter(
     val mContext: Context,
     val mList: List<UserData> ) : RecyclerView.Adapter<RequestUserRecyclerAdapter.AddFriendViewHolder>() {
 
-    class AddFriendViewHolder(view : View) : RecyclerView.ViewHolder(view) {
+    inner class AddFriendViewHolder(view : View) : BaseViewHolder(mContext, view) {
         val friendProfileImg = view.findViewById<ImageView>(R.id.friendProfileImg)
         val nicknameTxt = view.findViewById<TextView>(R.id.nicknameTxt)
         val socialLoginImg = view.findViewById<ImageView>(R.id.socialLoginImg)

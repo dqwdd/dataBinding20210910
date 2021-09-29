@@ -20,8 +20,7 @@ class ViewNotificationActivity : BaseActivity() {
 
     lateinit var binding : ActivityViewNotificationBinding
 
-
-    val mMyNotificationList = ArrayList<DataResponse>()
+    val mMyNotificationList = ArrayList<NotificationData>()
     lateinit var mNotificationAdapter : NotificationRecyclerAdapter
 
 
@@ -36,7 +35,7 @@ class ViewNotificationActivity : BaseActivity() {
 
         binding.readBtn.setOnClickListener {
 
-            apiService.postRequestNotificatioRead(100).enqueue(object : Callback<BasicResponse>{
+            apiService.postRequestNotificatioRead(10000).enqueue(object : Callback<BasicResponse>{
                 override fun onResponse(
                     call: Call<BasicResponse>,
                     response: Response<BasicResponse>
@@ -55,6 +54,7 @@ class ViewNotificationActivity : BaseActivity() {
     override fun onResume() {
         super.onResume()
     }
+
 
     override fun setValues() {
 

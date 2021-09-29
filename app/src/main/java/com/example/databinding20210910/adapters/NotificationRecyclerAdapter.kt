@@ -10,18 +10,19 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.databinding20210910.R
 import com.example.databinding20210910.datas.DataResponse
+import com.example.databinding20210910.datas.NotificationData
 import com.example.databinding20210910.datas.UserData
 import com.gun0912.tedpermission.provider.TedPermissionProvider.context
 
 class NotificationRecyclerAdapter(
     val mContext: Context,
-    val mList: List<DataResponse> ) : RecyclerView.Adapter<NotificationRecyclerAdapter.FriendViewHolder>() {
+    val mList: List<NotificationData> ) : RecyclerView.Adapter<NotificationRecyclerAdapter.FriendViewHolder>() {
 
     class FriendViewHolder(view : View) : RecyclerView.ViewHolder(view) {
 
         val noticeTxt = view.findViewById<TextView>(R.id.noticeTxt)
 
-        fun bind(context: Context, data: DataResponse) {
+        fun bind(context: Context, data: NotificationData) {
             //noticeTxt.text = data.notifications.toString()
         }
 

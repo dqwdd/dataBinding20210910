@@ -30,6 +30,9 @@ import com.kakao.sdk.common.util.Utility
 import com.kakao.sdk.user.UserApiClient
 import com.nhn.android.naverlogin.OAuthLogin
 import com.nhn.android.naverlogin.OAuthLoginHandler
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -69,8 +72,64 @@ class LoginActivity : BaseActivity() {
                         val accessToken = mNaverLoginModule.getAccessToken(mContext)
                         Log.d("네이버 토큰 값", accessToken)
 
+
+
+                        //코루틴으로 백그라운드 작업
+                        //코루틴 == scope 코드 실행 { } 정의
+                        //Dispatcher => UI 쓰레드 / 백그라운드는 Default / IO (다운로드/업로드)
+
+                        val scope = CoroutineScope(Dispatchers.Default)//main==ui,
+
+                        scope.launch {
+//                            쓰레드 대신 코루틴 예시
+
+//                            이 내부의 코드를 백그라운드 실행
+                                val url = "https://openapi.naver.com/v1/nid/me"
+                                val jsonObj = JSONObject(mNaverLoginModule.requestApi(mContext, accessToken, url))
+                                Log.d("네이버 로그인 내 정보", jsonObj.toString())
+
+                                val responseObj = jsonObj.getJSONObject("response")
+
+                                //정보 추출
+                                val uid = responseObj.getString("id")
+                                val name = responseObj.getString("name")
+
+                                //우리 서버로 전달
+                                apiService.postRequestSocialLogin("naver", uid, name)
+                                    .enqueue(object : retrofit2.Callback<BasicResponse> {
+                                        override fun onResponse(
+                                            call: Call<BasicResponse>,
+                                            response: Response<BasicResponse>
+                                        ) {
+
+                                            //소셜 로그인 마무리 -> 토큰, GlobalData사용자 -> 메인으로 이동
+
+                                            val basicResponse = response.body()!!
+                                            Toast.makeText(mContext, "${name}님 환영합니다", Toast.LENGTH_SHORT).show()
+
+                                            Log.d("API서버가 준 토큰값 : ", basicResponse.data.token)
+                                            ContextUtil.setToken(mContext,basicResponse.data.token)
+
+                                            GlobalData.loginUser = basicResponse.data.user
+                                            moveToMain()
+
+                                        }
+
+                                        override fun onFailure(
+                                            call: Call<BasicResponse>,
+                                            t: Throwable
+                                        ) {
+                                        }
+                                    })
+
+
+                        }
+
+
+
+
                         //별개의 통신용 스레드 생성 -> 내 정보 요청
-                        Thread {
+                        /*Thread {
 //                            이 내부의 코드를 백그라운드 실행
                             val url = "https://openapi.naver.com/v1/nid/me"
                             val jsonObj = JSONObject(mNaverLoginModule.requestApi(mContext, accessToken, url))
@@ -111,6 +170,7 @@ class LoginActivity : BaseActivity() {
                                 })
 
                         }.start()
+                        */
 
 
 

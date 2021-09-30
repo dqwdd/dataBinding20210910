@@ -20,10 +20,16 @@ class NotificationRecyclerAdapter(
 
     inner class FriendViewHolder(view : View) : BaseViewHolder(mContext, view) {
 
-        val noticeTxt = view.findViewById<TextView>(R.id.noticeTxt)
+        val noticeActUserTxt = view.findViewById<TextView>(R.id.noticeActUserTxt)
+        val actUserProfileImg = view.findViewById<ImageView>(R.id.actUserProfileImg)
+        val noticeMessageTxt = view.findViewById<TextView>(R.id.noticeMessageTxt)
+        val noticeTitle = view.findViewById<TextView>(R.id.noticeTitle)
 
         fun bind(context: Context, data: NotificationData) {
-            //noticeTxt.text = data.notifications.toString()
+            noticeTitle.text = data.title
+            Glide.with(context).load(data.act_user.profile_img).into(actUserProfileImg)
+            noticeActUserTxt.text = data.act_user.nick_name
+            noticeMessageTxt.text = data.message
         }
 
     }

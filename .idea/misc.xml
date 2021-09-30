@@ -11,7 +11,7 @@
         <entry key="..\:/AAndroidStudio/New-Project/dataBinding20210910/app/src/main/res/layout/activity_edit_appointment.xml" value="0.25364583333333335" />
         <entry key="..\:/AAndroidStudio/New-Project/dataBinding20210910/app/src/main/res/layout/activity_edit_my_place.xml" value="0.25364583333333335" />
         <entry key="..\:/AAndroidStudio/New-Project/dataBinding20210910/app/src/main/res/layout/activity_edit_password.xml" value="0.25364583333333335" />
-        <entry key="..\:/AAndroidStudio/New-Project/dataBinding20210910/app/src/main/res/layout/activity_login.xml" value="0.4" />
+        <entry key="..\:/AAndroidStudio/New-Project/dataBinding20210910/app/src/main/res/layout/activity_login.xml" value="0.264" />
         <entry key="..\:/AAndroidStudio/New-Project/dataBinding20210910/app/src/main/res/layout/activity_main.xml" value="0.25364583333333335" />
         <entry key="..\:/AAndroidStudio/New-Project/dataBinding20210910/app/src/main/res/layout/activity_modify_appointment.xml" value="0.25364583333333335" />
         <entry key="..\:/AAndroidStudio/New-Project/dataBinding20210910/app/src/main/res/layout/activity_my_settinsg.xml" value="0.24974358974358973" />
@@ -42,7 +42,7 @@
         <entry key="..\:/AAndroidStudio/New-Project/dataBinding20210910/app/src/main/res/layout/my_place_list_item.xml" value="0.25364583333333335" />
         <entry key="..\:/AAndroidStudio/New-Project/dataBinding20210910/app/src/main/res/layout/my_place_lits_item.xml" value="0.25364583333333335" />
         <entry key="..\:/AAndroidStudio/New-Project/dataBinding20210910/app/src/main/res/layout/notifications_list.xml" value="0.25364583333333335" />
-        <entry key="..\:/AAndroidStudio/New-Project/dataBinding20210910/app/src/main/res/layout/notifications_list_item.xml" value="0.25364583333333335" />
+        <entry key="..\:/AAndroidStudio/New-Project/dataBinding20210910/app/src/main/res/layout/notifications_list_item.xml" value="0.5235507246376812" />
         <entry key="..\:/AAndroidStudio/New-Project/dataBinding20210910/app/src/main/res/layout/requested_user_list_item.xml" value="0.25364583333333335" />
         <entry key="..\:/AAndroidStudio/New-Project/dataBinding20210910/app/src/main/res/layout/search_user_list_item.xml" value="0.25364583333333335" />
       </map>

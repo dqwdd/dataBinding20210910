@@ -3,12 +3,48 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="10dp"
-    android:orientation="horizontal">
+    android:orientation="vertical">
 
     <TextView
-        android:id="@+id/noticeTxt"
+        android:id="@+id/noticeTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="알림 텍스트"/>
+        android:textSize="17sp"
+        android:textColor="@color/black"
+        android:text="알림 제목"/>
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/actUserProfileImg"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/profile_icon"/>
+
+        <TextView
+            android:id="@+id/noticeActUserTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="알림 보낸 유저"/>
+
+        <TextView
+            android:layout_width="1dp"
+            android:layout_height="20dp"
+            android:background="@color/gray"
+            android:layout_marginLeft="5dp"/>
+
+        <TextView
+            android:id="@+id/noticeMessageTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="알림 텍스트"/>
+
+    </LinearLayout>
 
 </LinearLayout>

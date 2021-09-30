@@ -45,6 +45,8 @@ abstract class BaseActivity : AppCompatActivity() {
         supportActionBar?.let {
             setCustomActionBar()
         }
+
+
     }
 
     override fun onStart() {
@@ -85,6 +87,12 @@ abstract class BaseActivity : AppCompatActivity() {
             startActivity(myIntent)
         }
 
+        notification()
+
+    }
+
+    fun notification() {
+
         apiService.getRequestNotifications("false").enqueue(object :
             Callback<BasicResponse> {
             override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
@@ -104,10 +112,6 @@ abstract class BaseActivity : AppCompatActivity() {
             }
         })
 
-    }
-
-    override fun onResume() {
-        super.onResume()
     }
 
 

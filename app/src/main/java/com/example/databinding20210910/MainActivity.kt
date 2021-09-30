@@ -65,6 +65,9 @@ class MainActivity : BaseActivity() {
 
     override fun onResume() {
         super.onResume()
+
+        (mContext as BaseActivity).notification()
+
     }
 
     override fun setupEvent() {

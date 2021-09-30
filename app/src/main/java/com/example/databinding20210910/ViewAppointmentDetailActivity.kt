@@ -57,6 +57,7 @@ class ViewAppointmentDetailActivity : BaseActivity() {
         setupEvent()
     }
 
+
     override fun setupEvent() {
 
 
@@ -231,8 +232,6 @@ class ViewAppointmentDetailActivity : BaseActivity() {
                 val basicResponse = response.body()!!
 
                 mAppointmentData = basicResponse.data.appointment
-
-
 
                 //기존에 달려있는 친구목록 View들을 전부 제거 => 그 다음에 친구 목록 다시 받기
                 binding.invitedFriendsLayout.removeAllViews()

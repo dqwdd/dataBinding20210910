@@ -530,6 +530,7 @@ class EditAppoinmentActivity : BaseActivity() {
         binding.myFriendSpinner.adapter = mFriendSpinnerAdapter
 
 
+        //친구 목록 받아오기
         apiService.getRequestFriendList("my").enqueue(object : Callback<BasicResponse> {
             override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
                 if (response.isSuccessful) {
@@ -543,9 +544,6 @@ class EditAppoinmentActivity : BaseActivity() {
 
             }
         })
-
-
-
 
 
 

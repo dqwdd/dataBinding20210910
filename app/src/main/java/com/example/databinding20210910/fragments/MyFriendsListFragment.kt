@@ -31,6 +31,7 @@ class MyFriendsListFragment : BaseFragment() {
 
     val mMyFriendList = ArrayList<UserData>()
     lateinit var mFriendAdapter : MyFriendsRecyclerAdapter
+    val arr = ArrayList<String>()
 
     override fun onCreateView(
         inflater: LayoutInflater,

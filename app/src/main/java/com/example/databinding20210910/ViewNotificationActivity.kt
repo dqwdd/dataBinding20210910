@@ -34,7 +34,6 @@ class ViewNotificationActivity : BaseActivity() {
 
     override fun onStart() {
         super.onStart()
-        alarmIconRed.visibility = View.GONE
     }
 
     override fun setupEvent() {
@@ -43,8 +42,6 @@ class ViewNotificationActivity : BaseActivity() {
 
     override fun setValues() {
 
-        alarmIcon.visibility = View.GONE
-        alarmIconRed.visibility = View.GONE
 
         titleTxt.text = "알림"
 

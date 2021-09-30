@@ -385,7 +385,7 @@ class EditAppoinmentActivity : BaseActivity() {
 //            내 시간대가 시차가 utc로 부터 얼마나 나느냐~
             val myTimeOffset = myTimeZone.rawOffset / 1000 / 60 / 60 //밀리초에서 시간으로 변환
             //선택된 시간을 보정(더해져 있는 시차를 빼주자)
-            //mSelectedDateTime.add(Calendar.HOUR_OF_DAY, -myTimeOffset)//빼주자는 없는데 더해주자는 있음
+            mSelectedDateTime.add(Calendar.HOUR_OF_DAY, -myTimeOffset)//빼주자는 없는데 더해주자는 있음
 
 
 //            선택된 약속일시를 -> "yyyy-MM-dd HH:mm"양식으로 가공(스웨거에 나온 양식) => 최종 서버에 파라미터로 첨부

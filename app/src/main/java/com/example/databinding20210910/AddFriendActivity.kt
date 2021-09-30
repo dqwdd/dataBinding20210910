@@ -1,6 +1,7 @@
 package com.example.databinding20210910
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
@@ -9,6 +10,9 @@ import com.example.databinding20210910.adapters.SearchUserRecyclerAdapter
 import com.example.databinding20210910.databinding.ActivityAddFriendBinding
 import com.example.databinding20210910.datas.BasicResponse
 import com.example.databinding20210910.datas.UserData
+import com.example.databinding20210910.fragments.MyFriendsListFragment
+import com.example.databinding20210910.fragments.RequestedUserListFragment
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -19,6 +23,8 @@ class AddFriendActivity : BaseActivity() {
 
     val mSearchedUserList = ArrayList<UserData>()
     lateinit var mSearchedUserAdapter : SearchUserRecyclerAdapter
+
+    val mMyFriendList = ArrayList<UserData>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,7 +54,6 @@ class AddFriendActivity : BaseActivity() {
 
                         mSearchedUserAdapter.notifyDataSetChanged()
 
-                        
                     }
                 }
 

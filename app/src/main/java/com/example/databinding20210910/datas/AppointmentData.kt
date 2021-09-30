@@ -40,7 +40,7 @@ class AppointmentData(
         val dateTimeToTimeZone = this.datetime.time// + now.timeZone.rawOffset
 
 
-        val diff = this.datetime.time - now.timeInMillis
+        val diff = this.datetime.time
         Log.d("약속시간-현재시간 : ", diff.toString())
 
         val diffHour = diff / 1000 / 60 / 60

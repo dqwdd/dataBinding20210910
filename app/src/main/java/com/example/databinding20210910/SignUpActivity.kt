@@ -2,6 +2,7 @@ package com.example.databinding20210910
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.TextUtils
 import android.util.Log
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
@@ -38,10 +39,15 @@ class SignUpActivity : BaseActivity() {
             }
 
             else {
-                val emailValidation = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"
-                val p = Pattern.matches(emailValidation, inputEmail)
+                fun String.isEmailValid(): Boolean {
+                    return !TextUtils.isEmpty(this) && android.util.Patterns.EMAIL_ADDRESS.matcher(this).matches()
+                }
+                inputEmail.isEmailValid()
 
-                if (p) {
+                //val emailValidation = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"
+                //val p = Pattern.matches(emailValidation, inputEmail)
+
+                if (inputEmail.isEmailValid()) {
                     apiService.getRequestIDNicknameCheck("EMAIL", inputEmail)
                         .enqueue(object : Callback<BasicResponse> {
                             override fun onResponse(

@@ -48,6 +48,43 @@ class MySettinsgActivity : BaseActivity() {
 
     override fun setupEvent() {
 
+        binding.unregisterBtn.setOnClickListener {
+
+            val customView = LayoutInflater.from(mContext).inflate(R.layout.my_custom_unregister_alert, null)
+            val alert = AlertDialog.Builder(mContext)
+
+            alert.setTitle("회원 탈퇴")
+            alert.setView(customView)
+            alert.setNegativeButton("확인", DialogInterface.OnClickListener { dialogInterface, i ->
+                val confirmEdt = customView.findViewById<EditText>(R.id.confirmEdt)
+
+                apiService.getRequestUserDelete(confirmEdt.text.toString()).enqueue(object : Callback<BasicResponse> {
+                    override fun onResponse(
+                        call: Call<BasicResponse>,
+                        response: Response<BasicResponse>
+                    ) {
+                        if (response.isSuccessful) {
+
+                            Toast.makeText(mContext, "회원탈퇴가 되었습니다!", Toast.LENGTH_SHORT).show()
+
+                            val myIntent = Intent(mContext, LoginActivity::class.java)
+                            startActivity(myIntent)
+                        }
+                    }
+
+                    override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
+                    }
+                })
+
+            })
+
+            alert.setPositiveButton("취소", null)
+            alert.show()
+
+        }
+
+
+        //프로플 삭제
         binding.ProfileRefreshIcon.setOnClickListener {
             val alert = AlertDialog.Builder(mContext)
             alert.setMessage("프로필을 삭제 하시겠습니까?")
@@ -90,16 +127,21 @@ class MySettinsgActivity : BaseActivity() {
         }
 
 
+        //비밀번호 변경
         binding.passwordLayout.setOnClickListener {
             val myIntent = Intent(mContext, EditPasswordActivity::class.java)
             startActivity(myIntent)
         }
 
+
+        //내 친구 관리 가기
         binding.myFriendLayout.setOnClickListener {
             val myIntent = Intent(mContext, ViewMyFriendsListActivity::class.java)
             startActivity(myIntent)
         }
 
+
+        //로그아웃
         binding.logoutImg.setOnClickListener {
             val alert = AlertDialog.Builder(mContext)
             alert.setMessage("정말 로그아웃 하시겠습니까?")
@@ -175,12 +217,13 @@ class MySettinsgActivity : BaseActivity() {
 
 
         //MapView.
-
+        //내 출발 목록 관리
         binding.myPlacesLayout.setOnClickListener {
             val myIntent = Intent(mContext, ViewMyPlaceListActivity::class.java)
             startActivity(myIntent)
         }
 
+        // 닉네임 변경
         binding.editNicknameLayout.setOnClickListener {
 
             //응용문제 => AlertDialog로 닉네임을 입력받자
@@ -193,7 +236,7 @@ class MySettinsgActivity : BaseActivity() {
 
             alert.setTitle("닉네임 변경")
             alert.setView(customView)
-            alert.setPositiveButton("확인", DialogInterface.OnClickListener { dialogInterface, i ->
+            alert.setNegativeButton("확인", DialogInterface.OnClickListener { dialogInterface, i ->
                 val nicknameEdt = customView.findViewById<EditText>(R.id.nicknameEdt)
 
                 apiService.patchRequestMyInfo("nickname", nicknameEdt.text.toString()).
@@ -217,11 +260,12 @@ class MySettinsgActivity : BaseActivity() {
 
             })
 
-            alert.setNegativeButton("취소", null)
+            alert.setPositiveButton("취소", null)
             alert.show()
 
         }
 
+        //내 출발 소요 시간 변경
         binding.readyTimeLayout.setOnClickListener {
 
             //응용문제 => AlertDialog로 준비시간을 입력받자

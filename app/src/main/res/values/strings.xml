@@ -8,6 +8,7 @@
     <string name="naver_client_id">wFI2BMKFoFviGHV4qjzX</string>
     <string name="naver_secret_key">8PdCwutte0</string>
     <string name="naver_client_name">약속앱</string>
+    <string name="confirm">"동의"</string>
 
 
 </resources>

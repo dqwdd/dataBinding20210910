@@ -46,6 +46,8 @@ class MySettinsgActivity : BaseActivity() {
         setValues()
     }
 
+
+
     override fun setupEvent() {
 
         binding.unregisterBtn.setOnClickListener {
@@ -98,6 +100,7 @@ class MySettinsgActivity : BaseActivity() {
                         if (response.isSuccessful) {
                             Toast.makeText(mContext, "프로필이 삭제되었습니다", Toast.LENGTH_SHORT).show()
 
+                            //
 
                         }
 

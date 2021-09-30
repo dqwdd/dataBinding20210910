@@ -15,6 +15,7 @@ import com.example.databinding20210910.ViewMapActivity
 import com.example.databinding20210910.datas.AppointmentData
 import com.example.databinding20210910.datas.PlaceData
 import com.example.databinding20210910.datas.UserData
+import com.example.databinding20210910.utils.FontChanger
 import org.json.JSONObject
 import java.text.SimpleDateFormat
 
@@ -57,6 +58,7 @@ class MyFriendSpinnerAdapter(
             }
         }
 
+        FontChanger.setGlobalFont(mContext, row)
 
         return row
     }

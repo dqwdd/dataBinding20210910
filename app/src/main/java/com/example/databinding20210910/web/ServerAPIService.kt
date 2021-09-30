@@ -236,7 +236,7 @@ interface ServerAPIService {
 
 
     //자주 쓰는 장소 삭제
-    @DELETE("/user")
+    @DELETE("/user/place")
     fun getRequestFrequentPlaceDelete(
         @Query("place_id") placeId : Int) : Call<BasicResponse>
 

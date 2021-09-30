@@ -12,6 +12,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
+import androidx.core.view.setMargins
 import androidx.core.view.setPadding
 import androidx.databinding.DataBindingUtil
 import com.example.databinding20210910.adapters.MyFriendSpinnerAdapter
@@ -22,6 +23,7 @@ import com.example.databinding20210910.datas.PlaceData
 import com.example.databinding20210910.datas.UserData
 import com.example.databinding20210910.services.MyJobService
 import com.example.databinding20210910.utils.SizeUtil
+import com.example.databinding20210910.utils.SizeUtil.Companion.dpToPx
 import com.example.databinding20210910.utils.SizeUtil.Companion.margin
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.CameraUpdate
@@ -233,11 +235,20 @@ class EditAppoinmentActivity : BaseActivity() {
             val textView = TextView(mContext)
             textView.setBackgroundResource(R.drawable.gray_box)
 
-            textView.setPadding(SizeUtil.dpToPx(mContext, 5f).toInt() )
+            textView.setPadding(dpToPx(mContext, 5f).toInt() )
+
 
             textView.margin(right = 20F)
             //layout_example.margin(top = 20F)
             //구글링 - marginRight 설정하기 => SizeUtil 이용해서 설정
+
+            //바로 위에 마진 코드는 적용 안되는데 이건 됨
+            val params = LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            )
+            params.setMargins(dpToPx(mContext, 5f).toInt())
+            textView.layoutParams = params
 
 
             textView.text = selectedFriend.nickName

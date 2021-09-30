@@ -1,6 +1,9 @@
 package com.example.databinding20210910.adapters
 
+import android.app.AlertDialog
 import android.content.Context
+import android.content.DialogInterface
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +13,18 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.databinding20210910.R
+import com.example.databinding20210910.ViewMyFriendsListActivity
+import com.example.databinding20210910.ViewMyPlaceListActivity
+import com.example.databinding20210910.datas.BasicResponse
 import com.example.databinding20210910.datas.PlaceData
+import com.example.databinding20210910.datas.UserData
+import com.example.databinding20210910.fragments.MyFriendsListFragment
+import com.example.databinding20210910.web.ServerAPI
+import com.example.databinding20210910.web.ServerAPIService
+import org.json.JSONObject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class MyPlaceRecyclerAdapter(
     val mContext: Context,
@@ -33,11 +47,10 @@ class MyPlaceRecyclerAdapter(
             else {
                 isPrimaryTxt.visibility = View.GONE
             }
-//            이벤트처리
-//            viewPlaceMapBtn.setOnClickListener {
-//                Toast.makeText(, "", Toast.LENGTH_SHORT).show()
-//            }
+
+
         }
+
     }
 
 
@@ -54,7 +67,7 @@ class MyPlaceRecyclerAdapter(
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
 //          위에 fun setRealData( data: PlaceData ) 만들어서 여기에 쓸 거 대신 넣어도 됨
 ////        실제 데이터를 뿌려주는 부분
-//        val data = mList[position]
+        val data = mList[position]
 //
 ////        예시 : 실제 장소 이름만 출력
 //        holder.placeNameTxt.text = data.name
@@ -72,6 +85,50 @@ class MyPlaceRecyclerAdapter(
 
             Toast.makeText(mContext, "${mList[position].name}을 클릭", Toast.LENGTH_SHORT).show()
 
+        }
+
+        holder.backgroundLayout.setOnLongClickListener {
+
+            val alert = AlertDialog.Builder(mContext)
+            alert.setMessage("${data.name}를 삭제하시겠습니까?")
+            val DeletePlace = data.name
+
+            alert.setNegativeButton("확인", DialogInterface.OnClickListener { dialogInterface, i ->
+
+                val apiService = ServerAPI.getRetrofit(mContext).create(ServerAPIService::class.java)
+
+                apiService.getRequestFrequentPlaceDelete(data.id).enqueue(object :
+                    Callback<BasicResponse> {
+                    override fun onResponse(
+                        call: Call<BasicResponse>,
+                        response: Response<BasicResponse>
+                    ) {
+                        if (response.isSuccessful) {
+                            Toast.makeText(
+                                mContext, DeletePlace + "가 삭제되었습니다", Toast.LENGTH_SHORT).show()
+                            (mContext as ViewMyPlaceListActivity)
+                                .getMyPlaceListFromServer()
+                        }
+                        else {
+                            val errorBodyStr = response.errorBody()!!.string()
+
+//                        단순 JSON 형태의 String으로 내려옴 => JSONObject 형태로 가공
+                            Log.d("에러인 경우의 데이터 : ", errorBodyStr)
+                            val jsonObj = JSONObject(errorBodyStr)
+                            val message = jsonObj.getString("message")
+                            Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show()
+                        }
+                    }
+
+
+                    override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
+                    }
+                })
+            })
+            alert.setPositiveButton("취소", null)
+            alert.show()
+
+            return@setOnLongClickListener true
         }
 
     }

@@ -370,7 +370,8 @@ class LoginActivity : BaseActivity() {
 
 
 
-        logoImg.visibility = View.VISIBLE
+        alarmIcon.visibility = View.GONE
+        logoImg.visibility = View.GONE
         titleTxt.visibility = View.GONE
 
 //        카톡으로 받은 코드 복붙 => 키 해시값 추출

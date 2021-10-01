@@ -32,16 +32,13 @@ class ViewNotificationActivity : BaseActivity() {
         setupEvent()
     }
 
-    override fun onStart() {
-        super.onStart()
-    }
-
     override fun setupEvent() {
     }
 
 
     override fun setValues() {
 
+        alarmIcon.visibility = View.GONE
 
         titleTxt.text = "알림"
 

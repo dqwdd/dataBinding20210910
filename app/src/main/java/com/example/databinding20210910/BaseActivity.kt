@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.ActionBar
@@ -32,7 +33,7 @@ abstract class BaseActivity : AppCompatActivity() {
     lateinit var titleTxt : TextView
     lateinit var editPlaceImg : ImageView
     lateinit var logoImg : ImageView
-    lateinit var alarmIcon : ImageView
+    lateinit var alarmIcon : FrameLayout
     lateinit var alarmIconRed : ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -77,7 +78,7 @@ abstract class BaseActivity : AppCompatActivity() {
         titleTxt = defActionBar.customView.findViewById<TextView>(R.id.titleTxt)
         editPlaceImg = defActionBar.customView.findViewById<ImageView>(R.id.editPlaceImg)
         logoImg = defActionBar.customView.findViewById<ImageView>(R.id.logoImg)
-        alarmIcon = defActionBar.customView.findViewById<ImageView>(R.id.alarmIcon)
+        alarmIcon = defActionBar.customView.findViewById<FrameLayout>(R.id.alarmIcon)
         alarmIconRed = defActionBar.customView.findViewById<ImageView>(R.id.alarmIconRed)
 
 

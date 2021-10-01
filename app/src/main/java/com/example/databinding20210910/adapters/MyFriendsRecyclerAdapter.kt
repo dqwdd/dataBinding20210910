@@ -95,24 +95,24 @@ class MyFriendsRecyclerAdapter(
 
                 return@setOnLongClickListener true
             }
-
-
+            
 
         }
 
     }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FriendViewHolder {
         val view = LayoutInflater.from(mContext).inflate(R.layout.friend_list_item, parent, false)
         return FriendViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: FriendViewHolder, position: Int) {
 
+    override fun onBindViewHolder(holder: FriendViewHolder, position: Int) {
         val data = mList[position]
         holder.bind(mContext, data)
-
     }
+
 
     override fun getItemCount(): Int {
         return mList.size

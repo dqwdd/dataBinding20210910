@@ -61,6 +61,16 @@ class ViewAppointmentDetailActivity : BaseActivity() {
     override fun setupEvent() {
 
 
+        binding.scrollHelpTxt.setOnTouchListener { view, motionEvent ->
+
+            binding.scrollView.requestDisallowInterceptTouchEvent(true)
+
+            //터치 이벤트만 먹히게? x => 뒤에 가려진 지도 동작도 같이 실행되게
+            return@setOnTouchListener false
+        }
+
+
+
         binding.modifyLayout.setOnClickListener {
             val myIntent = Intent(mContext, ModifyAppointmentActivity::class.java)
             myIntent.putExtra("appointments", mAppointmentData)

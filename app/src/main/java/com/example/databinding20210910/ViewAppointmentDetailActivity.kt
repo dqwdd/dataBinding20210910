@@ -348,8 +348,11 @@ class ViewAppointmentDetailActivity : BaseActivity() {
                 (mAppointmentData.startLatitude + mAppointmentData.latitude)/2
                 , (mAppointmentData.startLongitude + mAppointmentData.longitude)/2
             )
+            //중간지점보다 목적지로 바꾸는게 나아서 바꿈
 
-            val cameraUpdate = CameraUpdate.scrollTo(centerOfStartAndDest)
+            val Destination = LatLng(mAppointmentData.latitude, mAppointmentData.longitude)
+
+            val cameraUpdate = CameraUpdate.scrollTo(Destination)
             naverMap.moveCamera(cameraUpdate)
 
 

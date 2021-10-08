@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.appointment.databinding20210910">
+    package="com.appointments.databinding20210910">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -10,7 +10,7 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 
     <application
-        android:name="com.appointment.databinding20210910.GlobalApplication"
+        android:name="com.appointments.databinding20210910.GlobalApplication"
         android:allowBackup="true"
         android:icon="@drawable/appointment_icon"
         android:label="@string/app_name"
@@ -19,37 +19,37 @@
         android:theme="@style/Theme.DataBinding20210910"
         android:networkSecurityConfig="@xml/network_security_config">
         <activity
-            android:name="com.appointment.databinding20210910.ModifyAppointmentActivity"
+            android:name="com.appointments.databinding20210910.ModifyAppointmentActivity"
             android:exported="true" />
         <activity
-            android:name="com.appointment.databinding20210910.EditPasswordActivity"
+            android:name="com.appointments.databinding20210910.EditPasswordActivity"
             android:exported="true" />
         <activity
-            android:name="com.appointment.databinding20210910.ViewNotificationActivity"
+            android:name="com.appointments.databinding20210910.ViewNotificationActivity"
             android:exported="true" />
         <activity
-            android:name="com.appointment.databinding20210910.ViewAppointmentDetailActivity"
+            android:name="com.appointments.databinding20210910.ViewAppointmentDetailActivity"
             android:exported="true" />
         <activity
-            android:name="com.appointment.databinding20210910.AddFriendActivity"
+            android:name="com.appointments.databinding20210910.AddFriendActivity"
             android:exported="true" />
         <activity
-            android:name="com.appointment.databinding20210910.ViewMyFriendsListActivity"
+            android:name="com.appointments.databinding20210910.ViewMyFriendsListActivity"
             android:exported="true" />
         <activity
-            android:name="com.appointment.databinding20210910.EditMyPlaceActivity"
+            android:name="com.appointments.databinding20210910.EditMyPlaceActivity"
             android:exported="true" />
         <activity
-            android:name="com.appointment.databinding20210910.ViewMyPlaceListActivity"
+            android:name="com.appointments.databinding20210910.ViewMyPlaceListActivity"
             android:exported="true" />
         <activity
-            android:name="com.appointment.databinding20210910.MySettinsgActivity"
+            android:name="com.appointments.databinding20210910.MySettinsgActivity"
             android:exported="true" />
         <activity
-            android:name="com.appointment.databinding20210910.ViewMapActivity"
+            android:name="com.appointments.databinding20210910.ViewMapActivity"
             android:exported="true" />
         <activity
-            android:name="com.appointment.databinding20210910.SplashActivity"
+            android:name="com.appointments.databinding20210910.SplashActivity"
             android:exported="true"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
@@ -59,16 +59,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.appointment.databinding20210910.EditAppoinmentActivity"
+            android:name="com.appointments.databinding20210910.EditAppoinmentActivity"
             android:exported="true" />
         <activity
-            android:name="com.appointment.databinding20210910.MainActivity"
+            android:name="com.appointments.databinding20210910.MainActivity"
             android:exported="true" />
         <activity
-            android:name="com.appointment.databinding20210910.SignUpActivity"
+            android:name="com.appointments.databinding20210910.SignUpActivity"
             android:exported="true" />
         <activity
-            android:name="com.appointment.databinding20210910.LoginActivity"
+            android:name="com.appointments.databinding20210910.LoginActivity"
             android:exported="true" />
 
         <meta-data
@@ -114,11 +114,11 @@
         </activity>
 
         <service
-            android:name="com.appointment.databinding20210910.services.MyJobService"
+            android:name="com.appointments.databinding20210910.services.MyJobService"
             android:permission="android.permission.BIND_JOB_SERVICE" />
 
         <receiver
-            android:name="com.appointment.databinding20210910.receivers.AlarmReceiver"
+            android:name="com.appointments.databinding20210910.receivers.AlarmReceiver"
             android:exported="false" />
     </application>
 

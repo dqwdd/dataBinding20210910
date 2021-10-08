@@ -3,7 +3,8 @@
 
     <domain-config cleartextTrafficPermitted="true">
 
-        <domain includeSubdomains="true">3.36.146.152</domain>
+<!--        <domain includeSubdomains="true">3.36.146.152</domain>-->
+        <domain includeSubdomains="true">keepthetime.xyz</domain>
 
     </domain-config>
 

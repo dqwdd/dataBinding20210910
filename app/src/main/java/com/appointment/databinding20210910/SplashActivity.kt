@@ -39,6 +39,7 @@ class SplashActivity : BaseActivity() {
                     GlobalData.loginUser = basicResponse.data.user
                     Log.d("SplashActivity", "")
                     Log.d("SplashActivity", "")
+                    Log.d("SplashActivity", "")
                 }
 
             }

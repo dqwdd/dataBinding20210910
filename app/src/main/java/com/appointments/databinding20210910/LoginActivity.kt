@@ -432,7 +432,7 @@ class LoginActivity : BaseActivity() {
 //        카톡으로 받은 코드 복붙 => 키 해시값 추출
 
         val info = packageManager.getPackageInfo(
-            "com.example.databinding20210910",
+            "com.appointments.databinding20210910",
             PackageManager.GET_SIGNATURES
         )
         for (signature in info.signatures) {

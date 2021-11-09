@@ -41,11 +41,11 @@ class InvitedAppointmentRecyclerAdapter(
 
 
         fun bind( context: Context, data: AppointmentData ) {
-            titleTxt.text = data.title
+            titleTxt.text = "약속 : ${data.title}"
 
 //            약속 일시를 : Date형태로 파싱됨 -> String으로 가공해야 함 -> SimpleDateFormat을 사용해야 함
             dateTimeTxt.text = data.getFormattedDateTime()
-            placeNameTxt.text = data.placeName
+            placeNameTxt.text = "장소 : ${data.placeName}"
 
 
             inviteUserName.text = data.user.nickName

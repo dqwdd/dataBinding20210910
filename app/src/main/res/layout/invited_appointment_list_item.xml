@@ -7,89 +7,78 @@
     android:id="@+id/rootLayout">
 
     <LinearLayout
-        android:gravity="center_vertical"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:orientation="horizontal"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp">
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/inviteUserProfile"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            app:civ_border_width="2dp"
-            android:src="@mipmap/ic_launcher"/>
-
-        <TextView
-            android:id="@+id/inviteUserName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="3dp"
-            android:textSize="16sp"
-            android:text="친구이름"/>
-
-        <TextView
-            android:layout_width="1dp"
-            android:layout_height="30dp"
-            android:layout_marginLeft="10dp"
-            android:background="@color/black"/>
-
-        <TextView
-            android:id="@+id/titleTxt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="약속제목"
-            android:padding="10dp"
-            android:textSize="22dp"/>
-
-    </LinearLayout>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/gray"/>
-
-    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <ImageView
-            android:id="@+id/viewPlaceMapBtn"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginLeft="5dp"
-            android:padding="5dp"
-            android:src="@drawable/flag_yellow_marker_icon"/>
-
-        <TextView
-            android:id="@+id/placeNameTxt"
-            android:padding="10dp"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:text="장소이름"/>
+            android:orientation="vertical">
 
-        <TextView
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/inviteUserProfile"
+                android:layout_marginTop="5dp"
+                android:padding="10dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:src="@drawable/default_profile_icon"/>
+
+            <TextView
+                android:id="@+id/inviteUserName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="친구이름"/>
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"/>
+            android:orientation="vertical"
+            android:layout_weight="1">
 
-        <TextView
-            android:id="@+id/dateTimeTxt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="약속일시"
-            android:padding="10dp"
-            android:textSize="13dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:id="@+id/titleTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="약속"
+                    android:textSize="17dp"/>
+
+                <TextView
+                    android:id="@+id/placeNameTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="장소"/>
+
+                <TextView
+                    android:id="@+id/dateTimeTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="날짜"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/viewPlaceMapBtn"
+            android:padding="15dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginRight="10dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/magnifier_map_satellite_icon"/>
 
     </LinearLayout>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#DFDFDF"
-        android:layout_marginTop="5dp"/>
 
 </LinearLayout>
 

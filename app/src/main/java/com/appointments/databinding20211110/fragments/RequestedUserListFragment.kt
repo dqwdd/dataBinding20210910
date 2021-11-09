@@ -53,6 +53,8 @@ class RequestedUserListFragment : BaseFragment() {
 
     override fun setValues() {
 
+        txtTitle.text = "친구"
+
         mRequestUserAdapter = RequestUserRecyclerAdapter(mContext, mRequestUserList)
         binding.requestedFriendRecyclerView.adapter = mRequestUserAdapter
 

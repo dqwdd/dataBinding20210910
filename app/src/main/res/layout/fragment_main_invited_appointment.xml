@@ -16,15 +16,6 @@
                 android:layout_height="match_parent"
                 android:id="@+id/appointmentRecyclerView"/>
 
-            <Button
-                android:id="@+id/addAppointmentBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right|bottom"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="10dp"
-                android:text="약속 등록하기"/>
-
         </FrameLayout>
 
     </LinearLayout>

@@ -22,10 +22,13 @@
         <entry key="..\:/AAndroidStudio/New-Project/dataBinding20210910-bottom/app/src/main/res/layout/activity_main.xml" value="0.24974358974358973" />
         <entry key="..\:/AAndroidStudio/New-Project/dataBinding20210910-bottom/app/src/main/res/layout/activity_my_settinsg.xml" value="0.25364583333333335" />
         <entry key="..\:/AAndroidStudio/New-Project/dataBinding20210910-bottom/app/src/main/res/layout/activity_sign_up.xml" value="0.24974358974358973" />
+        <entry key="..\:/AAndroidStudio/New-Project/dataBinding20210910-bottom/app/src/main/res/layout/appointment_list_item.xml" value="0.264" />
         <entry key="..\:/AAndroidStudio/New-Project/dataBinding20210910-bottom/app/src/main/res/layout/fragment_friend.xml" value="0.25364583333333335" />
         <entry key="..\:/AAndroidStudio/New-Project/dataBinding20210910-bottom/app/src/main/res/layout/fragment_main_appointment.xml" value="0.25364583333333335" />
+        <entry key="..\:/AAndroidStudio/New-Project/dataBinding20210910-bottom/app/src/main/res/layout/fragment_main_invited_appointment.xml" value="0.25364583333333335" />
         <entry key="..\:/AAndroidStudio/New-Project/dataBinding20210910-bottom/app/src/main/res/layout/fragment_my_friends_list.xml" value="0.24974358974358973" />
         <entry key="..\:/AAndroidStudio/New-Project/dataBinding20210910-bottom/app/src/main/res/layout/fragment_notification.xml" value="0.25364583333333335" />
+        <entry key="..\:/AAndroidStudio/New-Project/dataBinding20210910-bottom/app/src/main/res/layout/fragment_requested_user_list.xml" value="0.25364583333333335" />
         <entry key="..\:/AAndroidStudio/New-Project/dataBinding20210910-bottom/app/src/main/res/layout/fragment_setting.xml" value="0.25364583333333335" />
         <entry key="..\:/AAndroidStudio/New-Project/dataBinding20210910-bottom/app/src/main/res/layout/item_notification.xml" value="0.25364583333333335" />
         <entry key="..\:/AAndroidStudio/New-Project/dataBinding20210910-bottom/app/src/main/res/layout/my_custom_action_bar.xml" value="0.25364583333333335" />

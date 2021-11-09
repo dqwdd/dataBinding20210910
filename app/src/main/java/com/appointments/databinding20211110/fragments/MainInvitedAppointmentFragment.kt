@@ -58,10 +58,6 @@ class MainInvitedAppointmentFragment : BaseFragment() {
     }
 
     override fun setupEvents() {
-        binding.addAppointmentBtn.setOnClickListener {
-            val myIntent = Intent(mContext, EditAppoinmentActivity::class.java)
-            startActivity(myIntent)
-        }
     }
 
     override fun setValues() {

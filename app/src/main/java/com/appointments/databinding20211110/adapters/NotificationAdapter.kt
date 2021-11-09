@@ -38,7 +38,7 @@ class NotificationAdapter(val mContext: Context, val mList: List<NotificationDat
         fun onBind(item: NotificationData) {
             binding.txtNotificationMessage.text = item.message
             binding.txtNotificationTitle.text = item.title
-            binding.txtNotificationUserDate.text = "${item.act_user.nick_name}"
+            binding.txtNotificationUserDate.text = "${item.act_user.nick_name} · ${item.getFormattedDateTime()}"
 
             when (item.type) {
                 "약속초대" -> binding.icInviteAppointment.visibility = View.VISIBLE

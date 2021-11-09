@@ -63,7 +63,7 @@ class SplashActivity : BaseActivity() {
                 myIntent = Intent(mContext, LoginActivity::class.java)
             }
             startActivity(myIntent)
-
+            finish()
 
         }, 2500)
 

@@ -44,11 +44,11 @@ class AppointmentRecyclerAdapter(
 
         fun bind(//context: Context,   //여기의 mContext는 inner 쓰기 전엔 context였음
                  data: AppointmentData ) {
-            titleTxt.text = data.title
+            titleTxt.text = "약속 : ${data.title}"
 
 //            약속 일시를 : Date형태로 파싱됨 -> String으로 가공해야 함 -> SimpleDateFormat을 사용해야 함
             dateTimeTxt.text = data.getFormattedDateTime()
-            placeNameTxt.text = data.placeName
+            placeNameTxt.text = "장소 : ${data.placeName}"
 
 
             // 이벤트 처리들

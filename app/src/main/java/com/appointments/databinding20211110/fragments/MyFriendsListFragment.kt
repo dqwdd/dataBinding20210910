@@ -1,11 +1,13 @@
 package com.appointments.databinding20211110.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.appointments.databinding20211110.AddFriendActivity
 import com.appointments.databinding20211110.R
 import com.appointments.databinding20211110.adapters.MyFriendsRecyclerAdapter
 import com.appointments.databinding20211110.databinding.FragmentMyFriendsListBinding
@@ -49,6 +51,12 @@ class MyFriendsListFragment : BaseFragment() {
     }
 
     override fun setupEvents() {
+
+        binding.addFriendBtn.setOnClickListener {
+            val myIntent = Intent(mContext, AddFriendActivity::class.java)
+            startActivity(myIntent)
+        }
+
     }
 
     override fun setValues() {

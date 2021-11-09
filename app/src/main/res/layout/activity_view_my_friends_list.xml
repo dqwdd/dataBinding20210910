@@ -13,10 +13,26 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/friendsViewPager"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent">
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/friendsViewPager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                app:civ_border_width="2dp"
+                android:id="@+id/add_friend_btn"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="right|bottom"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/new_user_add_icon" />
+
+        </FrameLayout>
 
     </LinearLayout>
 </layout>

@@ -10,6 +10,7 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/friendProfileImg"
+        android:padding="10dp"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:src="@drawable/profile_icon"
@@ -21,7 +22,7 @@
         android:layout_height="wrap_content"
         android:text="친구의 닉네임"
         android:layout_marginLeft="10dp"
-        android:textSize="17sp"
+        android:textSize="20sp"
         android:textColor="@color/black"/>
 
     <ImageView
@@ -29,7 +30,7 @@
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:layout_marginLeft="5dp"
-        android:padding="3dp"
+        android:padding="2dp"
         android:src="@drawable/profile_icon"/>
 
 </LinearLayout>

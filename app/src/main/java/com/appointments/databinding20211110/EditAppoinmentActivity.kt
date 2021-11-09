@@ -108,6 +108,7 @@ class EditAppoinmentActivity : BaseActivity() {
 
     override fun setupEvent() {
 
+        //장소 찾기
         binding.placeSearchBtn.setOnClickListener {
             val inputPlaceName = binding.placeSearchEdt.text.toString()
 
@@ -210,7 +211,6 @@ class EditAppoinmentActivity : BaseActivity() {
 
 
 
-
         //친구 추가 버튼
         binding.addFriendToListBtn.setOnClickListener {
 
@@ -283,7 +283,7 @@ class EditAppoinmentActivity : BaseActivity() {
 
 
 
-        //스피너의 선택 이벤트
+        //스피너의 출발지 선택 이벤트
         binding.startPlaceSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
                 //화면이 뜨면 자동으로 0번 아이템이 선택됨

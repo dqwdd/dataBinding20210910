@@ -7,7 +7,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
         android:id="@+id/backgroundLayout"
         android:gravity="center_vertical"
         android:orientation="horizontal">
@@ -27,9 +26,9 @@
             android:textSize="12sp"
             android:padding="3dp"
             android:layout_marginLeft="10dp"
-            android:background="@color/gray"
+            android:background="@color/grey"
             android:paddingLeft="5dp"
-            android:textColor="@color/white"/>
+            android:textColor="@color/black"/>
 
         <TextView
             android:layout_width="0dp"
@@ -40,7 +39,7 @@
             android:id="@+id/viewPlaceMapBtn"
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:src="@drawable/flag_yellow_marker_icon"
+            android:src="@drawable/magnifier_map_satellite_icon"
             android:padding="5dp"/>
 
     </LinearLayout>

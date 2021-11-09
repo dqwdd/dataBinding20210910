@@ -1,71 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="60dp"
-    android:background="@color/white">
-
-    <ImageView
-        android:id="@+id/logoImg"
-        android:layout_width="70dp"
-        android:layout_height="50dp"
-        android:src="@drawable/nepplus_image"
-        android:visibility="gone"
-        android:layout_gravity="center"/>
-
-    <TextView
-        android:id="@+id/titleTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="앱제목"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        android:layout_gravity="center"/>
-
+<layout>
 
     <FrameLayout
-        android:id="@+id/alarmIcon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical|right">
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/txt_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|center_vertical"
+            android:layout_marginLeft="20dp"
+            android:text="앱제목"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <ImageView
+            android:id="@+id/btn_add"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:src="@drawable/alarm_icon"
-            android:layout_marginRight="60dp"
-            android:padding="6dp"/>
+            android:layout_gravity="right|center_vertical"
+            android:layout_marginRight="10dp"
+            android:padding="7dp"
+            android:src="@drawable/ic_add"
+            android:visibility="gone"
+            tools:visibility="visible" />
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/alarmIconRed"
-            android:layout_width="10dp"
-            android:layout_height="10dp"
-            android:src="@color/red"
-            android:layout_marginTop="4dp"
-            android:visibility="invisible"
-            android:layout_marginLeft="22dp"/>
+        <ImageView
+            android:id="@+id/btn_find_friend"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="right|center_vertical"
+            android:layout_marginRight="10dp"
+            android:padding="10dp"
+            android:src="@drawable/magnifiericon"
+            android:visibility="gone"
+            tools:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/btn_close"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="right|center_vertical"
+            android:layout_marginRight="10dp"
+            android:padding="10dp"
+            android:src="@drawable/delete_icon"
+            android:visibility="gone"
+            tools:visibility="visible" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_gravity="bottom"
+            android:layout_height="0.5dp"
+            android:background="@color/grey"/>
 
     </FrameLayout>
-
-
-    <ImageView
-        android:id="@+id/profileImg"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:src="@drawable/profile_icon"
-        android:layout_gravity="right|center_vertical"
-        android:visibility="gone"
-        android:padding="8dp"
-        android:layout_marginRight="10dp"/>
-
-    <ImageView
-        android:id="@+id/editPlaceImg"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:src="@drawable/plus_icon"
-        android:layout_gravity="right|center_vertical"
-        android:padding="5dp"
-        android:layout_marginRight="15dp"
-        android:visibility="gone"/>
-
-
-</FrameLayout>
+</layout>

@@ -13,29 +13,22 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="사용하실 아이디를 입력해 주세요"/>
+            android:text="사용하실 아이디"/>
 
-        <LinearLayout
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <EditText
                 android:id="@+id/emailEdt"
-                android:layout_width="250dp"
+                android:layout_width="match_parent"
                 android:layout_marginTop="5dp"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
                 android:hint="이메일 양식으로 입력해 주세요"/>
 
-            <Button
-                android:id="@+id/emailCheckBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:text="중복검사"/>
-
-        </LinearLayout>
+        </FrameLayout>
 
         <TextView
             android:id="@+id/emailTxt"
@@ -46,8 +39,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-            android:text="사용하실 비밀번호를 입력해 주세요"/>
+            android:layout_marginTop="35dp"
+            android:text="사용하실 비밀번호"/>
 
         <EditText
             android:id="@+id/pwEdt"
@@ -60,7 +53,12 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
+            android:text=""/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="35dp"
             android:text="다시 한 번 입력해 주세요"/>
 
         <EditText
@@ -81,8 +79,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="사용하실 닉네임을 입력해 주세요"/>
+            android:layout_marginTop="35dp"
+            android:text="사용하실 닉네임"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -91,18 +89,11 @@
 
             <EditText
                 android:id="@+id/nicknameEdt"
-                android:layout_width="250dp"
+                android:layout_width="match_parent"
                 android:layout_marginTop="5dp"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
                 android:hint="닉네임을 입력해 주세요"/>
-
-            <Button
-                android:id="@+id/nicknameCheckBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:text="중복검사"/>
 
         </LinearLayout>
 
@@ -112,12 +103,19 @@
             android:layout_height="wrap_content"
             android:text=""/>
 
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
         <Button
             android:id="@+id/sighUpBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="회원가입"/>
+            android:background="@drawable/login_button_background"
+            android:text="회원가입"
+            android:layout_marginBottom="10dp"/>
 
     </LinearLayout>
 

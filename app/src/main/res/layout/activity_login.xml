@@ -12,8 +12,8 @@
         
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:textSize="30sp"
+            android:layout_height="150dp"
+            android:textSize="25sp"
             android:background="@null"
             android:text="How \n Manage \n Your \n Appointment"
             android:gravity="center"/>

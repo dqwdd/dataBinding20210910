@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_my_appointment"
+        android:icon="@drawable/edit_icon"
+        android:title="약속" />
+    <item
+        android:id="@+id/menu_invite_appointment"
+        android:icon="@drawable/envelope_mail_icon"
+        android:title="초대된약속"/>
+
+    <item
+        android:id="@+id/menu_friend"
+        android:icon="@drawable/friend_group_icon"
+        android:title="친구" />
+    <item
+        android:id="@+id/menu_notification"
+        android:icon="@drawable/alarm_icon"
+        android:title="알림" />
+    <item
+        android:id="@+id/menu_setting"
+        android:icon="@drawable/set_setting_icon"
+        android:title="설정" />
+
+</menu>

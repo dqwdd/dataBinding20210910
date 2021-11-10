@@ -9,8 +9,8 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
+import com.appointments.databinding20211110.databinding.ActivityMySettingsBinding
 import com.bumptech.glide.Glide
-import com.appointments.databinding20211110.databinding.ActivityMySettinsgBinding
 import com.appointments.databinding20211110.datas.BasicResponse
 import com.appointments.databinding20211110.utils.ContextUtil
 import com.appointments.databinding20211110.utils.GlobalData
@@ -27,7 +27,7 @@ import java.io.File
 
 class MySettinsgActivity : BaseActivity() {
 
-    lateinit var binding : ActivityMySettinsgBinding
+    lateinit var binding : ActivityMySettingsBinding
 
     //프사 가지러 갤러리로 이동
     val REQ_FOR_GALLERY = 1000

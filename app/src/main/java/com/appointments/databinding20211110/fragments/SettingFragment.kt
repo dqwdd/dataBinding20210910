@@ -11,7 +11,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.appointments.databinding20211110.*
-import com.appointments.databinding20211110.databinding.ActivityMySettinsgBinding
+import com.appointments.databinding20211110.databinding.ActivityMySettingsBinding
 import com.appointments.databinding20211110.datas.BasicResponse
 import com.appointments.databinding20211110.fragments.BaseFragment
 import com.appointments.databinding20211110.utils.ContextUtil
@@ -33,7 +33,7 @@ import java.io.File
 
 class SettingFragment : BaseFragment() {
 
-    lateinit var binding : ActivityMySettinsgBinding
+    lateinit var binding : ActivityMySettingsBinding
 
     //프사 가지러 갤러리로 이동
     val REQ_FOR_GALLERY = 1000

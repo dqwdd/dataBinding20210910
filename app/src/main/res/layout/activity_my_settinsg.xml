@@ -30,14 +30,16 @@
 
                 <ImageView
                     android:id="@+id/ProfileRefreshIcon"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="30dp"
+                    android:padding="5dp"
+                    android:layout_height="30dp"
                     android:layout_gravity="bottom|right"
                     android:src="@drawable/refresh_icon"/>
 
             </FrameLayout>
 
             <LinearLayout
+                android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">

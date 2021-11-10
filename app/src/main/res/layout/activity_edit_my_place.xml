@@ -9,24 +9,55 @@
         android:padding="20dp"
         tools:context=".EditMyPlaceActivity">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="장소"
-            android:textSize="17sp"/>
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:src="@drawable/drawn_hand_location_map_navigation_icon"
+                android:padding="5dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="장소"
+                android:layout_gravity="center"
+                android:textSize="17sp"/>
+
+        </LinearLayout>
+
 
         <EditText
             android:id="@+id/nameEdt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="저장할 장소의 이름을 입력하세요"
+            android:hint="저장하실 장소의 이름을 입력하세요"
             android:singleLine="true"/>
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="위치 선택"/>
+            android:layout_marginTop="30dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_location"
+                android:padding="5dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="위치 선택"/>
+
+        </LinearLayout>
 
         <fragment
             android:id="@+id/map_fragment"

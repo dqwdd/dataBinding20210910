@@ -241,6 +241,8 @@ class ModifyAppointmentActivity : BaseActivity() {
 
         binding.modifyBtn.setOnClickListener {
 
+            val inputTitle = binding.titleEdt.text.toString()
+
             if (binding.dateTxt.text == "약속 일자") {
                 Toast.makeText(mContext, "일자를 설정하지 않았습니다", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
@@ -286,7 +288,7 @@ class ModifyAppointmentActivity : BaseActivity() {
 
             apiService.putRequestModifyAppointment(
                 mAppointmentData.id,
-                mAppointmentData.title,
+                inputTitle,
                 finalDatetime,
                 inputPlaceName,
                 mSelectedLat,

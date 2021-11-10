@@ -30,6 +30,12 @@ class ViewMyPlaceListActivity : BaseActivity() {
     }
 
     override fun setupEvent() {
+
+        binding.editPlaceImg.setOnClickListener {
+            val myIntent = Intent(mContext, EditMyPlaceActivity::class.java)
+            startActivity(myIntent)
+        }
+
     }
 
     override fun setValues() {

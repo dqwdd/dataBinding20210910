@@ -121,13 +121,6 @@ class MySettinsgActivity : BaseActivity() {
         }
 
 
-        //내 친구 관리 가기
-        binding.myFriendLayout.setOnClickListener {
-            val myIntent = Intent(mContext, ViewMyFriendsListActivity::class.java)
-            startActivity(myIntent)
-        }
-
-
         //로그아웃
         binding.logoutImg.setOnClickListener {
             val alert = AlertDialog.Builder(mContext)

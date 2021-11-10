@@ -123,33 +123,6 @@
                     <ImageView
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:padding="2dp"
-                        android:src="@drawable/flag_location_pin_place_icon"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="출발지"/>
-
-                </LinearLayout>
-
-                <Spinner
-                    android:id="@+id/startPlaceSpinner"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:spinnerMode="dialog"/>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="50dp"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
                         android:padding="3dp"
                         android:src="@drawable/congestion_crowed_people_place_icon"/>
 
@@ -236,7 +209,7 @@
                     android:layout_height="wrap_content">
 
                     <fragment
-                        android:id="@+id/naverMapView"
+                        android:id="@+id/map_fragment"
                         android:layout_width="match_parent"
                         android:layout_height="250dp"
                         app:navermap_zoom="20"

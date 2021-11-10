@@ -187,6 +187,15 @@ class ModifyAppointmentActivity : BaseActivity() {
                 Toast.makeText(mContext, "${selectedFriend.nickName}님이 목록에서 삭제 되었습니다", Toast.LENGTH_SHORT).show()
             }
 
+            binding.scrollHelpTxt.setOnTouchListener { view, motionEvent ->
+
+                binding.scrollView.requestDisallowInterceptTouchEvent(true)
+
+                //터치 이벤트만 먹히게? x => 뒤에 가려진 지도 동작도 같이 실행되게
+                return@setOnTouchListener false
+            }
+
+
         }
 
 

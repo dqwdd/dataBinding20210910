@@ -34,7 +34,7 @@ class MySettinsgActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_my_settinsg)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_my_settings)
         setupEvent()
         setValues()
     }

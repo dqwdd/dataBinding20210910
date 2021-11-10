@@ -44,7 +44,7 @@ class SettingFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View {
         binding =
-            DataBindingUtil.inflate(inflater, R.layout.activity_my_settinsg, container, false)
+            DataBindingUtil.inflate(inflater, R.layout.activity_my_settings, container, false)
         return binding.root
     }
 

@@ -294,10 +294,6 @@ class ViewAppointmentDetailActivity : BaseActivity() {
 
 
 
-
-
-
-
     fun setNaverMap() {
         //지도 관련 코드
         // --> 마커를 하나 생성 => 좌표에 찍어주기

@@ -306,7 +306,7 @@ class EditAppoinmentActivity : BaseActivity() {
 
 
 //        일단은 날짜 선택부터
-        binding.dateTxt.setOnClickListener {
+        binding.dateLinear.setOnClickListener {
 
 //            DatePicker 띄우기 -> 입력 완료되면, 연/월/일을 제공해줌
 //            mSelectedDateTime에 연/월/일 저장
@@ -328,6 +328,7 @@ class EditAppoinmentActivity : BaseActivity() {
                 mSelectedDateTime.get(Calendar.MONTH),
                 mSelectedDateTime.get(Calendar.DAY_OF_MONTH))
 
+
             dpd.show()
 
         }
@@ -335,7 +336,7 @@ class EditAppoinmentActivity : BaseActivity() {
 
 
 //        시간 선택
-        binding.timeTxt.setOnClickListener {
+        binding.timeLinear.setOnClickListener {
 
 //            TimePicker띄우기 -> 입력 완료되면 시/분 제공
 //            mSelectedTime에 시/분 저장
@@ -363,7 +364,7 @@ class EditAppoinmentActivity : BaseActivity() {
 
 
 
-//        1. 확인 버튼이 눌리면?
+//        1. 약속 등록하기 버튼이 눌리면?
         binding.okBtn.setOnClickListener {
 
 //            입력한 값들 받아오기
@@ -555,14 +556,13 @@ class EditAppoinmentActivity : BaseActivity() {
 
 
 
-
-
-
+        //스피너 어뎁터
         mSpinnerAdapter = StartPlaceSpinnerAdapter(mContext, R.layout.my_place_list_item, mStartPlaceList)
         binding.startPlaceSpinner.adapter = mSpinnerAdapter
 
-//        내 출발 장소 목록 담아주기
 
+
+//        내 출발 장소 목록 담아주기
         apiService.getRequestMyPlaceList().enqueue(object : Callback<BasicResponse>{
             override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
                 if (response.isSuccessful) {
@@ -581,7 +581,7 @@ class EditAppoinmentActivity : BaseActivity() {
 
 
 
-//        카카오지도 띄워보기
+//        카카오지도 띄워보기 -> 힘들어서 네이버로 바꿈
 //        val mapView = MapView(mContext)
 //
 //
